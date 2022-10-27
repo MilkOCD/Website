@@ -12,9 +12,9 @@ import {
 import { NavLink as RouterLink } from 'react-router-dom';
 import { SidebarContext } from 'src/contexts/SidebarContext';
 
-import DesignServicesTwoToneIcon from '@mui/icons-material/DesignServicesTwoTone';
-import BrightnessLowTwoToneIcon from '@mui/icons-material/BrightnessLowTwoTone';
-import MmsTwoToneIcon from '@mui/icons-material/MmsTwoTone';
+import HomeIcon from '@mui/icons-material/Home';
+import StorageIcon from '@mui/icons-material/Storage';
+import AdbIcon from '@mui/icons-material/Adb';
 import TableChartTwoToneIcon from '@mui/icons-material/TableChartTwoTone';
 import AccountCircleTwoToneIcon from '@mui/icons-material/AccountCircleTwoTone';
 import BallotTwoToneIcon from '@mui/icons-material/BallotTwoTone';
@@ -31,6 +31,14 @@ import ChromeReaderModeTwoToneIcon from '@mui/icons-material/ChromeReaderModeTwo
 import WorkspacePremiumTwoToneIcon from '@mui/icons-material/WorkspacePremiumTwoTone';
 import CameraFrontTwoToneIcon from '@mui/icons-material/CameraFrontTwoTone';
 import DisplaySettingsTwoToneIcon from '@mui/icons-material/DisplaySettingsTwoTone';
+import WaterfallChartIcon from '@mui/icons-material/WaterfallChart';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import AssessmentIcon from '@mui/icons-material/Assessment';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import ContactMailIcon from '@mui/icons-material/ContactMail';
+import ContactSupportIcon from '@mui/icons-material/ContactSupport';
+import FaceRetouchingNaturalIcon from '@mui/icons-material/FaceRetouchingNatural';
+import ShowChartIcon from '@mui/icons-material/ShowChart';
 
 const MenuWrapper = styled(Box)(
   ({ theme }) => `
@@ -189,9 +197,9 @@ function SidebarMenu() {
                   component={RouterLink}
                   onClick={closeSidebar}
                   to="/overview"
-                  startIcon={<DesignServicesTwoToneIcon />}
+                  startIcon={<HomeIcon />}
                 >
-                  Overview
+                  Tổng quan
                 </Button>
               </ListItem>
             </List>
@@ -201,7 +209,42 @@ function SidebarMenu() {
           component="div"
           subheader={
             <ListSubheader component="div" disableSticky>
-              Dashboards
+              Phần mềm phân tích
+            </ListSubheader>
+          }
+        >
+          <SubMenuWrapper>
+            <List component="div">
+              <ListItem component="div">
+                <Button
+                  disableRipple
+                  component={RouterLink}
+                  onClick={closeSidebar}
+                  to="/analysis-software/basic-software"
+                  startIcon={<StorageIcon />}
+                >
+                  Phần mềm cơ bản
+                </Button>
+              </ListItem>
+              <ListItem component="div">
+                <Button
+                  disableRipple
+                  component={RouterLink}
+                  onClick={closeSidebar}
+                  to="/analysis-software/robo"
+                  startIcon={<AdbIcon />}
+                >
+                  Robot chứng khoán
+                </Button>
+              </ListItem>
+            </List>
+          </SubMenuWrapper>
+        </List>
+        <List
+          component="div"
+          subheader={
+            <ListSubheader component="div" disableSticky>
+              Trung tâm nghiên cứu
             </ListSubheader>
           }
         >
@@ -213,9 +256,9 @@ function SidebarMenu() {
                   component={RouterLink}
                   onClick={closeSidebar}
                   to="/dashboards/crypto"
-                  startIcon={<BrightnessLowTwoToneIcon />}
+                  startIcon={<BarChartIcon />}
                 >
-                  Cryptocurrency
+                  Biểu đồ tổng quan
                 </Button>
               </ListItem>
               <ListItem component="div">
@@ -224,9 +267,20 @@ function SidebarMenu() {
                   component={RouterLink}
                   onClick={closeSidebar}
                   to="/dashboards/messenger"
-                  startIcon={<MmsTwoToneIcon />}
+                  startIcon={<WaterfallChartIcon />}
                 >
-                  Messenger
+                  Nhận định thị trường
+                </Button>
+              </ListItem>
+              <ListItem component="div">
+                <Button
+                  disableRipple
+                  component={RouterLink}
+                  onClick={closeSidebar}
+                  to="/dashboards/report"
+                  startIcon={<AssessmentIcon />}
+                >
+                  Báo cáo công ty
                 </Button>
               </ListItem>
             </List>
@@ -236,7 +290,7 @@ function SidebarMenu() {
           component="div"
           subheader={
             <ListSubheader component="div" disableSticky>
-              Management
+              Quản lý
             </ListSubheader>
           }
         >
@@ -248,9 +302,9 @@ function SidebarMenu() {
                   component={RouterLink}
                   onClick={closeSidebar}
                   to="/management/transactions"
-                  startIcon={<TableChartTwoToneIcon />}
+                  startIcon={<AddShoppingCartIcon />}
                 >
-                  Transactions List
+                  Quản lý giao dịch
                 </Button>
               </ListItem>
             </List>
@@ -260,7 +314,7 @@ function SidebarMenu() {
           component="div"
           subheader={
             <ListSubheader component="div" disableSticky>
-              Accounts
+              Tài khoản
             </ListSubheader>
           }
         >
@@ -274,7 +328,7 @@ function SidebarMenu() {
                   to="/management/profile/details"
                   startIcon={<AccountCircleTwoToneIcon />}
                 >
-                  User Profile
+                  Thông tin cá nhân
                 </Button>
               </ListItem>
               <ListItem component="div">
@@ -285,13 +339,13 @@ function SidebarMenu() {
                   to="/management/profile/settings"
                   startIcon={<DisplaySettingsTwoToneIcon />}
                 >
-                  Account Settings
+                  Quản lý tài khoản
                 </Button>
               </ListItem>
             </List>
           </SubMenuWrapper>
         </List>
-        <List
+        {/* <List
           component="div"
           subheader={
             <ListSubheader component="div" disableSticky>
@@ -402,18 +456,18 @@ function SidebarMenu() {
               </ListItem>
             </List>
           </SubMenuWrapper>
-        </List>
+        </List> */}
         <List
           component="div"
           subheader={
             <ListSubheader component="div" disableSticky>
-              Extra Pages
+              Hỗ trợ
             </ListSubheader>
           }
         >
           <SubMenuWrapper>
             <List component="div">
-              <ListItem component="div">
+              {/* <ListItem component="div">
                 <Button
                   disableRipple
                   component={RouterLink}
@@ -434,6 +488,28 @@ function SidebarMenu() {
                 >
                   Error 500
                 </Button>
+              </ListItem> */}
+              <ListItem component="div">
+                <Button
+                  disableRipple
+                  component={RouterLink}
+                  onClick={closeSidebar}
+                  to="/status/knowledges"
+                  startIcon={<FaceRetouchingNaturalIcon />}
+                >
+                  Kiến thức
+                </Button>
+              </ListItem>
+              <ListItem component="div">
+                <Button
+                  disableRipple
+                  component={RouterLink}
+                  onClick={closeSidebar}
+                  to="/status/courses"
+                  startIcon={<ShowChartIcon />}
+                >
+                  Khóa học đầu tư
+                </Button>
               </ListItem>
               <ListItem component="div">
                 <Button
@@ -441,9 +517,9 @@ function SidebarMenu() {
                   component={RouterLink}
                   onClick={closeSidebar}
                   to="/status/coming-soon"
-                  startIcon={<ChromeReaderModeTwoToneIcon />}
+                  startIcon={<ContactMailIcon />}
                 >
-                  Coming Soon
+                  Liên hệ
                 </Button>
               </ListItem>
               <ListItem component="div">
@@ -452,9 +528,9 @@ function SidebarMenu() {
                   component={RouterLink}
                   onClick={closeSidebar}
                   to="/status/maintenance"
-                  startIcon={<WorkspacePremiumTwoToneIcon />}
+                  startIcon={<ContactSupportIcon />}
                 >
-                  Maintenance
+                  Hỏi đáp
                 </Button>
               </ListItem>
             </List>

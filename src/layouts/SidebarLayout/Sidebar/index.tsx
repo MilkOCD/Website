@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import Scrollbar from 'src/components/Scrollbar';
 import { SidebarContext } from 'src/contexts/SidebarContext';
+import PhoneIcon from '@mui/icons-material/Phone';
 
 import {
   Box,
@@ -81,15 +82,15 @@ function Sidebar() {
         />
         <Box p={2}>
           <Button
-            href="https://bloomui.com"
+            href="https://www.google.com/"
             target="_blank"
             rel="noopener noreferrer"
             variant="contained"
-            color="warning"
+            color="info"
             size="small"
             fullWidth
           >
-            Upgrade to PRO
+            <PhoneIcon></PhoneIcon>&nbsp;Liên hệ qua Zalo
           </Button>
         </Box>
       </SidebarWrapper>

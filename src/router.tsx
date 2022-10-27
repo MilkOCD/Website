@@ -105,6 +105,14 @@ const routes: RouteObject[] = [
             element: <Status500 />
           },
           {
+            path: 'knowledges',
+            element: <StatusMaintenance />
+          },
+          {
+            path: 'courses',
+            element: <StatusComingSoon />
+          },
+          {
             path: 'maintenance',
             element: <StatusMaintenance />
           },
@@ -117,6 +125,24 @@ const routes: RouteObject[] = [
       {
         path: '*',
         element: <Status404 />
+      }
+    ]
+  },
+  {
+    path: 'analysis-software',
+    element: <SidebarLayout />,
+    children: [
+      {
+        path: '',
+        element: <Navigate to="robo" replace />
+      },
+      {
+        path: 'basic-software',
+        element: <Crypto />
+      },
+      {
+        path: 'robo',
+        element: <Crypto />
       }
     ]
   },
@@ -135,6 +161,10 @@ const routes: RouteObject[] = [
       {
         path: 'messenger',
         element: <Messenger />
+      },
+      {
+        path: 'report',
+        element: <Crypto />
       }
     ]
   },
