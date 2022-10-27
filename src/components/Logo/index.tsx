@@ -2,7 +2,7 @@ import { Box, styled, Tooltip } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const LogoWrapper = styled(Link)(
-  ({ theme }) => `
+    ({ theme }) => `
         color: ${theme.palette.text.primary};
         padding: ${theme.spacing(0, 1, 0, 0)};
         display: flex;
@@ -12,7 +12,7 @@ const LogoWrapper = styled(Link)(
 );
 
 const LogoSignWrapper = styled(Box)(
-  () => `
+    () => `
         width: 52px;
         height: 38px;
         margin-top: 4px;
@@ -21,7 +21,7 @@ const LogoSignWrapper = styled(Box)(
 );
 
 const LogoSign = styled(Box)(
-  ({ theme }) => `
+    ({ theme }) => `
         background: ${theme.general.reactFrameworkColor};
         width: 18px;
         height: 18px;
@@ -58,7 +58,7 @@ const LogoSign = styled(Box)(
 );
 
 const LogoSignInner = styled(Box)(
-  ({ theme }) => `
+    ({ theme }) => `
         width: 16px;
         height: 16px;
         position: absolute;
@@ -71,13 +71,13 @@ const LogoSignInner = styled(Box)(
 );
 
 const LogoTextWrapper = styled(Box)(
-  ({ theme }) => `
+    ({ theme }) => `
         padding-left: ${theme.spacing(1)};
 `
 );
 
 const VersionBadge = styled(Box)(
-  ({ theme }) => `
+    ({ theme }) => `
         background: ${theme.palette.success.main};
         color: ${theme.palette.success.contrastText};
         padding: ${theme.spacing(0.4, 1)};
@@ -90,35 +90,35 @@ const VersionBadge = styled(Box)(
 );
 
 const LogoText = styled(Box)(
-  ({ theme }) => `
+    ({ theme }) => `
         font-size: ${theme.typography.pxToRem(15)};
         font-weight: ${theme.typography.fontWeightBold};
 `
 );
 
 function Logo() {
-  return (
-    <LogoWrapper to="/overview">
-      <LogoSignWrapper>
-        <LogoSign>
-          <LogoSignInner />
-        </LogoSign>
-      </LogoSignWrapper>
-      <Box
-        component="span"
-        sx={{
-          display: { xs: 'none', sm: 'inline-block' }
-        }}
-      >
-        <LogoTextWrapper>
-          <Tooltip title="Version 2.0" arrow placement="right">
-            <VersionBadge>3.1</VersionBadge>
-          </Tooltip>
-          <LogoText>Tokyo Free White</LogoText>
-        </LogoTextWrapper>
-      </Box>
-    </LogoWrapper>
-  );
+    return (
+        <LogoWrapper to="/overview">
+            <LogoSignWrapper>
+                <LogoSign>
+                    <LogoSignInner />
+                </LogoSign>
+            </LogoSignWrapper>
+            <Box
+                component="span"
+                sx={{
+                    display: { xs: 'none', sm: 'inline-block' }
+                }}
+            >
+                <LogoTextWrapper>
+                    <Tooltip title="TopFin" arrow placement="right">
+                        <VersionBadge>3.1</VersionBadge>
+                    </Tooltip>
+                    <LogoText>Tokyo Free White</LogoText>
+                </LogoTextWrapper>
+            </Box>
+        </LogoWrapper>
+    );
 }
 
 export default Logo;

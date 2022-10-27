@@ -7,15 +7,19 @@ import App from 'src/App';
 import { SidebarProvider } from 'src/contexts/SidebarContext';
 import * as serviceWorker from 'src/serviceWorker';
 
+import GlobalStyles from 'src/components/Global/';
+
 ReactDOM.render(
-  <HelmetProvider>
-    <SidebarProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </SidebarProvider>
-  </HelmetProvider>,
-  document.getElementById('root')
+    <HelmetProvider>
+        <SidebarProvider>
+            <BrowserRouter>
+                <GlobalStyles>
+                    <App />
+                </GlobalStyles>
+            </BrowserRouter>
+        </SidebarProvider>
+    </HelmetProvider>,
+    document.getElementById('root')
 );
 
 serviceWorker.unregister();

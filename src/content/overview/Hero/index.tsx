@@ -5,19 +5,19 @@ import { Link as RouterLink } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 
 const TypographyH1 = styled(Typography)(
-  ({ theme }) => `
+    ({ theme }) => `
     font-size: ${theme.typography.pxToRem(50)};
 `
 );
 
 const TypographyH2 = styled(Typography)(
-  ({ theme }) => `
+    ({ theme }) => `
     font-size: ${theme.typography.pxToRem(17)};
 `
 );
 
 const LabelWrapper = styled(Box)(
-  ({ theme }) => `
+    ({ theme }) => `
     background-color: ${theme.colors.success.main};
     color: ${theme.palette.success.contrastText};
     font-weight: bold;
@@ -31,7 +31,7 @@ const LabelWrapper = styled(Box)(
 );
 
 const MuiAvatar = styled(Box)(
-  ({ theme }) => `
+    ({ theme }) => `
     width: ${theme.spacing(8)};
     height: ${theme.spacing(8)};
     border-radius: ${theme.general.borderRadius};
@@ -51,7 +51,7 @@ const MuiAvatar = styled(Box)(
 );
 
 const TsAvatar = styled(Box)(
-  ({ theme }) => `
+    ({ theme }) => `
     width: ${theme.spacing(8)};
     height: ${theme.spacing(8)};
     border-radius: ${theme.general.borderRadius};
@@ -71,84 +71,70 @@ const TsAvatar = styled(Box)(
 );
 
 function Hero() {
-  return (
-    <Container maxWidth="lg" sx={{ textAlign: 'center' }}>
-      <Grid
-        spacing={{ xs: 6, md: 10 }}
-        justifyContent="center"
-        alignItems="center"
-        container
-      >
-        <Grid item md={10} lg={8} mx="auto">
-          <LabelWrapper color="success">Version 2.0.0</LabelWrapper>
-          <TypographyH1 sx={{ mb: 2 }} variant="h1">
-            Đây là cái tiêu đề, hiện tại chưa có
-          </TypographyH1>
-          <TypographyH2
-            sx={{ lineHeight: 1.5, pb: 4 }}
-            variant="h4"
-            color="text.secondary"
-            fontWeight="normal"
-          >
-            Đây là một cái mô tả gì đó, cũng chưa có luôn, sửa sau
-          </TypographyH2>
-          <Button
-            component={RouterLink}
-            to="/dashboards/crypto"
-            size="large"
-            variant="contained"
-          >
-            Đi đến Trang chủ
-          </Button>
-          <Button
-            sx={{ ml: 2 }}
-            component="a"
-            target="_blank"
-            rel="noopener"
-            href="https://www.google.com/"
-            size="large"
-            variant="text"
-          >
-            Liên hệ Zalo
-          </Button>
-          <Grid container spacing={3} mt={5}>
-            <Grid item md={6}>
-              <MuiAvatar>
-                <img
-                  src="/static/images/logo/material-ui.svg"
-                  alt="Material-UI"
-                />
-              </MuiAvatar>
-              <Typography variant="h4">
-                <Box sx={{ pb: 2 }}>
-                  <b>Bên liên quan (Cụ thể)</b>
-                </Box>
-                <Typography component="span" variant="subtitle2">
-                  Mô tả về bên liên quan
-                </Typography>
-              </Typography>
+    return (
+        <Container maxWidth="lg" sx={{ textAlign: 'center' }}>
+            <Grid spacing={{ xs: 6, md: 10 }} justifyContent="center" alignItems="center" container>
+                <Grid item md={10} lg={8} mx="auto">
+                    <LabelWrapper color="success" style={{ minWidth: 100 }}>
+                        TopFin
+                    </LabelWrapper>
+                    <TypographyH1 sx={{ mb: 2 }} variant="h1">
+                        Đây là cái tiêu đề, hiện tại chưa có
+                    </TypographyH1>
+                    <TypographyH2
+                        sx={{ lineHeight: 1.5, pb: 4 }}
+                        variant="h4"
+                        color="text.secondary"
+                        fontWeight="normal"
+                    >
+                        Đây là một cái mô tả gì đó, cũng chưa có luôn, sửa sau
+                    </TypographyH2>
+                    <Button component={RouterLink} to="/general/news" size="large" variant="contained">
+                        Đi đến Trang chủ
+                    </Button>
+                    <Button
+                        sx={{ ml: 2 }}
+                        component="a"
+                        target="_blank"
+                        rel="noopener"
+                        href="https://www.google.com/"
+                        size="large"
+                        variant="text"
+                    >
+                        Liên hệ Zalo
+                    </Button>
+                    <Grid container spacing={3} mt={5}>
+                        <Grid item md={6}>
+                            <MuiAvatar>
+                                <img src="/static/images/logo/material-ui.svg" alt="Material-UI" />
+                            </MuiAvatar>
+                            <Typography variant="h4">
+                                <Box sx={{ pb: 2 }}>
+                                    <b>Bên liên quan (Cụ thể)</b>
+                                </Box>
+                                <Typography component="span" variant="subtitle2">
+                                    Mô tả về bên liên quan
+                                </Typography>
+                            </Typography>
+                        </Grid>
+                        <Grid item md={6}>
+                            <TsAvatar>
+                                <img src="/static/images/logo/typescript.svg" alt="Typescript" />
+                            </TsAvatar>
+                            <Typography variant="h4">
+                                <Box sx={{ pb: 2 }}>
+                                    <b>Bên liên quan (Cụ thể)</b>
+                                </Box>
+                                <Typography component="span" variant="subtitle2">
+                                    Mô tả về bên liên quan
+                                </Typography>
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                </Grid>
             </Grid>
-            <Grid item md={6}>
-              <TsAvatar>
-                <img
-                  src="/static/images/logo/typescript.svg"
-                  alt="Typescript"
-                />
-              </TsAvatar>
-              <Typography variant="h4">
-                <Box sx={{ pb: 2 }}>
-                  <b>Bên liên quan (Cụ thể)</b>
-                </Box>
-                <Typography component="span" variant="subtitle2">
-                  Mô tả về bên liên quan
-                </Typography>
-              </Typography>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-    </Container>
-  );
+        </Container>
+    );
 }
 
 export default Hero;

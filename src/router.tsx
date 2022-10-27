@@ -20,6 +20,10 @@ const Overview = Loader(lazy(() => import('src/content/overview')));
 
 // Dashboards
 
+const News = Loader(lazy(() => import('src/content/general/News')));
+
+// Dashboards
+
 const Crypto = Loader(lazy(() => import('src/content/dashboards/Crypto')));
 
 // Applications
@@ -125,6 +129,20 @@ const routes: RouteObject[] = [
       {
         path: '*',
         element: <Status404 />
+      }
+    ]
+  },
+  {
+    path: 'general',
+    element: <SidebarLayout />,
+    children: [
+      {
+        path: '',
+        element: <Navigate to="news" replace />
+      },
+      {
+        path: 'news',
+        element: <News />
       }
     ]
   },

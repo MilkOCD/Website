@@ -1,0 +1,85 @@
+@import 'normalize.css';
+
+:root {
+    --primary: #fe2c55;
+}
+
+html {
+    // font-size: 62.5%;
+}
+
+body {
+    // font-family: 'Roboto', sans-serif;
+    // font-size: 1.6rem;
+}
+
+// Global margin, padding
+.mt-px {
+    margin-top: 10px;
+}
+
+.mr-px {
+    margin-right: 10px;
+}
+
+.mb-px {
+    margin-bottom: 10px;
+}
+
+.ml-px {
+    margin-left: 10px;
+}
+
+.pt-px {
+    padding-top: 10px;
+}
+
+.pr-px {
+    padding-right: 10px;
+}
+
+.pb-px {
+    padding-bottom: 10px;
+}
+
+.pl-px {
+    padding-left: 10px;
+}
+
+// Global half margin, padding
+.mt-h-px {
+    margin-top: 5px;
+}
+
+.mr-h-px {
+    margin-right: 5px;
+}
+
+.mb-h-px {
+    margin-bottom: 5px;
+}
+
+.ml-h-px {
+    margin-left: 5px;
+}
+
+.pt-h-px {
+    padding-top: 5px;
+}
+
+.pr-h-px {
+    padding-right: 5px;
+}
+
+.pb-h-px {
+    padding-bottom: 5px;
+}
+
+.pl-h-px {
+    padding-left: 5px;
+}
+
+// Global display type
+.flex-row {
+    display: flex;
+}

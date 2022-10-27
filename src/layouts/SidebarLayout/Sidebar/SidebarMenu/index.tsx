@@ -1,14 +1,6 @@
 import { useContext } from 'react';
 
-import {
-  ListSubheader,
-  alpha,
-  Box,
-  List,
-  styled,
-  Button,
-  ListItem
-} from '@mui/material';
+import { ListSubheader, alpha, Box, List, styled, Button, ListItem } from '@mui/material';
 import { NavLink as RouterLink } from 'react-router-dom';
 import { SidebarContext } from 'src/contexts/SidebarContext';
 
@@ -39,9 +31,10 @@ import ContactMailIcon from '@mui/icons-material/ContactMail';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import FaceRetouchingNaturalIcon from '@mui/icons-material/FaceRetouchingNatural';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
+import AnnouncementIcon from '@mui/icons-material/Announcement';
 
 const MenuWrapper = styled(Box)(
-  ({ theme }) => `
+    ({ theme }) => `
   .MuiList-root {
     padding: ${theme.spacing(1)};
 
@@ -62,7 +55,7 @@ const MenuWrapper = styled(Box)(
 );
 
 const SubMenuWrapper = styled(Box)(
-  ({ theme }) => `
+    ({ theme }) => `
     .MuiList-root {
 
       .MuiListItem-root {
@@ -154,10 +147,7 @@ const SubMenuWrapper = styled(Box)(
                 content: ' ';
                 background: ${theme.colors.alpha.trueWhite[100]};
                 opacity: 0;
-                transition: ${theme.transitions.create([
-                  'transform',
-                  'opacity'
-                ])};
+                transition: ${theme.transitions.create(['transform', 'opacity'])};
                 width: 6px;
                 height: 6px;
                 transform: scale(0);
@@ -183,50 +173,96 @@ const SubMenuWrapper = styled(Box)(
 );
 
 function SidebarMenu() {
-  const { closeSidebar } = useContext(SidebarContext);
+    const { closeSidebar } = useContext(SidebarContext);
 
-  return (
-    <>
-      <MenuWrapper>
-        <List component="div">
-          <SubMenuWrapper>
-            <List component="div">
-              <ListItem component="div">
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to="/overview"
-                  startIcon={<HomeIcon />}
+    return (
+        <>
+            <MenuWrapper>
+                <List component="div">
+                    <SubMenuWrapper>
+                        <List component="div">
+                            <ListItem component="div">
+                                <Button
+                                    disableRipple
+                                    component={RouterLink}
+                                    onClick={closeSidebar}
+                                    to="/overview"
+                                    startIcon={<HomeIcon />}
+                                >
+                                    Tổng quan
+                                </Button>
+                            </ListItem>
+                        </List>
+                    </SubMenuWrapper>
+                </List>
+                <List
+                    component="div"
+                    subheader={
+                        <ListSubheader component="div" disableSticky>
+                            Tổng hợp
+                        </ListSubheader>
+                    }
                 >
-                  Tổng quan
-                </Button>
-              </ListItem>
-            </List>
-          </SubMenuWrapper>
-        </List>
-        <List
-          component="div"
-          subheader={
-            <ListSubheader component="div" disableSticky>
-              Phần mềm phân tích
-            </ListSubheader>
-          }
-        >
-          <SubMenuWrapper>
-            <List component="div">
-              <ListItem component="div">
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to="/analysis-software/basic-software"
-                  startIcon={<StorageIcon />}
+                    <SubMenuWrapper>
+                        <List component="div">
+                            {/* <ListItem component="div">
+                                <Button
+                                    disableRipple
+                                    component={RouterLink}
+                                    onClick={closeSidebar}
+                                    to="/general/news"
+                                    startIcon={<AnnouncementIcon />}
+                                >
+                                    Bài viết/Tin tức
+                                </Button>
+                            </ListItem> */}
+                            <ListItem component="div">
+                                <Button
+                                    disableRipple
+                                    component={RouterLink}
+                                    onClick={closeSidebar}
+                                    to="/general/news"
+                                    startIcon={<FaceRetouchingNaturalIcon />}
+                                >
+                                    Kiến thức
+                                </Button>
+                            </ListItem>
+                            <ListItem component="div">
+                                <Button
+                                    disableRipple
+                                    component={RouterLink}
+                                    onClick={closeSidebar}
+                                    to="/status/courses"
+                                    startIcon={<ShowChartIcon />}
+                                >
+                                    Khóa học đầu tư
+                                </Button>
+                            </ListItem>
+                        </List>
+                    </SubMenuWrapper>
+                </List>
+                <List
+                    component="div"
+                    subheader={
+                        <ListSubheader component="div" disableSticky>
+                            Phần mềm phân tích
+                        </ListSubheader>
+                    }
                 >
-                  Phần mềm cơ bản
-                </Button>
-              </ListItem>
-              <ListItem component="div">
+                    <SubMenuWrapper>
+                        <List component="div">
+                            <ListItem component="div">
+                                <Button
+                                    disableRipple
+                                    component={RouterLink}
+                                    onClick={closeSidebar}
+                                    to="/analysis-software/basic-software"
+                                    startIcon={<StorageIcon />}
+                                >
+                                    Phần mềm cơ bản
+                                </Button>
+                            </ListItem>
+                            {/* <ListItem component="div">
                 <Button
                   disableRipple
                   component={RouterLink}
@@ -236,21 +272,21 @@ function SidebarMenu() {
                 >
                   Robot chứng khoán
                 </Button>
-              </ListItem>
-            </List>
-          </SubMenuWrapper>
-        </List>
-        <List
-          component="div"
-          subheader={
-            <ListSubheader component="div" disableSticky>
-              Trung tâm nghiên cứu
-            </ListSubheader>
-          }
-        >
-          <SubMenuWrapper>
-            <List component="div">
-              <ListItem component="div">
+              </ListItem> */}
+                        </List>
+                    </SubMenuWrapper>
+                </List>
+                <List
+                    component="div"
+                    subheader={
+                        <ListSubheader component="div" disableSticky>
+                            Trung tâm nghiên cứu
+                        </ListSubheader>
+                    }
+                >
+                    <SubMenuWrapper>
+                        <List component="div">
+                            {/* <ListItem component="div">
                 <Button
                   disableRipple
                   component={RouterLink}
@@ -260,33 +296,33 @@ function SidebarMenu() {
                 >
                   Biểu đồ tổng quan
                 </Button>
-              </ListItem>
-              <ListItem component="div">
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to="/dashboards/messenger"
-                  startIcon={<WaterfallChartIcon />}
-                >
-                  Nhận định thị trường
-                </Button>
-              </ListItem>
-              <ListItem component="div">
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to="/dashboards/report"
-                  startIcon={<AssessmentIcon />}
-                >
-                  Báo cáo công ty
-                </Button>
-              </ListItem>
-            </List>
-          </SubMenuWrapper>
-        </List>
-        <List
+              </ListItem> */}
+                            <ListItem component="div">
+                                <Button
+                                    disableRipple
+                                    component={RouterLink}
+                                    onClick={closeSidebar}
+                                    to="/dashboards/messenger"
+                                    startIcon={<WaterfallChartIcon />}
+                                >
+                                    Nhận định thị trường
+                                </Button>
+                            </ListItem>
+                            <ListItem component="div">
+                                <Button
+                                    disableRipple
+                                    component={RouterLink}
+                                    onClick={closeSidebar}
+                                    to="/dashboards/report"
+                                    startIcon={<AssessmentIcon />}
+                                >
+                                    Báo cáo công ty
+                                </Button>
+                            </ListItem>
+                        </List>
+                    </SubMenuWrapper>
+                </List>
+                {/* <List
           component="div"
           subheader={
             <ListSubheader component="div" disableSticky>
@@ -309,43 +345,43 @@ function SidebarMenu() {
               </ListItem>
             </List>
           </SubMenuWrapper>
-        </List>
-        <List
-          component="div"
-          subheader={
-            <ListSubheader component="div" disableSticky>
-              Tài khoản
-            </ListSubheader>
-          }
-        >
-          <SubMenuWrapper>
-            <List component="div">
-              <ListItem component="div">
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to="/management/profile/details"
-                  startIcon={<AccountCircleTwoToneIcon />}
+        </List> */}
+                <List
+                    component="div"
+                    subheader={
+                        <ListSubheader component="div" disableSticky>
+                            Tài khoản
+                        </ListSubheader>
+                    }
                 >
-                  Thông tin cá nhân
-                </Button>
-              </ListItem>
-              <ListItem component="div">
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to="/management/profile/settings"
-                  startIcon={<DisplaySettingsTwoToneIcon />}
-                >
-                  Quản lý tài khoản
-                </Button>
-              </ListItem>
-            </List>
-          </SubMenuWrapper>
-        </List>
-        {/* <List
+                    <SubMenuWrapper>
+                        <List component="div">
+                            <ListItem component="div">
+                                <Button
+                                    disableRipple
+                                    component={RouterLink}
+                                    onClick={closeSidebar}
+                                    to="/management/profile/details"
+                                    startIcon={<AccountCircleTwoToneIcon />}
+                                >
+                                    Thông tin cá nhân
+                                </Button>
+                            </ListItem>
+                            <ListItem component="div">
+                                <Button
+                                    disableRipple
+                                    component={RouterLink}
+                                    onClick={closeSidebar}
+                                    to="/management/profile/settings"
+                                    startIcon={<DisplaySettingsTwoToneIcon />}
+                                >
+                                    Quản lý tài khoản
+                                </Button>
+                            </ListItem>
+                        </List>
+                    </SubMenuWrapper>
+                </List>
+                {/* <List
           component="div"
           subheader={
             <ListSubheader component="div" disableSticky>
@@ -457,17 +493,17 @@ function SidebarMenu() {
             </List>
           </SubMenuWrapper>
         </List> */}
-        <List
-          component="div"
-          subheader={
-            <ListSubheader component="div" disableSticky>
-              Hỗ trợ
-            </ListSubheader>
-          }
-        >
-          <SubMenuWrapper>
-            <List component="div">
-              {/* <ListItem component="div">
+                <List
+                    component="div"
+                    subheader={
+                        <ListSubheader component="div" disableSticky>
+                            Hỗ trợ
+                        </ListSubheader>
+                    }
+                >
+                    <SubMenuWrapper>
+                        <List component="div">
+                            {/* <ListItem component="div">
                 <Button
                   disableRipple
                   component={RouterLink}
@@ -489,56 +525,34 @@ function SidebarMenu() {
                   Error 500
                 </Button>
               </ListItem> */}
-              <ListItem component="div">
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to="/status/knowledges"
-                  startIcon={<FaceRetouchingNaturalIcon />}
-                >
-                  Kiến thức
-                </Button>
-              </ListItem>
-              <ListItem component="div">
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to="/status/courses"
-                  startIcon={<ShowChartIcon />}
-                >
-                  Khóa học đầu tư
-                </Button>
-              </ListItem>
-              <ListItem component="div">
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to="/status/coming-soon"
-                  startIcon={<ContactMailIcon />}
-                >
-                  Liên hệ
-                </Button>
-              </ListItem>
-              <ListItem component="div">
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to="/status/maintenance"
-                  startIcon={<ContactSupportIcon />}
-                >
-                  Hỏi đáp
-                </Button>
-              </ListItem>
-            </List>
-          </SubMenuWrapper>
-        </List>
-      </MenuWrapper>
-    </>
-  );
+                            <ListItem component="div">
+                                <Button
+                                    disableRipple
+                                    component={RouterLink}
+                                    onClick={closeSidebar}
+                                    to="/status/coming-soon"
+                                    startIcon={<ContactMailIcon />}
+                                >
+                                    Liên hệ
+                                </Button>
+                            </ListItem>
+                            <ListItem component="div">
+                                <Button
+                                    disableRipple
+                                    component={RouterLink}
+                                    onClick={closeSidebar}
+                                    to="/status/maintenance"
+                                    startIcon={<ContactSupportIcon />}
+                                >
+                                    Hỏi đáp
+                                </Button>
+                            </ListItem>
+                        </List>
+                    </SubMenuWrapper>
+                </List>
+            </MenuWrapper>
+        </>
+    );
 }
 
 export default SidebarMenu;
