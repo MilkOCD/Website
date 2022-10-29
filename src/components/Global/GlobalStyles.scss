@@ -79,7 +79,44 @@ body {
     padding-left: 5px;
 }
 
+// Global size
+.full-width {
+    width: 100%;
+}
+
+.full-height {
+    height: 100%;
+}
+
 // Global display type
 .flex-row {
     display: flex;
+}
+
+// Global alignment
+.align-center {
+    text-align: center;
+}
+
+.j-align-center {
+    justify-content: center;
+}
+
+// Global opacity
+
+.opacity-30 {
+    opacity: 30%;
+}
+
+.opacity-50 {
+    opacity: 50%;
+}
+
+.opacity-70 {
+    opacity: 70%;
+}
+
+// Global hover
+.df-hover:hover {
+    cursor: pointer;
 }

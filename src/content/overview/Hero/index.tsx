@@ -3,6 +3,7 @@ import { Box, Button, Container, Grid, Typography } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 
 import { styled } from '@mui/material/styles';
+import PhoneIcon from '@mui/icons-material/Phone';
 
 const TypographyH1 = styled(Typography)(
     ({ theme }) => `
@@ -89,22 +90,24 @@ function Hero() {
                     >
                         Đây là một cái mô tả gì đó, cũng chưa có luôn, sửa sau
                     </TypographyH2>
-                    <Button component={RouterLink} to="/general/news" size="large" variant="contained">
-                        Đi đến Trang chủ
-                    </Button>
-                    <Button
-                        sx={{ ml: 2 }}
-                        component="a"
-                        target="_blank"
-                        rel="noopener"
-                        href="https://www.google.com/"
-                        size="large"
-                        variant="text"
-                    >
-                        Liên hệ Zalo
-                    </Button>
-                    <Grid container spacing={3} mt={5}>
-                        <Grid item md={6}>
+                    <div className="full-width flex-row j-align-center">
+                        <Button component={RouterLink} to="/general/news" size="large" variant="contained">
+                            Trang chủ
+                        </Button>
+                        <Button
+                            sx={{ ml: 2 }}
+                            component="a"
+                            target="_blank"
+                            rel="noopener"
+                            href="https://www.google.com/"
+                            size="large"
+                            variant="outlined"
+                        >
+                            <PhoneIcon></PhoneIcon>&nbsp;Zalo
+                        </Button>
+                    </div>
+                    <Grid container spacing={1} mt={5}>
+                        <Grid item xs={4}>
                             <MuiAvatar>
                                 <img src="/static/images/logo/material-ui.svg" alt="Material-UI" />
                             </MuiAvatar>
@@ -117,13 +120,26 @@ function Hero() {
                                 </Typography>
                             </Typography>
                         </Grid>
-                        <Grid item md={6}>
+                        <Grid item xs={4}>
                             <TsAvatar>
                                 <img src="/static/images/logo/typescript.svg" alt="Typescript" />
                             </TsAvatar>
                             <Typography variant="h4">
                                 <Box sx={{ pb: 2 }}>
                                     <b>Bên liên quan (Cụ thể)</b>
+                                </Box>
+                                <Typography component="span" variant="subtitle2">
+                                    Mô tả về bên liên quan
+                                </Typography>
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <MuiAvatar>
+                                <img src="/static/images/logo/topfin.jpg" alt="TopFin" />
+                            </MuiAvatar>
+                            <Typography variant="h4">
+                                <Box sx={{ pb: 2 }}>
+                                    <b>TopFin (Cụ thể)</b>
                                 </Box>
                                 <Typography component="span" variant="subtitle2">
                                     Mô tả về bên liên quan

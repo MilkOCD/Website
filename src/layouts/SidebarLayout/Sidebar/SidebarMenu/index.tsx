@@ -232,7 +232,7 @@ function SidebarMenu() {
                                     disableRipple
                                     component={RouterLink}
                                     onClick={closeSidebar}
-                                    to="/status/courses"
+                                    to="/status/coursessssssssssssss"
                                     startIcon={<ShowChartIcon />}
                                 >
                                     Khóa học đầu tư

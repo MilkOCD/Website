@@ -57,7 +57,7 @@ function News() {
             </Container>
             <Container maxWidth="lg" style={{ height: 150 }}>
                 <Grid container direction="row" justifyContent="center" alignItems="stretch" spacing={4}>
-                    <div style={{ marginTop: 70 }}>
+                    <div style={{ marginTop: 70, marginLeft: 30 }}>
                         <PaginationOutlined />
                     </div>
                 </Grid>

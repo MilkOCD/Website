@@ -93,22 +93,24 @@ function Logo() {
         <TooltipWrapper title="Website" arrow>
             <LogoWrapper to="/overview">
                 <Badge
-                    sx={{
-                        '.MuiBadge-badge': {
-                            fontSize: theme.typography.pxToRem(11),
-                            right: -2,
-                            top: 8
-                        }
-                    }}
-                    overlap="circular"
-                    color="success"
-                    badgeContent="TopFin"
+                // sx={{
+                //     '.MuiBadge-badge': {
+                //         fontSize: theme.typography.pxToRem(11),
+                //         right: -2,
+                //         top: 8
+                //     }
+                // }}
+                // overlap="circular"
+                // color="success"
+                // badgeContent="TopFin"
                 >
-                    <img
-                        src="/static/images/logo/topfin-2.png"
-                        style={{ width: 200, overflow: 'hidden', marginLeft: 20 }}
-                        alt=""
-                    />
+                    {!(location.pathname.includes('coming-soon') || location.pathname.includes('courses')) && (
+                        <img
+                            src="/static/images/logo/logo-white.png"
+                            style={{ width: 220, overflow: 'hidden', marginLeft: 15 }}
+                            alt=""
+                        />
+                    )}
                 </Badge>
             </LogoWrapper>
         </TooltipWrapper>

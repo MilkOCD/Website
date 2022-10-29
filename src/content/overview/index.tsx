@@ -19,12 +19,14 @@ function Overview() {
             <Helmet>
                 <title>Website</title>
             </Helmet>
-            <Container maxWidth="lg" style={{ marginTop: -100 }}>
+            <Container maxWidth="lg">
                 <Box display="flex" justifyContent="center" py={5} alignItems="center">
                     {/* <Logo /> */}
-                    <img src="static/images/logo/topfin-1.png" style={{ width: 300 }} alt="" />
                 </Box>
-                <Card style={{ marginTop: -240 }} sx={{ p: 10, mb: 10, borderRadius: 12 }}>
+                <Card sx={{ p: 5, mb: 5, borderRadius: 5 }}>
+                    <div className="align-center mb-px">
+                        <img src="static/images/logo/logo-black.png" style={{ width: '100%', maxWidth: 300 }} alt="" />
+                    </div>
                     <Hero />
                 </Card>
             </Container>

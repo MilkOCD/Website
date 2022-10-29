@@ -15,6 +15,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Tooltip from '@mui/material/Tooltip';
+import useWindowDimensions from '../Tools/';
 
 interface IProps {
     title: string;
@@ -38,6 +39,7 @@ const ExpandMore = styled((props: any) => {
 
 export default function RecipeReviewCard(props: IProps) {
     const [expanded, setExpanded] = React.useState(false);
+    const [size, setSize] = React.useState(useWindowDimensions());
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -45,19 +47,25 @@ export default function RecipeReviewCard(props: IProps) {
 
     return (
         <Card>
+            {() => useWindowDimensions(setSize.bind(this))}
             <CardHeader
+                className="df-hover"
                 avatar={
-                    <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe" src="/static/images/avatars/1.jpg">
-                        R
-                    </Avatar>
+                    size.width > 750 ? (
+                        <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe" src="/static/images/avatars/1.jpg">
+                            R
+                        </Avatar>
+                    ) : null
                 }
                 action={
-                    <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                    </IconButton>
+                    size.width > 750 ? (
+                        <IconButton aria-label="settings">
+                            <MoreVertIcon />
+                        </IconButton>
+                    ) : null
                 }
                 title={<b>{props.title.toUpperCase()}</b>}
-                subheader={props.subheader}
+                subheader={size.width > 750 ? props.subheader : ''}
             />
             <CardMedia component="img" height="194" image={props.image} alt="" />
             <CardContent>
