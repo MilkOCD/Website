@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 
+import { observer } from 'mobx-react';
+import gStore from 'src/stores/GlobalStore';
+
 interface WindowDimentions {
     width: number;
     height: number;
@@ -14,13 +17,13 @@ function getWindowDimensions(): WindowDimentions {
     };
 }
 
-export default function useWindowDimensions(callback?): WindowDimentions {
+export default function useWindowDimensions(): WindowDimentions {
     const [windowDimensions, setWindowDimensions] = useState<WindowDimentions>(getWindowDimensions());
 
     useEffect(() => {
         function handleResize(): void {
             setWindowDimensions(getWindowDimensions());
-            if (callback) callback(windowDimensions);
+            gStore.setWindowDimensions(getWindowDimensions());
         }
 
         window.addEventListener('resize', handleResize);

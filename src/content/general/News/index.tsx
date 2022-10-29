@@ -6,6 +6,8 @@ import { useTheme } from '@mui/material/styles';
 import RecipeReviewCard from 'src/components/Card';
 import PaginationOutlined from 'src/components/Pagination';
 import { newsData } from 'src/services/data';
+import { observer } from 'mobx-react';
+import gStore from 'src/stores/GlobalStore';
 
 function News() {
     const user = {
@@ -42,7 +44,11 @@ function News() {
             <Container maxWidth="lg" style={{ marginTop: 50 }}>
                 <Grid container direction="row" justifyContent="center" alignItems="stretch" spacing={4}>
                     {newsData.map((data) => (
-                        <Grid key={data.id} item xs={6}>
+                        <Grid
+                            key={data.id}
+                            item
+                            xs={gStore.windowDimension ? (gStore.windowDimension.width > 625 ? 6 : 12) : 6}
+                        >
                             <RecipeReviewCard
                                 title={data.title}
                                 subheader={data.subheader}
@@ -66,4 +72,4 @@ function News() {
     );
 }
 
-export default News;
+export default observer(News);
