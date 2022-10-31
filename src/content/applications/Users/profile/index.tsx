@@ -26,7 +26,7 @@ function ManagementUserProfile() {
     return (
         <>
             <Helmet>
-                <title>User Details - Management</title>
+                <title>Thông tin cá nhân</title>
             </Helmet>
             <Container sx={{ mt: 3 }} maxWidth="lg">
                 <Grid container direction="row" justifyContent="center" alignItems="stretch" spacing={3}>

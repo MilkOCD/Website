@@ -10,24 +10,17 @@ import MenuTwoToneIcon from '@mui/icons-material/MenuTwoTone';
 
 import Scrollbar from 'src/components/Scrollbar';
 
-import {
-  Box,
-  styled,
-  Divider,
-  Drawer,
-  IconButton,
-  useTheme
-} from '@mui/material';
+import { Box, styled, Divider, Drawer, IconButton, useTheme } from '@mui/material';
 
 const RootWrapper = styled(Box)(
-  ({ theme }) => `
+    ({ theme }) => `
        height: calc(100vh - ${theme.header.height});
        display: flex;
 `
 );
 
 const Sidebar = styled(Box)(
-  ({ theme }) => `
+    ({ theme }) => `
         width: 300px;
         background: ${theme.colors.alpha.white[100]};
         border-right: ${theme.colors.alpha.black[10]} solid 1px;
@@ -35,7 +28,7 @@ const Sidebar = styled(Box)(
 );
 
 const ChatWindow = styled(Box)(
-  () => `
+    () => `
         width: 100%;
         height: 100%;
         display: flex;
@@ -45,7 +38,7 @@ const ChatWindow = styled(Box)(
 );
 
 const ChatTopBar = styled(Box)(
-  ({ theme }) => `
+    ({ theme }) => `
         background: ${theme.colors.alpha.white[100]};
         border-bottom: ${theme.colors.alpha.black[10]} solid 1px;
         padding: ${theme.spacing(2)};
@@ -54,7 +47,7 @@ const ChatTopBar = styled(Box)(
 );
 
 const IconButtonToggle = styled(IconButton)(
-  ({ theme }) => `
+    ({ theme }) => `
   width: ${theme.spacing(4)};
   height: ${theme.spacing(4)};
   background: ${theme.colors.alpha.white[100]};
@@ -62,7 +55,7 @@ const IconButtonToggle = styled(IconButton)(
 );
 
 const DrawerWrapperMobile = styled(Drawer)(
-  () => `
+    () => `
     width: 340px;
     flex-shrink: 0;
 
@@ -74,71 +67,71 @@ const DrawerWrapperMobile = styled(Drawer)(
 );
 
 function ApplicationsMessenger() {
-  const theme = useTheme();
-  const [mobileOpen, setMobileOpen] = useState(false);
+    const theme = useTheme();
+    const [mobileOpen, setMobileOpen] = useState(false);
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+    const handleDrawerToggle = () => {
+        setMobileOpen(!mobileOpen);
+    };
 
-  return (
-    <>
-      <Helmet>
-        <title>Messenger - Applications</title>
-      </Helmet>
-      <RootWrapper className="Mui-FixedWrapper">
-        <DrawerWrapperMobile
-          sx={{
-            display: { lg: 'none', xs: 'inline-block' }
-          }}
-          variant="temporary"
-          anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-        >
-          <Scrollbar>
-            <SidebarContent />
-          </Scrollbar>
-        </DrawerWrapperMobile>
-        <Sidebar
-          sx={{
-            display: { xs: 'none', lg: 'inline-block' }
-          }}
-        >
-          <Scrollbar>
-            <SidebarContent />
-          </Scrollbar>
-        </Sidebar>
-        <ChatWindow>
-          <ChatTopBar
-            sx={{
-              display: { xs: 'flex', lg: 'inline-block' }
-            }}
-          >
-            <IconButtonToggle
-              sx={{
-                display: { lg: 'none', xs: 'flex' },
-                mr: 2
-              }}
-              color="primary"
-              onClick={handleDrawerToggle}
-              size="small"
-            >
-              <MenuTwoToneIcon />
-            </IconButtonToggle>
-            <TopBarContent />
-          </ChatTopBar>
-          <Box flex={1}>
-            <Scrollbar>
-              <ChatContent />
-            </Scrollbar>
-          </Box>
-          <Divider />
-          <BottomBarContent />
-        </ChatWindow>
-      </RootWrapper>
-    </>
-  );
+    return (
+        <>
+            <Helmet>
+                <title>TopFin - Nhận định thị trường</title>
+            </Helmet>
+            <RootWrapper className="Mui-FixedWrapper">
+                <DrawerWrapperMobile
+                    sx={{
+                        display: { lg: 'none', xs: 'inline-block' }
+                    }}
+                    variant="temporary"
+                    anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+                    open={mobileOpen}
+                    onClose={handleDrawerToggle}
+                >
+                    <Scrollbar>
+                        <SidebarContent />
+                    </Scrollbar>
+                </DrawerWrapperMobile>
+                <Sidebar
+                    sx={{
+                        display: { xs: 'none', lg: 'inline-block' }
+                    }}
+                >
+                    <Scrollbar>
+                        <SidebarContent />
+                    </Scrollbar>
+                </Sidebar>
+                <ChatWindow>
+                    <ChatTopBar
+                        sx={{
+                            display: { xs: 'flex', lg: 'inline-block' }
+                        }}
+                    >
+                        <IconButtonToggle
+                            sx={{
+                                display: { lg: 'none', xs: 'flex' },
+                                mr: 2
+                            }}
+                            color="primary"
+                            onClick={handleDrawerToggle}
+                            size="small"
+                        >
+                            <MenuTwoToneIcon />
+                        </IconButtonToggle>
+                        <TopBarContent />
+                    </ChatTopBar>
+                    <Box flex={1}>
+                        <Scrollbar>
+                            <ChatContent />
+                        </Scrollbar>
+                    </Box>
+                    <Divider />
+                    <BottomBarContent />
+                </ChatWindow>
+            </RootWrapper>
+        </>
+    );
 }
 
 export default ApplicationsMessenger;

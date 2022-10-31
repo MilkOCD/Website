@@ -13,7 +13,7 @@ function DashboardCrypto() {
     return (
         <>
             <Helmet>
-                <title>Crypto Dashboard</title>
+                <title>TopFin - Phần mềm</title>
             </Helmet>
             <PageTitleWrapper>
                 <PageHeader />
