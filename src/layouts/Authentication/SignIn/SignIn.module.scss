@@ -1,0 +1,30 @@
+.login-form {
+    width: 350px;
+    position: absolute;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.login-avatar {
+    margin: auto;
+}
+
+.login-account {
+    width: 100%;
+}
+
+.login-password {
+    width: 100%;
+}
+
+.login-loader {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.login-btn {
+    width: 100%;
+}

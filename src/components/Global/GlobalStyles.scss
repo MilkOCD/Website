@@ -5,10 +5,11 @@
 }
 
 html {
-    // font-size: 62.5%;
+    // font-size: 100%;
 }
 
 body {
+    font-family: Arial, Helvetica, sans-serif;
     // font-family: 'Roboto', sans-serif;
     // font-size: 1.6rem;
 }
@@ -102,6 +103,38 @@ body {
     justify-content: center;
 }
 
+.atm-top {
+    margin-top: auto;
+}
+
+.atm-right {
+    margin-right: auto;
+}
+
+.atm-bottom {
+    margin-bottom: auto;
+}
+
+.atm-left {
+    margin-left: auto;
+}
+
+.atp-top {
+    padding-top: auto;
+}
+
+.atp-right {
+    padding-right: auto;
+}
+
+.atp-bottom {
+    padding-bottom: auto;
+}
+
+.atp-left {
+    padding-left: auto;
+}
+
 // Global opacity
 
 .opacity-30 {
@@ -119,4 +152,15 @@ body {
 // Global hover
 .df-hover:hover {
     cursor: pointer;
+}
+
+// Global popup
+.popup-content {
+    display: flex;
+    justify-content: center;
+    padding: 0px;
+    padding-bottom: 500px;
+    width: 0px;
+    height: 0px;
+    border: 0;
 }

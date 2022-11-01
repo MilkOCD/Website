@@ -22,6 +22,11 @@ import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone';
 import AccountBoxTwoToneIcon from '@mui/icons-material/AccountBoxTwoTone';
 import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
 import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
+import LoginIcon from '@mui/icons-material/Login';
+import auth from 'src/stores/Authentication';
+import { observer } from 'mobx-react';
+import Base from 'src/utils/Base';
+import SignInForm from 'src/layouts/Authentication/SignIn';
 
 const UserBoxButton = styled(Button)(
     ({ theme }) => `
@@ -76,7 +81,16 @@ function HeaderUserbox() {
         setOpen(false);
     };
 
-    return (
+    return auth.localUser == '' ? (
+        <>
+            {Base.bigPopup(
+                <Button startIcon={<LoginIcon />} variant="outlined" sx={{ mx: 2 }}>
+                    Đăng nhập
+                </Button>,
+                <SignInForm />
+            )}
+        </>
+    ) : (
         <>
             <UserBoxButton color="secondary" ref={ref} onClick={handleOpen}>
                 <Avatar variant="rounded" alt={user.name} src={user.avatar} />
@@ -127,7 +141,7 @@ function HeaderUserbox() {
                 </List>
                 <Divider />
                 <Box sx={{ m: 1 }}>
-                    <Button color="primary" fullWidth>
+                    <Button color="primary" fullWidth onClick={auth.logout}>
                         <LockOpenTwoToneIcon sx={{ mr: 1 }} />
                         Sign out
                     </Button>
@@ -137,4 +151,4 @@ function HeaderUserbox() {
     );
 }
 
-export default HeaderUserbox;
+export default observer(HeaderUserbox);

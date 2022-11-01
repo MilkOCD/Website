@@ -104,7 +104,11 @@ function Logo() {
                 // color="success"
                 // badgeContent="TopFin"
                 >
-                    {!(location.pathname.includes('coming-soon') || location.pathname.includes('courses')) && (
+                    {!(
+                        location.pathname.includes('coming-soon') ||
+                        location.pathname.includes('courses') ||
+                        location.pathname.includes('maintenance')
+                    ) && (
                         <img
                             src="/static/images/logo/logo-white.png"
                             style={{ width: 220, overflow: 'hidden', marginLeft: 15 }}
