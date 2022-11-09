@@ -7,11 +7,18 @@ import HelpIcon from '@mui/icons-material/Help';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Loader from 'src/components/Loader';
 import { Link as RouterLink } from 'react-router-dom';
+import auth from 'src/stores/authenticationStore';
+import LoginModel from 'src/models/Login/loginModel';
 
 const cx = classNames.bind(styles);
 
 function SignInForm() {
     const [loading, setLoading] = React.useState(false);
+
+    const onAction = () => {
+        setLoading(true);
+        // auth.login(new LoginModel('admin', '123qwe', false));
+    };
 
     return (
         <Box className={cx('login-form')}>
@@ -65,12 +72,7 @@ function SignInForm() {
             </div>
             <div className={cx('login-loader')}>{loading && <Loader data={{ size: 150 }} />}</div>
             <Stack className={'mt-px'} direction="row">
-                <Button
-                    className={cx('login-btn')}
-                    variant="contained"
-                    endIcon={<SendIcon />}
-                    onClick={() => setLoading(true)}
-                >
+                <Button className={cx('login-btn')} variant="contained" endIcon={<SendIcon />} onClick={onAction}>
                     Đăng nhập
                 </Button>
             </Stack>

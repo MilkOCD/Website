@@ -23,7 +23,7 @@ import AccountBoxTwoToneIcon from '@mui/icons-material/AccountBoxTwoTone';
 import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
 import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
 import LoginIcon from '@mui/icons-material/Login';
-import auth from 'src/stores/Authentication';
+import auth from 'src/stores/authenticationStore';
 import { observer } from 'mobx-react';
 import Base from 'src/utils/Base';
 import SignInForm from 'src/layouts/Authentication/SignIn';
