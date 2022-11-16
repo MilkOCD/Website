@@ -27,6 +27,7 @@ import auth from 'src/stores/authenticationStore';
 import { observer } from 'mobx-react';
 import Base from 'src/utils/Base';
 import SignInForm from 'src/layouts/Authentication/SignIn';
+import PopupComponent from 'src/components/Popup';
 
 const UserBoxButton = styled(Button)(
     ({ theme }) => `
@@ -83,12 +84,15 @@ function HeaderUserbox() {
 
     return auth.localUser == '' ? (
         <>
-            {Base.bigPopup(
-                <Button startIcon={<LoginIcon />} variant="outlined" sx={{ mx: 2 }}>
-                    Đăng nhập
-                </Button>,
-                <SignInForm />
-            )}
+            <PopupComponent
+                type="small"
+                target={
+                    <Button startIcon={<LoginIcon />} variant="outlined" sx={{ mx: 2 }}>
+                        Đăng nhập
+                    </Button>
+                }
+                content={<SignInForm />}
+            />
         </>
     ) : (
         <>

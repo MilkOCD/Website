@@ -17,7 +17,11 @@ function SignInForm() {
 
     const onAction = () => {
         setLoading(true);
-        // auth.login(new LoginModel('admin', '123qwe', false));
+        let dataSend = new LoginModel();
+        dataSend.userNameOrEmailAddress = 'admin';
+        dataSend.password = '123qwe';
+        dataSend.rememberMe = false;
+        auth.login(dataSend);
     };
 
     return (

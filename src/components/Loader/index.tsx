@@ -1,4 +1,5 @@
 import * as React from 'react';
+import classnames from 'classnames';
 import './Loader.scss';
 const TIMER = 150; // Milliseconds between moving the next block
 const TRANSITION = 0.5; // Seconds to actually move one block
@@ -11,6 +12,7 @@ interface IProps {
     size?: any;
     style?: any;
     center?: any;
+    loadingUI?: boolean;
 }
 class Loader extends React.Component<IProps> {
     timer;
@@ -129,7 +131,7 @@ class Loader extends React.Component<IProps> {
     }
 
     render() {
-        const { size, style, center } = this.props;
+        const { size, style, center, loadingUI } = this.props;
         const styles = Object.assign(
             {
                 width: DEF_SIZE + 'px',
@@ -149,7 +151,7 @@ class Loader extends React.Component<IProps> {
         }
 
         return (
-            <div style={styles} className={className}>
+            <div style={styles} className={classnames(loadingUI ? 'loader' : '', className)}>
                 <div className="sw-loader__holder">{this.renderTiles()}</div>
             </div>
         );

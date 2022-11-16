@@ -1,0 +1,25 @@
+.newspaper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    margin-top: 20px;
+    padding: 0px 0px 0px 20px;
+    margin-right: -10px;
+
+    .ns-header {
+        text-align: center;
+    }
+
+    .group-btn {
+        text-align: center;
+
+        .item-btn {
+            margin-bottom: 10px;
+        }
+    }
+
+    // .content {
+    //     padding-left: 18px;
+    // }
+}

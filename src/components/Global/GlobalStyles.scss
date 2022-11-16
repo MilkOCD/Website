@@ -155,7 +155,7 @@ body {
 }
 
 // Global popup
-.popup-content {
+.small-popup-content {
     display: flex;
     justify-content: center;
     padding: 0px;
@@ -163,4 +163,30 @@ body {
     width: 0px;
     height: 0px;
     border: 0;
+}
+
+.big-popup-content {
+    width: 99%;
+    height: 97%;
+    margin: 25px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+// Global icons
+.ico-close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    :hover {
+        cursor: pointer;
+    }
+}
+
+// Global loader
+.loader {
+    position: fixed;
+    width: 100%;
+    top: calc(50% - 60px);
+    left: calc(50% - 30px);
 }

@@ -17,6 +17,8 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Tooltip from '@mui/material/Tooltip';
 import gStore from 'src/stores/GlobalStore';
 import { observer } from 'mobx-react';
+import PopupComponent from '../Popup';
+import Newspaper from '../../content/general/News/components/newspaper';
 
 interface IProps {
     title: string;
@@ -47,28 +49,40 @@ function RecipeReviewCard(props: IProps) {
 
     return (
         <Card>
-            <CardHeader
-                className="df-hover"
-                avatar={
-                    gStore.windowDimension ? (
-                        gStore.windowDimension.width > 750 ? (
-                            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe" src="/static/images/avatars/1.jpg">
-                                R
-                            </Avatar>
-                        ) : null
-                    ) : null
+            <PopupComponent
+                type="big"
+                target={
+                    <CardHeader
+                        className="df-hover"
+                        avatar={
+                            gStore.windowDimension ? (
+                                gStore.windowDimension.width > 750 ? (
+                                    <Avatar
+                                        sx={{ bgcolor: red[500] }}
+                                        aria-label="recipe"
+                                        src="/static/images/avatars/1.jpg"
+                                    >
+                                        R
+                                    </Avatar>
+                                ) : null
+                            ) : null
+                        }
+                        action={
+                            gStore.windowDimension ? (
+                                gStore.windowDimension.width > 750 ? (
+                                    <IconButton aria-label="settings">
+                                        <MoreVertIcon />
+                                    </IconButton>
+                                ) : null
+                            ) : null
+                        }
+                        title={<b>{props.title.toUpperCase()}</b>}
+                        subheader={
+                            gStore.windowDimension ? (gStore.windowDimension.width > 750 ? props.subheader : '') : ''
+                        }
+                    />
                 }
-                action={
-                    gStore.windowDimension ? (
-                        gStore.windowDimension.width > 750 ? (
-                            <IconButton aria-label="settings">
-                                <MoreVertIcon />
-                            </IconButton>
-                        ) : null
-                    ) : null
-                }
-                title={<b>{props.title.toUpperCase()}</b>}
-                subheader={gStore.windowDimension ? (gStore.windowDimension.width > 750 ? props.subheader : '') : ''}
+                content={<Newspaper />}
             />
             <CardMedia component="img" height="194" image={props.image} alt="" />
             <CardContent>
