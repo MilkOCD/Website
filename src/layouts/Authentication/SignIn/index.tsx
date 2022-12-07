@@ -7,21 +7,27 @@ import HelpIcon from '@mui/icons-material/Help';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Loader from 'src/components/Loader';
 import { Link as RouterLink } from 'react-router-dom';
-import auth from 'src/stores/authenticationStore';
+import authentication from 'src/stores/authenticationStore';
 import LoginModel from 'src/models/Login/loginModel';
+import gStore from 'src/stores/GlobalStore';
 
 const cx = classNames.bind(styles);
 
 function SignInForm() {
     const [loading, setLoading] = React.useState(false);
 
+    const closeModal = () => {
+        setLoading(false);
+        gStore.setOpenPopup(false);
+    };
+
     const onAction = () => {
         setLoading(true);
-        let dataSend = new LoginModel();
-        dataSend.userNameOrEmailAddress = 'admin';
-        dataSend.password = '123qwe';
-        dataSend.rememberMe = false;
-        auth.login(dataSend);
+        let dataSend = new LoginModel('admin', '123qwe');
+        authentication.login(dataSend);
+        setTimeout(() => {
+            closeModal();
+        }, 2000);
     };
 
     return (

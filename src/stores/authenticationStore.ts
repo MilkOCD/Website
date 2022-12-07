@@ -7,17 +7,21 @@ import tokenAuthService from '../services/tokenAuth/tokenAuthService';
 declare var abp: any;
 
 class AuthenticationStore {
-    @observable loginModel: LoginModel = new LoginModel();
-
     localUser: string = '';
+
+    constructor() {
+        makeObservable(this, {
+            localUser: observable,
+            login: action,
+            logout: action
+        });
+    }
 
     get isAuthenticated(): boolean {
         if (!abp.session.userId) return false;
-
         return true;
     }
 
-    @action
     public async login(model: LoginModel) {
         let result = await tokenAuthService.authenticate({
             userNameOrEmailAddress: model.userNameOrEmailAddress,
@@ -35,9 +39,10 @@ class AuthenticationStore {
             tokenExpireDate,
             abp.appPath
         );
+
+        this.localUser = result.accessToken.substring(1, 4);
     }
 
-    @action
     logout() {
         localStorage.clear();
         sessionStorage.clear();

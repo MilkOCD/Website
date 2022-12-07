@@ -23,7 +23,7 @@ import AccountBoxTwoToneIcon from '@mui/icons-material/AccountBoxTwoTone';
 import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
 import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
 import LoginIcon from '@mui/icons-material/Login';
-import auth from 'src/stores/authenticationStore';
+import authentication from 'src/stores/authenticationStore';
 import { observer } from 'mobx-react';
 import Base from 'src/utils/Base';
 import SignInForm from 'src/layouts/Authentication/SignIn';
@@ -82,7 +82,7 @@ function HeaderUserbox() {
         setOpen(false);
     };
 
-    return auth.localUser == '' ? (
+    return authentication.localUser == '' ? (
         <>
             <PopupComponent
                 type="small"
@@ -145,7 +145,14 @@ function HeaderUserbox() {
                 </List>
                 <Divider />
                 <Box sx={{ m: 1 }}>
-                    <Button color="primary" fullWidth onClick={auth.logout}>
+                    <Button
+                        color="primary"
+                        fullWidth
+                        onClick={() => {
+                            authentication.localUser = '';
+                            authentication.logout();
+                        }}
+                    >
                         <LockOpenTwoToneIcon sx={{ mr: 1 }} />
                         Sign out
                     </Button>
