@@ -1,5 +1,6 @@
-import { Box, Tooltip, Badge, TooltipProps, tooltipClasses, styled, useTheme } from '@mui/material';
+import { Box, Tooltip, Badge, TooltipProps, tooltipClasses, styled, useTheme, Typography, Avatar } from '@mui/material';
 import { Link } from 'react-router-dom';
+import TrendingUp from '@mui/icons-material/TrendingUp';
 
 const LogoWrapper = styled(Link)(
     ({ theme }) => `
@@ -9,6 +10,16 @@ const LogoWrapper = styled(Link)(
         width: 53px;
         margin: 0 auto;
         font-weight: ${theme.typography.fontWeightBold};
+`
+);
+
+const AvatarSuccess = styled(Avatar)(
+    ({ theme }) => `
+      background-color: ${theme.colors.success.main};
+      color: ${theme.palette.success.contrastText};
+      width: ${theme.spacing(8)};
+      height: ${theme.spacing(8)};
+      box-shadow: ${theme.colors.shadows.success};
 `
 );
 
@@ -109,11 +120,28 @@ function Logo() {
                         location.pathname.includes('courses') ||
                         location.pathname.includes('maintenance')
                     ) && (
-                        <img
-                            src="/static/images/logo/logo-white.png"
-                            style={{ width: 220, overflow: 'hidden', marginLeft: 15 }}
-                            alt=""
-                        />
+                        <>
+                            <AvatarSuccess
+                                sx={{
+                                    mr: 0,
+                                    ml: 1
+                                }}
+                                variant="rounded"
+                                style={{ width: 45, height: 45 }}
+                            >
+                                <TrendingUp fontSize="large" />
+                            </AvatarSuccess>
+                            <Box className="ml-px">
+                                <Typography variant="h3" component="h3" gutterBottom>
+                                    TopFin
+                                </Typography>
+                            </Box>
+                            {/* <img
+                                src="/static/images/logo/topfin.jpg"
+                                style={{ width: 40, overflow: 'hidden', marginLeft: 15 }}
+                                alt=""
+                            /> */}
+                        </>
                     )}
                 </Badge>
             </LogoWrapper>

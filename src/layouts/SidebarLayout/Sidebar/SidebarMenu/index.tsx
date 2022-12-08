@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { ListSubheader, alpha, Box, List, styled, Button, ListItem } from '@mui/material';
+import { ListSubheader, alpha, Box, List, styled, Button, ListItem, Badge, useTheme } from '@mui/material';
 import { NavLink as RouterLink } from 'react-router-dom';
 import { SidebarContext } from 'src/contexts/SidebarContext';
 
@@ -32,6 +32,11 @@ import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import FaceRetouchingNaturalIcon from '@mui/icons-material/FaceRetouchingNatural';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
 import AnnouncementIcon from '@mui/icons-material/Announcement';
+import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
+import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
+import StackedBarChartIcon from '@mui/icons-material/StackedBarChart';
+import DesktopMacIcon from '@mui/icons-material/DesktopMac';
+import InsightsIcon from '@mui/icons-material/Insights';
 
 const MenuWrapper = styled(Box)(
     ({ theme }) => `
@@ -47,7 +52,7 @@ const MenuWrapper = styled(Box)(
       text-transform: uppercase;
       font-weight: bold;
       font-size: ${theme.typography.pxToRem(12)};
-      color: ${theme.colors.alpha.trueWhite[50]};
+      color: ${theme.colors.alpha.black[50]};
       padding: ${theme.spacing(0, 2.5)};
       line-height: 1.4;
     }
@@ -76,7 +81,7 @@ const SubMenuWrapper = styled(Box)(
     
         .MuiButton-root {
           display: flex;
-          color: ${theme.colors.alpha.trueWhite[70]};
+          color: ${theme.colors.alpha.black[70]};
           background-color: transparent;
           width: 100%;
           justify-content: flex-start;
@@ -93,13 +98,13 @@ const SubMenuWrapper = styled(Box)(
           }
 
           .MuiButton-startIcon {
-            color: ${theme.colors.alpha.trueWhite[30]};
+            color: ${theme.colors.alpha.black[30]};
             font-size: ${theme.typography.pxToRem(20)};
             margin-right: ${theme.spacing(1)};
           }
           
           .MuiButton-endIcon {
-            color: ${theme.colors.alpha.trueWhite[50]};
+            color: ${theme.colors.alpha.black[50]};
             margin-left: auto;
             opacity: .8;
             font-size: ${theme.typography.pxToRem(20)};
@@ -107,12 +112,15 @@ const SubMenuWrapper = styled(Box)(
 
           &.active,
           &:hover {
-            background-color: ${alpha(theme.colors.alpha.trueWhite[100], 0.06)};
-            color: ${theme.colors.alpha.trueWhite[100]};
+            background-color: ${alpha(theme.colors.alpha.black[100], 0.06)};
+            color: ${theme.colors.alpha.black[100]};
+            transform: scale(1.01,1.01);
+            // border-bottom: 3px solid ${alpha(theme.colors.alpha.black[100], 0.06)};
+            // box-sizing: border-box
 
             .MuiButton-startIcon,
             .MuiButton-endIcon {
-              color: ${theme.colors.alpha.trueWhite[100]};
+              color: ${theme.colors.alpha.black[100]};
             }
           }
         }
@@ -145,7 +153,7 @@ const SubMenuWrapper = styled(Box)(
 
               &:before {
                 content: ' ';
-                background: ${theme.colors.alpha.trueWhite[100]};
+                background: ${theme.colors.alpha.black[100]};
                 opacity: 0;
                 transition: ${theme.transitions.create(['transform', 'opacity'])};
                 width: 6px;
@@ -174,11 +182,12 @@ const SubMenuWrapper = styled(Box)(
 
 function SidebarMenu() {
     const { closeSidebar } = useContext(SidebarContext);
+    const theme = useTheme();
 
     return (
         <>
             <MenuWrapper>
-                <List component="div">
+                {/* <List component="div">
                     <SubMenuWrapper>
                         <List component="div">
                             <ListItem component="div">
@@ -194,7 +203,7 @@ function SidebarMenu() {
                             </ListItem>
                         </List>
                     </SubMenuWrapper>
-                </List>
+                </List> */}
                 <List
                     component="div"
                     subheader={
@@ -227,15 +236,128 @@ function SidebarMenu() {
                                     Kiến thức
                                 </Button>
                             </ListItem>
+                            <Badge
+                                sx={{
+                                    '.MuiBadge-badge': {
+                                        fontSize: theme.typography.pxToRem(11),
+                                        right: 12,
+                                        top: 12
+                                    }
+                                }}
+                                overlap="circular"
+                                color="error"
+                                badgeContent="Pdf"
+                            >
+                                <ListItem component="div">
+                                    <Button
+                                        disableRipple
+                                        component={RouterLink}
+                                        onClick={closeSidebar}
+                                        to="/status/coursessssssssssssss"
+                                        startIcon={<LocalLibraryIcon />}
+                                    >
+                                        Sách chứng khoán
+                                    </Button>
+                                </ListItem>
+                            </Badge>
+                        </List>
+                    </SubMenuWrapper>
+                </List>
+                <List
+                    component="div"
+                    subheader={
+                        <ListSubheader component="div" disableSticky>
+                            Kiến thức đầu tư
+                        </ListSubheader>
+                    }
+                >
+                    <SubMenuWrapper>
+                        <List component="div">
                             <ListItem component="div">
                                 <Button
                                     disableRipple
                                     component={RouterLink}
                                     onClick={closeSidebar}
-                                    to="/status/coursessssssssssssss"
-                                    startIcon={<ShowChartIcon />}
+                                    to="/knowledge/starter"
+                                    startIcon={<EmojiPeopleIcon />}
                                 >
-                                    Khóa học đầu tư
+                                    Cho người mới bắt đầu
+                                </Button>
+                            </ListItem>
+                            <ListItem component="div">
+                                <Button
+                                    disableRipple
+                                    component={RouterLink}
+                                    onClick={closeSidebar}
+                                    to="/knowledge/basic"
+                                    startIcon={<BarChartIcon />}
+                                >
+                                    Phân tích cơ bản
+                                </Button>
+                            </ListItem>
+                            <ListItem component="div">
+                                <Button
+                                    disableRipple
+                                    component={RouterLink}
+                                    onClick={closeSidebar}
+                                    to="/knowledge/technical"
+                                    startIcon={<StackedBarChartIcon />}
+                                >
+                                    Phân tích kỹ thuật
+                                </Button>
+                            </ListItem>
+                        </List>
+                    </SubMenuWrapper>
+                </List>
+                <List
+                    component="div"
+                    subheader={
+                        <ListSubheader component="div" disableSticky>
+                            Mở tài khoản chứng khoán
+                        </ListSubheader>
+                    }
+                >
+                    <SubMenuWrapper>
+                        <List component="div">
+                            <ListItem component="div">
+                                <Button
+                                    disableRipple
+                                    component={RouterLink}
+                                    onClick={closeSidebar}
+                                    to="/open-vps"
+                                    startIcon={<StorageIcon />}
+                                >
+                                    Tại VPS
+                                </Button>
+                            </ListItem>
+                        </List>
+                    </SubMenuWrapper>
+                    <SubMenuWrapper>
+                        <List component="div">
+                            <ListItem component="div">
+                                <Button
+                                    disableRipple
+                                    component={RouterLink}
+                                    onClick={closeSidebar}
+                                    to="/open-tcbs"
+                                    startIcon={<StorageIcon />}
+                                >
+                                    TCBS
+                                </Button>
+                            </ListItem>
+                        </List>
+                    </SubMenuWrapper>
+                    <SubMenuWrapper>
+                        <List component="div">
+                            <ListItem component="div">
+                                <Button
+                                    disableRipple
+                                    component={RouterLink}
+                                    onClick={closeSidebar}
+                                    to="/open-vndirect"
+                                    startIcon={<StorageIcon />}
+                                >
+                                    VNDirect
                                 </Button>
                             </ListItem>
                         </List>
@@ -257,7 +379,7 @@ function SidebarMenu() {
                                     component={RouterLink}
                                     onClick={closeSidebar}
                                     to="/analysis-software/basic-software"
-                                    startIcon={<StorageIcon />}
+                                    startIcon={<DesktopMacIcon />}
                                 >
                                     Phần mềm cơ bản
                                 </Button>
@@ -303,7 +425,7 @@ function SidebarMenu() {
                                     component={RouterLink}
                                     onClick={closeSidebar}
                                     to="/dashboards/messenger"
-                                    startIcon={<WaterfallChartIcon />}
+                                    startIcon={<InsightsIcon />}
                                 >
                                     Nhận định thị trường
                                 </Button>
