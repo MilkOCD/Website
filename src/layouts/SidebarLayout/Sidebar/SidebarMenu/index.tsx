@@ -4,34 +4,16 @@ import { ListSubheader, alpha, Box, List, styled, Button, ListItem, Badge, useTh
 import { NavLink as RouterLink } from 'react-router-dom';
 import { SidebarContext } from 'src/contexts/SidebarContext';
 
-import HomeIcon from '@mui/icons-material/Home';
+import ImageIcon from 'src/components/Icon';
+
 import StorageIcon from '@mui/icons-material/Storage';
-import AdbIcon from '@mui/icons-material/Adb';
-import TableChartTwoToneIcon from '@mui/icons-material/TableChartTwoTone';
 import AccountCircleTwoToneIcon from '@mui/icons-material/AccountCircleTwoTone';
-import BallotTwoToneIcon from '@mui/icons-material/BallotTwoTone';
-import BeachAccessTwoToneIcon from '@mui/icons-material/BeachAccessTwoTone';
-import EmojiEventsTwoToneIcon from '@mui/icons-material/EmojiEventsTwoTone';
-import FilterVintageTwoToneIcon from '@mui/icons-material/FilterVintageTwoTone';
-import HowToVoteTwoToneIcon from '@mui/icons-material/HowToVoteTwoTone';
-import LocalPharmacyTwoToneIcon from '@mui/icons-material/LocalPharmacyTwoTone';
-import RedeemTwoToneIcon from '@mui/icons-material/RedeemTwoTone';
-import SettingsTwoToneIcon from '@mui/icons-material/SettingsTwoTone';
-import TrafficTwoToneIcon from '@mui/icons-material/TrafficTwoTone';
-import CheckBoxTwoToneIcon from '@mui/icons-material/CheckBoxTwoTone';
-import ChromeReaderModeTwoToneIcon from '@mui/icons-material/ChromeReaderModeTwoTone';
-import WorkspacePremiumTwoToneIcon from '@mui/icons-material/WorkspacePremiumTwoTone';
-import CameraFrontTwoToneIcon from '@mui/icons-material/CameraFrontTwoTone';
 import DisplaySettingsTwoToneIcon from '@mui/icons-material/DisplaySettingsTwoTone';
-import WaterfallChartIcon from '@mui/icons-material/WaterfallChart';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import AssessmentIcon from '@mui/icons-material/Assessment';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import FaceRetouchingNaturalIcon from '@mui/icons-material/FaceRetouchingNatural';
-import ShowChartIcon from '@mui/icons-material/ShowChart';
-import AnnouncementIcon from '@mui/icons-material/Announcement';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
 import StackedBarChartIcon from '@mui/icons-material/StackedBarChart';
@@ -325,7 +307,9 @@ function SidebarMenu() {
                                     component={RouterLink}
                                     onClick={closeSidebar}
                                     to="/open-vps"
-                                    startIcon={<StorageIcon />}
+                                    startIcon={
+                                        <ImageIcon src="/static/images/logo/vps.png" size={20} width={20} height={20} />
+                                    }
                                 >
                                     Tại VPS
                                 </Button>

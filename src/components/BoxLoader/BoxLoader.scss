@@ -1,0 +1,167 @@
+.scene {
+    perspective: 10000px;
+    position: absolute;
+    left: calc(50% - 30px);
+    top: calc(50% - 30px);
+}
+.cube {
+    font-size: 5px; //size
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(-36deg) rotateY(45deg);
+    animation: cubeRotate 2s infinite linear;
+}
+.cube__face {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    color: #3cdc96;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 3px solid #3cdc96;
+    border-radius: 5px;
+}
+.cube__face--top {
+    transform: rotateX(90deg) translateY(-0px) translateX(0) translateZ(5em);
+    animation: travel-up 2s ease-in-out infinite;
+}
+.cube__face--bottom {
+    transform: rotateX(-90deg) translateY(-0px) translateX(0) translateZ(5em);
+    animation: travel-down 2s ease-in-out infinite;
+}
+.cube__face--left {
+    transform: rotateY(-90deg) translateZ(5em);
+    animation: travel-left 2s ease-in-out infinite;
+}
+.cube__face--right {
+    transform: rotateY(90deg) translateZ(5em);
+    animation: travel-right 2s ease-in-out infinite;
+}
+.cube__face--front {
+    transform: translateZ(5em);
+    animation: travel-front 2s ease-in-out infinite;
+}
+.cube__face--back {
+    transform: translateZ(-5em) rotateY(180deg);
+    animation: travel-back 2s ease-in-out infinite;
+}
+
+@keyframes cubeRotate {
+    0% {
+        transform: rotateX(-36deg) rotateY(45deg);
+    }
+    15% {
+        transform: rotateX(-36deg) rotateY(225deg);
+    }
+    85% {
+        transform: rotateX(-36deg) rotateY(225deg);
+    }
+    100% {
+        transform: rotateX(-36deg) rotateY(405deg);
+    }
+}
+
+@keyframes travel-up {
+    0% {
+        transform: rotateX(90deg) translateY(-0px) translateX(0) translateZ(5em);
+    }
+    20% {
+        transform: rotateX(90deg) translateY(-0px) translateX(0) translateZ(5em);
+    }
+    50% {
+        transform: rotateX(90deg) translateY(-0px) translateX(0) translateZ(9em);
+    }
+    80% {
+        transform: rotateX(90deg) translateY(-0px) translateX(0) translateZ(5em);
+    }
+    100% {
+        transform: rotateX(90deg) translateY(-0px) translateX(0) translateZ(5em);
+    }
+}
+@keyframes travel-down {
+    0% {
+        transform: rotateX(-90deg) translateY(-0px) translateX(0) translateZ(5em);
+    }
+    20% {
+        transform: rotateX(-90deg) translateY(-0px) translateX(0) translateZ(5em);
+    }
+    50% {
+        transform: rotateX(-90deg) translateY(-0px) translateX(0) translateZ(9em);
+    }
+    80% {
+        transform: rotateX(-90deg) translateY(-0px) translateX(0) translateZ(5em);
+    }
+    100% {
+        transform: rotateX(-90deg) translateY(-0px) translateX(0) translateZ(5em);
+    }
+}
+@keyframes travel-left {
+    0% {
+        transform: rotateY(-90deg) translateZ(5em);
+    }
+    20% {
+        transform: rotateY(-90deg) translateZ(5em);
+    }
+    50% {
+        transform: rotateY(-90deg) translateZ(9em);
+    }
+    80% {
+        transform: rotateY(-90deg) translateZ(5em);
+    }
+    100% {
+        transform: rotateY(-90deg) translateZ(5em);
+    }
+}
+@keyframes travel-right {
+    0% {
+        transform: rotateY(90deg) translateZ(5em);
+    }
+    20% {
+        transform: rotateY(90deg) translateZ(5em);
+    }
+    50% {
+        transform: rotateY(90deg) translateZ(9em);
+    }
+    80% {
+        transform: rotateY(90deg) translateZ(5em);
+    }
+    100% {
+        transform: rotateY(90deg) translateZ(5em);
+    }
+}
+@keyframes travel-front {
+    0% {
+        transform: translateZ(5em);
+    }
+    20% {
+        transform: translateZ(5em);
+    }
+    50% {
+        transform: translateZ(9em);
+    }
+    80% {
+        transform: translateZ(5em);
+    }
+    100% {
+        transform: translateZ(5em);
+    }
+}
+@keyframes travel-back {
+    0% {
+        transform: translateZ(-5em) rotateY(180deg);
+    }
+    20% {
+        transform: translateZ(-5em) rotateY(180deg);
+    }
+    50% {
+        transform: translateZ(-9em) rotateY(180deg);
+    }
+    80% {
+        transform: translateZ(-5em) rotateY(180deg);
+    }
+    100% {
+        transform: translateZ(-5em) rotateY(180deg);
+    }
+}

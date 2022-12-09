@@ -12,6 +12,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import gStore from 'src/stores/GlobalStore';
 import Loader from 'src/components/Loader';
+import BoxLoader from 'src/components/BoxLoader';
 
 const cx = classNames.bind(styles);
 
@@ -20,7 +21,7 @@ function Newspaper() {
 
     return (
         <>
-            {loading && <Loader loadingUI={true} data={{ size: 150 }} />}
+            {loading && <BoxLoader />}
             <div className={cx('newspaper')}>
                 <Scrollbar className={cx('ns-scrollbar')}>
                     <Grid container spacing={2}>
