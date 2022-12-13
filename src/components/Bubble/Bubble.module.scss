@@ -1,0 +1,39 @@
+.container {
+    position: fixed;
+    z-index: 999;
+    width: 0px;
+    height: 0px;
+}
+
+.bubble {
+    width: 60px;
+    height: 60px;
+    background-color: #856dfc;
+    position: inherit;
+    top: calc(100% - 76px);
+    left: calc(100% - 76px);
+    border-radius: 50%;
+    box-shadow: 0 1px 6px rgb(0 0 0 / 10%), 0 2px 24px rgb(0 0 0 / 20%);
+    opacity: 1;
+    transition: top 0.3s, left 0.3s, opacity 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bubble:hover {
+    box-shadow: 0 5px 6px rgb(0 0 0 / 15%), 0 5px 10px rgb(0 0 0 / 20%);
+    cursor: pointer;
+}
+
+.bubble-container {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ico-bubble {
+    color: #fff;
+}

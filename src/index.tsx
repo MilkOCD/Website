@@ -1,6 +1,8 @@
 import ReactDOM from 'react-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { BrowserRouter } from 'react-router-dom';
+
+// Use HashRouter for git single page
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 
 import 'nprogress/nprogress.css';
 import App from 'src/App';
@@ -9,10 +11,13 @@ import * as serviceWorker from 'src/serviceWorker';
 
 import GlobalStyles from 'src/components/Global/';
 
+import Bubble from './components/Bubble';
+
 ReactDOM.render(
     <HelmetProvider>
         <SidebarProvider>
             <BrowserRouter>
+                <Bubble />
                 <GlobalStyles>
                     <App />
                 </GlobalStyles>
