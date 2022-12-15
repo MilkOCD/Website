@@ -23,7 +23,7 @@ function Overview() {
                 <Box display="flex" justifyContent="center" py={5} alignItems="center">
                     {/* <Logo /> */}
                 </Box>
-                <Card sx={{ p: 5, mb: 5, borderRadius: 5 }}>
+                <Card sx={{ p: 0, mb: 5, borderRadius: 5 }}>
                     <div className="align-center mb-px">
                         <img src="static/images/logo/logo-black.png" style={{ width: '100%', maxWidth: 300 }} alt="" />
                     </div>

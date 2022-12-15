@@ -8,17 +8,24 @@ import ImageIcon from 'src/components/Icon';
 
 import StorageIcon from '@mui/icons-material/Storage';
 import AccountCircleTwoToneIcon from '@mui/icons-material/AccountCircleTwoTone';
-import DisplaySettingsTwoToneIcon from '@mui/icons-material/DisplaySettingsTwoTone';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
-import FaceRetouchingNaturalIcon from '@mui/icons-material/FaceRetouchingNatural';
+import PublicIcon from '@mui/icons-material/Public';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
 import StackedBarChartIcon from '@mui/icons-material/StackedBarChart';
 import DesktopMacIcon from '@mui/icons-material/DesktopMac';
 import InsightsIcon from '@mui/icons-material/Insights';
+import BusinessIcon from '@mui/icons-material/Business';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+
+import classnames from 'classnames/bind';
+import styles from './SidebarMenu.module.scss';
+
+const cx = classnames.bind(styles);
 
 const MenuWrapper = styled(Box)(
     ({ theme }) => `
@@ -213,9 +220,9 @@ function SidebarMenu() {
                                     component={RouterLink}
                                     onClick={closeSidebar}
                                     to="/general/news"
-                                    startIcon={<FaceRetouchingNaturalIcon />}
+                                    startIcon={<PublicIcon />}
                                 >
-                                    Kiến thức
+                                    Tin tức
                                 </Button>
                             </ListItem>
                             <Badge
@@ -260,19 +267,8 @@ function SidebarMenu() {
                                     disableRipple
                                     component={RouterLink}
                                     onClick={closeSidebar}
-                                    to="/knowledge/starter"
-                                    startIcon={<EmojiPeopleIcon />}
-                                >
-                                    Cho người mới bắt đầu
-                                </Button>
-                            </ListItem>
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
                                     to="/knowledge/basic"
-                                    startIcon={<BarChartIcon />}
+                                    startIcon={<BarChartIcon style={{ fontSize: 24, marginLeft: -2 }} />}
                                 >
                                     Phân tích cơ bản
                                 </Button>
@@ -283,9 +279,20 @@ function SidebarMenu() {
                                     component={RouterLink}
                                     onClick={closeSidebar}
                                     to="/knowledge/technical"
-                                    startIcon={<StackedBarChartIcon />}
+                                    startIcon={<StackedBarChartIcon style={{ fontSize: 24, marginLeft: -3 }} />}
                                 >
                                     Phân tích kỹ thuật
+                                </Button>
+                            </ListItem>
+                            <ListItem component="div">
+                                <Button
+                                    disableRipple
+                                    component={RouterLink}
+                                    onClick={closeSidebar}
+                                    to="/knowledge/starter"
+                                    startIcon={<EmojiPeopleIcon style={{ fontSize: 24, marginLeft: -3 }} />}
+                                >
+                                    Cho người mới bắt đầu
                                 </Button>
                             </ListItem>
                         </List>
@@ -306,33 +313,26 @@ function SidebarMenu() {
                                     disableRipple
                                     component={RouterLink}
                                     onClick={closeSidebar}
-                                    to="/open-vps"
-                                    startIcon={
-                                        <ImageIcon src="/static/images/logo/vps.png" size={20} width={20} height={20} />
-                                    }
+                                    to="/open-tcbs"
+                                    startIcon={<LocationCityIcon />}
                                 >
-                                    Tại VPS
+                                    TCBS
                                 </Button>
                             </ListItem>
-                        </List>
-                    </SubMenuWrapper>
-                    <SubMenuWrapper>
-                        <List component="div">
                             <ListItem component="div">
                                 <Button
                                     disableRipple
                                     component={RouterLink}
                                     onClick={closeSidebar}
-                                    to="/open-tcbs"
-                                    startIcon={<StorageIcon />}
+                                    to="/open-vps"
+                                    startIcon={
+                                        <BusinessIcon />
+                                        // <ImageIcon src="/static/images/logo/vps.png" size={20} width={20} height={20} />
+                                    }
                                 >
-                                    TCBS
+                                    Tại VPS
                                 </Button>
                             </ListItem>
-                        </List>
-                    </SubMenuWrapper>
-                    <SubMenuWrapper>
-                        <List component="div">
                             <ListItem component="div">
                                 <Button
                                     disableRipple
@@ -479,7 +479,7 @@ function SidebarMenu() {
                                     component={RouterLink}
                                     onClick={closeSidebar}
                                     to="/management/profile/settings"
-                                    startIcon={<DisplaySettingsTwoToneIcon />}
+                                    startIcon={<ManageAccountsIcon />}
                                 >
                                     Quản lý tài khoản
                                 </Button>

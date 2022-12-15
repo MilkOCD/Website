@@ -79,9 +79,9 @@ function Hero() {
                     <LabelWrapper color="success" style={{ minWidth: 100 }}>
                         TopFin
                     </LabelWrapper>
-                    <TypographyH1 sx={{ mb: 2 }} variant="h1">
+                    <TypographyH2 sx={{ mb: 2 }} variant="h1">
                         Đây là cái tiêu đề, hiện tại chưa có
-                    </TypographyH1>
+                    </TypographyH2>
                     <TypographyH2
                         sx={{ lineHeight: 1.5, pb: 4 }}
                         variant="h4"

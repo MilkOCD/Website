@@ -47,7 +47,7 @@ function News() {
     return (
         <>
             <Helmet>
-                <title>TopFin - Kiến thức</title>
+                <title>TopFin - Tin tức</title>
             </Helmet>
             <PageTitleWrapper>
                 <Grid container alignItems="center">

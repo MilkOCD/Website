@@ -1,6 +1,7 @@
 import { Box, Tooltip, Badge, TooltipProps, tooltipClasses, styled, useTheme, Typography, Avatar } from '@mui/material';
 import { Link } from 'react-router-dom';
 import TrendingUp from '@mui/icons-material/TrendingUp';
+import ImageIcon from '../Icon';
 
 const LogoWrapper = styled(Link)(
     ({ theme }) => `
@@ -104,16 +105,17 @@ function Logo() {
         <TooltipWrapper title="Website" arrow>
             <LogoWrapper to="/overview">
                 <Badge
-                // sx={{
-                //     '.MuiBadge-badge': {
-                //         fontSize: theme.typography.pxToRem(11),
-                //         right: -2,
-                //         top: 8
-                //     }
-                // }}
-                // overlap="circular"
-                // color="success"
-                // badgeContent="TopFin"
+                    style={{ marginLeft: 13 }}
+                    // sx={{
+                    //     '.MuiBadge-badge': {
+                    //         fontSize: theme.typography.pxToRem(11),
+                    //         right: -2,
+                    //         top: 8
+                    //     }
+                    // }}
+                    // overlap="circular"
+                    // color="success"
+                    // badgeContent="TopFin"
                 >
                     {!(
                         location.pathname.includes('coming-soon') ||
@@ -121,7 +123,7 @@ function Logo() {
                         location.pathname.includes('maintenance')
                     ) && (
                         <>
-                            <AvatarSuccess
+                            {/* <AvatarSuccess
                                 sx={{
                                     mr: 0,
                                     ml: 1
@@ -130,7 +132,8 @@ function Logo() {
                                 style={{ width: 45, height: 45 }}
                             >
                                 <TrendingUp fontSize="large" />
-                            </AvatarSuccess>
+                            </AvatarSuccess> */}
+                            <ImageIcon src="/static/images/logo/topfin.jpg" size={40} width={40} height={40} />
                             <Box className="ml-px">
                                 <Typography variant="h3" component="h3" gutterBottom>
                                     TopFin
