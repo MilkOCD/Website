@@ -99,7 +99,7 @@ function Hero() {
                             component="a"
                             target="_blank"
                             rel="noopener"
-                            href="https://www.google.com/"
+                            href="https://zalo.me/g/fzldhc322"
                             size="large"
                             variant="outlined"
                         >

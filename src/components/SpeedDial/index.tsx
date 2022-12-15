@@ -24,6 +24,10 @@ const actions = [
 ];
 
 export default function OpenIconSpeedDial() {
+    const onAction = () => {
+        window.open('https://zalo.me/g/fzldhc322', '_blank').focus();
+    };
+
     return (
         <Box
             sx={{
@@ -42,7 +46,12 @@ export default function OpenIconSpeedDial() {
                 icon={<SpeedDialIcon openIcon={<EditIcon />} />}
             >
                 {actions.map((action) => (
-                    <SpeedDialAction key={action.name} icon={action.icon} tooltipTitle={action.name} />
+                    <SpeedDialAction
+                        key={action.name}
+                        icon={action.icon}
+                        tooltipTitle={action.name}
+                        onClick={onAction}
+                    />
                 ))}
             </SpeedDial>
         </Box>
