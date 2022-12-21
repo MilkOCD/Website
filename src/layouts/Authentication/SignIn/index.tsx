@@ -47,7 +47,7 @@ function SignInForm() {
                 <Avatar
                     className={(cx('login-avatar'), 'mb-px')}
                     alt="TopFin"
-                    src="/static/images/logo/topfin.jpg"
+                    src="https://cdn.topfinapi.com/images/logo/topfin.jpg"
                     style={{ borderRadius: 0, marginTop: 30, width: 60, height: 60 }}
                 />
             </Badge>

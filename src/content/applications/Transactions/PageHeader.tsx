@@ -5,7 +5,7 @@ import AddTwoToneIcon from '@mui/icons-material/AddTwoTone';
 function PageHeader() {
     const user = {
         name: 'Phí Thanh Thủy',
-        avatar: '/static/images/avatars/1.jpg'
+        avatar: 'https://cdn.topfinapi.com/images/avatars/1.jpg'
     };
     return (
         <Grid container justifyContent="space-between" alignItems="center">

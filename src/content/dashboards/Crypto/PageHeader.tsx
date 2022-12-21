@@ -4,7 +4,7 @@ import { useTheme } from '@mui/material/styles';
 function PageHeader() {
     const user = {
         name: 'Phí Thanh Thủy',
-        avatar: '/static/images/avatars/1.jpg'
+        avatar: 'https://cdn.topfinapi.com/images/avatars/1.jpg'
     };
     const theme = useTheme();
 

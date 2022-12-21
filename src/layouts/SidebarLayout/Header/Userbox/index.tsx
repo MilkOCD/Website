@@ -67,7 +67,7 @@ const UserBoxDescription = styled(Typography)(
 function HeaderUserbox() {
     const user = {
         name: 'Phí Thanh Thủy',
-        avatar: '/static/images/avatars/1.jpg',
+        avatar: 'https://cdn.topfinapi.com/images/avatars/1.jpg',
         jobtitle: 'Project Manager'
     };
 

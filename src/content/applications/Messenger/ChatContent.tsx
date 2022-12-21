@@ -42,7 +42,7 @@ const CardWrapperSecondary = styled(Card)(
 function ChatContent() {
     const user = {
         name: 'Phí Thanh Thủy',
-        avatar: '/static/images/avatars/1.jpg'
+        avatar: 'https://cdn.topfinapi.com/images/avatars/1.jpg'
     };
 
     return (
@@ -57,7 +57,7 @@ function ChatContent() {
                         height: 50
                     }}
                     alt="Zain Baptista"
-                    src="/static/images/avatars/2.jpg"
+                    src="https://cdn.topfinapi.com/images/avatars/2.jpg"
                 />
                 <Box display="flex" alignItems="flex-start" flexDirection="column" justifyContent="flex-start" ml={2}>
                     <CardWrapperSecondary>Hi. Can you send me the missing invoices asap?</CardWrapperSecondary>
@@ -166,7 +166,7 @@ function ChatContent() {
                         height: 50
                     }}
                     alt="Zain Baptista"
-                    src="/static/images/avatars/2.jpg"
+                    src="https://cdn.topfinapi.com/images/avatars/2.jpg"
                 />
                 <Box display="flex" alignItems="flex-start" flexDirection="column" justifyContent="flex-start" ml={2}>
                     <CardWrapperSecondary>Hey there!</CardWrapperSecondary>

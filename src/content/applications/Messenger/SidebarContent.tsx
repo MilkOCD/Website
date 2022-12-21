@@ -95,7 +95,7 @@ const TabsContainerWrapper = styled(Box)(
 function SidebarContent() {
     const user = {
         name: 'Phí Thanh Thủy',
-        avatar: '/static/images/avatars/1.jpg',
+        avatar: 'https://cdn.topfinapi.com/images/avatars/1.jpg',
         jobtitle: 'Software Developer'
     };
 
@@ -213,7 +213,7 @@ function SidebarContent() {
                     <List disablePadding component="div">
                         <ListItemWrapper selected>
                             <ListItemAvatar>
-                                <Avatar src="/static/images/avatars/1.jpg" />
+                                <Avatar src="https://cdn.topfinapi.com/images/avatars/1.jpg" />
                             </ListItemAvatar>
                             <ListItemText
                                 sx={{
@@ -237,7 +237,7 @@ function SidebarContent() {
                         </ListItemWrapper>
                         <ListItemWrapper>
                             <ListItemAvatar>
-                                <Avatar src="/static/images/avatars/2.jpg" />
+                                <Avatar src="https://cdn.topfinapi.com/images/avatars/2.jpg" />
                             </ListItemAvatar>
                             <ListItemText
                                 sx={{
@@ -258,7 +258,7 @@ function SidebarContent() {
                         </ListItemWrapper>
                         <ListItemWrapper>
                             <ListItemAvatar>
-                                <Avatar src="/static/images/avatars/3.jpg" />
+                                <Avatar src="https://cdn.topfinapi.com/images/avatars/3.jpg" />
                             </ListItemAvatar>
                             <ListItemText
                                 sx={{
@@ -279,7 +279,7 @@ function SidebarContent() {
                         </ListItemWrapper>
                         <ListItemWrapper>
                             <ListItemAvatar>
-                                <Avatar src="/static/images/avatars/4.jpg" />
+                                <Avatar src="https://cdn.topfinapi.com/images/avatars/4.jpg" />
                             </ListItemAvatar>
                             <ListItemText
                                 sx={{
@@ -307,7 +307,7 @@ function SidebarContent() {
                     <List disablePadding component="div">
                         <ListItemWrapper>
                             <ListItemAvatar>
-                                <Avatar src="/static/images/avatars/1.jpg" />
+                                <Avatar src="https://cdn.topfinapi.com/images/avatars/1.jpg" />
                             </ListItemAvatar>
                             <ListItemText
                                 sx={{
@@ -331,7 +331,7 @@ function SidebarContent() {
                         </ListItemWrapper>
                         <ListItemWrapper>
                             <ListItemAvatar>
-                                <Avatar src="/static/images/avatars/4.jpg" />
+                                <Avatar src="https://cdn.topfinapi.com/images/avatars/4.jpg" />
                             </ListItemAvatar>
                             <ListItemText
                                 sx={{
@@ -428,7 +428,7 @@ function SidebarContent() {
                                 component={RouterLink}
                                 to="#"
                                 alt="Remy Sharp"
-                                src="/static/images/avatars/1.jpg"
+                                src="https://cdn.topfinapi.com/images/avatars/1.jpg"
                             />
                         </Tooltip>
                         <Tooltip arrow title="View profile for Travis Howard">
@@ -440,7 +440,7 @@ function SidebarContent() {
                                 component={RouterLink}
                                 to="#"
                                 alt="Travis Howard"
-                                src="/static/images/avatars/2.jpg"
+                                src="https://cdn.topfinapi.com/images/avatars/2.jpg"
                             />
                         </Tooltip>
                         <Tooltip arrow title="View profile for Craig Vaccaro">
@@ -452,7 +452,7 @@ function SidebarContent() {
                                 component={RouterLink}
                                 to="#"
                                 alt="Craig Vaccaro"
-                                src="/static/images/avatars/3.jpg"
+                                src="https://cdn.topfinapi.com/images/avatars/3.jpg"
                             />
                         </Tooltip>
                     </AvatarGroup>
@@ -496,7 +496,7 @@ function SidebarContent() {
                                 component={RouterLink}
                                 to="#"
                                 alt="Travis Howard"
-                                src="/static/images/avatars/4.jpg"
+                                src="https://cdn.topfinapi.com/images/avatars/4.jpg"
                             />
                         </Tooltip>
                         <Tooltip arrow title="View profile for Craig Vaccaro">
@@ -508,7 +508,7 @@ function SidebarContent() {
                                 component={RouterLink}
                                 to="#"
                                 alt="Craig Vaccaro"
-                                src="/static/images/avatars/5.jpg"
+                                src="https://cdn.topfinapi.com/images/avatars/5.jpg"
                             />
                         </Tooltip>
                     </AvatarGroup>

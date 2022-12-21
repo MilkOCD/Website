@@ -133,14 +133,19 @@ function Logo() {
                             >
                                 <TrendingUp fontSize="large" />
                             </AvatarSuccess> */}
-                            <ImageIcon src="/static/images/logo/topfin.jpg" size={40} width={40} height={40} />
+                            <ImageIcon
+                                src="https://cdn.topfinapi.com/images/logo/topfin.jpg"
+                                size={40}
+                                width={40}
+                                height={40}
+                            />
                             <Box className="ml-px">
                                 <Typography variant="h3" component="h3" gutterBottom>
                                     TopFin
                                 </Typography>
                             </Box>
                             {/* <img
-                                src="/static/images/logo/topfin.jpg"
+                                src="https://cdn.topfinapi.com/images/logo/topfin.jpg"
                                 style={{ width: 40, overflow: 'hidden', marginLeft: 15 }}
                                 alt=""
                             /> */}

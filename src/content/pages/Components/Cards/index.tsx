@@ -117,7 +117,7 @@ function Cards() {
                                             height: 0,
                                             paddingTop: '56.25%' // 16:9
                                         }}
-                                        image="/static/images/placeholders/covers/1.jpg"
+                                        image="https://cdn.topfinapi.com/images/placeholders/covers/1.jpg"
                                         title="Paella dish"
                                     />
                                     <CardContent>
@@ -184,7 +184,7 @@ function Cards() {
                                 <Card sx={{ maxWidth: 345 }}>
                                     <CardMedia
                                         sx={{ height: 140 }}
-                                        image="/static/images/placeholders/covers/6.jpg"
+                                        image="https://cdn.topfinapi.com/images/placeholders/covers/6.jpg"
                                         title="Contemplative Reptile"
                                     />
                                     <CardContent>

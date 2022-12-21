@@ -76,7 +76,7 @@ function Newspaper() {
                                 nước Mỹ vĩ đại và vinh quang trở lại, tối nay tôi tuyên bố ứng cử tổng thống Mỹ".
                             </Typography>
                             <br />
-                            <img src="/static/images/avatars/1.jpg" alt="" />
+                            <img src="https://cdn.topfinapi.com/images/avatars/1.jpg" alt="" />
                             <br />
                             <Typography variant="body1">
                                 Cựu tổng thống Mỹ Donald Trump tuyên bố tái tranh cử tổng thống năm 2024.

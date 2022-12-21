@@ -25,7 +25,11 @@ function Overview() {
                 </Box>
                 <Card sx={{ p: 0, mb: 5, borderRadius: 5 }}>
                     <div className="align-center mb-px">
-                        <img src="static/images/logo/logo-black.png" style={{ width: '100%', maxWidth: 300 }} alt="" />
+                        <img
+                            src="https://cdn.topfinapi.com/images/logo/logo-black.png"
+                            style={{ width: '100%', maxWidth: 300 }}
+                            alt=""
+                        />
                     </div>
                     <Hero />
                 </Card>

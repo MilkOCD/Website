@@ -327,7 +327,7 @@ function SidebarMenu() {
                                     to="/open-vps"
                                     startIcon={
                                         <BusinessIcon />
-                                        // <ImageIcon src="/static/images/logo/vps.png" size={20} width={20} height={20} />
+                                        // <ImageIcon src="https://cdn.topfinapi.com/images/logo/vps.png" size={20} width={20} height={20} />
                                     }
                                 >
                                     Tại VPS

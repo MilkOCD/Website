@@ -109,7 +109,7 @@ function Hero() {
                     <Grid container spacing={1} mt={5}>
                         <Grid item xs={4}>
                             <MuiAvatar>
-                                <img src="/static/images/logo/material-ui.svg" alt="Material-UI" />
+                                <img src="https://cdn.topfinapi.com/images/logo/material-ui.svg" alt="Material-UI" />
                             </MuiAvatar>
                             <Typography variant="h4">
                                 <Box sx={{ pb: 2 }}>
@@ -122,7 +122,7 @@ function Hero() {
                         </Grid>
                         <Grid item xs={4}>
                             <TsAvatar>
-                                <img src="/static/images/logo/typescript.svg" alt="Typescript" />
+                                <img src="https://cdn.topfinapi.com/images/logo/typescript.svg" alt="Typescript" />
                             </TsAvatar>
                             <Typography variant="h4">
                                 <Box sx={{ pb: 2 }}>
@@ -135,7 +135,7 @@ function Hero() {
                         </Grid>
                         <Grid item xs={4}>
                             <MuiAvatar>
-                                <img src="/static/images/logo/topfin.jpg" alt="TopFin" />
+                                <img src="https://cdn.topfinapi.com/images/logo/topfin.jpg" alt="TopFin" />
                             </MuiAvatar>
                             <Typography variant="h4">
                                 <Box sx={{ pb: 2 }}>

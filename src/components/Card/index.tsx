@@ -60,7 +60,7 @@ function RecipeReviewCard(props: IProps) {
                                     <Avatar
                                         sx={{ bgcolor: red[500] }}
                                         aria-label="recipe"
-                                        src="/static/images/avatars/1.jpg"
+                                        src="https://cdn.topfinapi.com/images/avatars/1.jpg"
                                     >
                                         R
                                     </Avatar>

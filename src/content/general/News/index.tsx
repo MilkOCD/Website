@@ -40,7 +40,7 @@ const CardActionsWrapper = styled(CardActions)(
 function News() {
     const user = {
         name: 'User Name',
-        avatar: '/static/images/avatars/1.jpg'
+        avatar: 'https://cdn.topfinapi.com/images/avatars/1.jpg'
     };
     const theme = useTheme();
 
@@ -68,7 +68,7 @@ function News() {
                     <Grid item xs={12}>
                         <Card>
                             <CardHeader
-                                avatar={<Avatar src="/static/images/avatars/1.jpg" />}
+                                avatar={<Avatar src="https://cdn.topfinapi.com/images/avatars/1.jpg" />}
                                 action={
                                     <IconButton color="primary">
                                         <MoreHorizTwoToneIcon fontSize="medium" />
@@ -98,7 +98,7 @@ function News() {
                             </Box>
                             <CardMedia
                                 sx={{ minHeight: 280 }}
-                                image="/static/images/placeholders/covers/6.jpg"
+                                image="https://cdn.topfinapi.com/images/placeholders/covers/6.jpg"
                                 title="Card Cover"
                             />
                             <Box p={3}>
