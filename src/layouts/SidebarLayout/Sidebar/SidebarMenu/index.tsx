@@ -197,58 +197,80 @@ function SidebarMenu() {
                     component="div"
                     subheader={
                         <ListSubheader component="div" disableSticky>
-                            Tổng hợp
+                            Trung tâm nghiên cứu
                         </ListSubheader>
                     }
                 >
                     <SubMenuWrapper>
                         <List component="div">
                             {/* <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/general/news"
-                                    startIcon={<AnnouncementIcon />}
-                                >
-                                    Bài viết/Tin tức
-                                </Button>
-                            </ListItem> */}
+                <Button
+                  disableRipple
+                  component={RouterLink}
+                  onClick={closeSidebar}
+                  to="/dashboards/crypto"
+                  startIcon={<BarChartIcon />}
+                >
+                  Biểu đồ tổng quan
+                </Button>
+              </ListItem> */}
                             <ListItem component="div">
                                 <Button
                                     disableRipple
                                     component={RouterLink}
                                     onClick={closeSidebar}
-                                    to="/general/news"
-                                    startIcon={<PublicIcon />}
+                                    to="/dashboards/messenger"
+                                    startIcon={<InsightsIcon />}
                                 >
-                                    Tin tức
+                                    Nhận định thị trường
                                 </Button>
                             </ListItem>
-                            <Badge
-                                sx={{
-                                    '.MuiBadge-badge': {
-                                        fontSize: theme.typography.pxToRem(11),
-                                        right: 12,
-                                        top: 12
-                                    }
-                                }}
-                                overlap="circular"
-                                color="error"
-                                badgeContent="Pdf"
-                            >
-                                <ListItem component="div">
-                                    <Button
-                                        disableRipple
-                                        component={RouterLink}
-                                        onClick={closeSidebar}
-                                        to="/status/coursessssssssssssss"
-                                        startIcon={<LocalLibraryIcon />}
-                                    >
-                                        Sách chứng khoán
-                                    </Button>
-                                </ListItem>
-                            </Badge>
+                            <ListItem component="div">
+                                <Button
+                                    disableRipple
+                                    component={RouterLink}
+                                    onClick={closeSidebar}
+                                    to="/dashboards/report"
+                                    startIcon={<AssessmentIcon />}
+                                >
+                                    Báo cáo công ty
+                                </Button>
+                            </ListItem>
+                        </List>
+                    </SubMenuWrapper>
+                </List>
+                <List
+                    component="div"
+                    subheader={
+                        <ListSubheader component="div" disableSticky>
+                            Phần mềm phân tích
+                        </ListSubheader>
+                    }
+                >
+                    <SubMenuWrapper>
+                        <List component="div">
+                            <ListItem component="div">
+                                <Button
+                                    disableRipple
+                                    component={RouterLink}
+                                    onClick={closeSidebar}
+                                    to="/analysis-software/basic-software"
+                                    startIcon={<DesktopMacIcon />}
+                                >
+                                    Phần mềm cơ bản
+                                </Button>
+                            </ListItem>
+                            {/* <ListItem component="div">
+                <Button
+                  disableRipple
+                  component={RouterLink}
+                  onClick={closeSidebar}
+                  to="/analysis-software/robo"
+                  startIcon={<AdbIcon />}
+                >
+                  Robot chứng khoán
+                </Button>
+              </ListItem> */}
                         </List>
                     </SubMenuWrapper>
                 </List>
@@ -351,80 +373,58 @@ function SidebarMenu() {
                     component="div"
                     subheader={
                         <ListSubheader component="div" disableSticky>
-                            Phần mềm phân tích
-                        </ListSubheader>
-                    }
-                >
-                    <SubMenuWrapper>
-                        <List component="div">
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/analysis-software/basic-software"
-                                    startIcon={<DesktopMacIcon />}
-                                >
-                                    Phần mềm cơ bản
-                                </Button>
-                            </ListItem>
-                            {/* <ListItem component="div">
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to="/analysis-software/robo"
-                  startIcon={<AdbIcon />}
-                >
-                  Robot chứng khoán
-                </Button>
-              </ListItem> */}
-                        </List>
-                    </SubMenuWrapper>
-                </List>
-                <List
-                    component="div"
-                    subheader={
-                        <ListSubheader component="div" disableSticky>
-                            Trung tâm nghiên cứu
+                            Tổng hợp - Tin tức - Sách CK
                         </ListSubheader>
                     }
                 >
                     <SubMenuWrapper>
                         <List component="div">
                             {/* <ListItem component="div">
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to="/dashboards/crypto"
-                  startIcon={<BarChartIcon />}
-                >
-                  Biểu đồ tổng quan
-                </Button>
-              </ListItem> */}
+                                <Button
+                                    disableRipple
+                                    component={RouterLink}
+                                    onClick={closeSidebar}
+                                    to="/general/news"
+                                    startIcon={<AnnouncementIcon />}
+                                >
+                                    Bài viết/Tin tức
+                                </Button>
+                            </ListItem> */}
                             <ListItem component="div">
                                 <Button
                                     disableRipple
                                     component={RouterLink}
                                     onClick={closeSidebar}
-                                    to="/dashboards/messenger"
-                                    startIcon={<InsightsIcon />}
+                                    to="/general/news"
+                                    startIcon={<PublicIcon />}
                                 >
-                                    Nhận định thị trường
+                                    Tin tức
                                 </Button>
                             </ListItem>
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/dashboards/report"
-                                    startIcon={<AssessmentIcon />}
-                                >
-                                    Báo cáo công ty
-                                </Button>
-                            </ListItem>
+                            <Badge
+                                sx={{
+                                    '.MuiBadge-badge': {
+                                        fontSize: theme.typography.pxToRem(11),
+                                        right: 12,
+                                        top: 12
+                                    }
+                                }}
+                                overlap="circular"
+                                color="error"
+                                badgeContent="Free"
+                            >
+                                <ListItem component="div">
+                                    <Button
+                                        disableRipple
+                                        component={RouterLink}
+                                        onClick={closeSidebar}
+                                        to="/status/coursessssssssssssss"
+                                        startIcon={<LocalLibraryIcon />}
+                                    >
+                                        Sách chứng khoán
+                                    </Button>
+                                </ListItem>
+                            </Badge>
                         </List>
                     </SubMenuWrapper>
                 </List>

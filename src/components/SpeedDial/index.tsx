@@ -3,10 +3,6 @@ import Box from '@mui/material/Box';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
-import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
-import SaveIcon from '@mui/icons-material/Save';
-import PrintIcon from '@mui/icons-material/Print';
-import ShareIcon from '@mui/icons-material/Share';
 import EditIcon from '@mui/icons-material/Edit';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 import CallIcon from '@mui/icons-material/Call';
@@ -17,15 +13,27 @@ import classnames from 'classnames/bind';
 import styles from './SpeedDial.module.scss';
 
 const actions = [
-    { icon: <CallIcon />, name: 'Zalo' },
-    { icon: <YouTubeIcon />, name: 'YouTube' },
-    { icon: <FacebookIcon />, name: 'Facebook' },
-    { icon: <DriveFileRenameOutlineIcon />, name: 'Tạo bài viết mới' }
+    { icon: <CallIcon />, name: 'Zalo', key: 4 },
+    { icon: <YouTubeIcon />, name: 'YouTube', key: 3 },
+    { icon: <FacebookIcon />, name: 'Facebook', key: 2 },
+    { icon: <DriveFileRenameOutlineIcon />, name: 'Tạo bài viết mới', key: 1 }
 ];
 
 export default function OpenIconSpeedDial() {
-    const onAction = () => {
-        window.open('https://zalo.me/g/fzldhc322', '_blank').focus();
+    const onAction = (key: number) => {
+        switch (key) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                window.open('https://zalo.me/g/fzldhc322', '_blank').focus();
+                break;
+            default:
+                break;
+        }
     };
 
     return (
@@ -50,7 +58,7 @@ export default function OpenIconSpeedDial() {
                         key={action.name}
                         icon={action.icon}
                         tooltipTitle={action.name}
-                        onClick={onAction}
+                        onClick={() => onAction(action.key)}
                     />
                 ))}
             </SpeedDial>

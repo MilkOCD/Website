@@ -135,12 +135,12 @@ function Logo() {
                             </AvatarSuccess> */}
                             <ImageIcon
                                 src="https://cdn.topfinapi.com/images/logo/topfin.jpg"
-                                size={40}
-                                width={40}
-                                height={40}
+                                size={50}
+                                width={50}
+                                height={50}
                             />
-                            <Box className="ml-px">
-                                <Typography variant="h3" component="h3" gutterBottom>
+                            <Box className="ml-px mt-h-px">
+                                <Typography variant="h2" component="h2" gutterBottom>
                                     TopFin
                                 </Typography>
                             </Box>
