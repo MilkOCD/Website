@@ -96,7 +96,7 @@ function SidebarContent() {
     const user = {
         name: 'Phí Thanh Thủy',
         avatar: 'https://cdn.topfinapi.com/images/avatars/1.jpg',
-        jobtitle: 'Software Developer'
+        jobtitle: 'Tác giả'
     };
 
     const [state, setState] = useState({
@@ -113,9 +113,9 @@ function SidebarContent() {
     const [currentTab, setCurrentTab] = useState<string>('all');
 
     const tabs = [
-        { value: 'all', label: 'All' },
-        { value: 'unread', label: 'Unread' },
-        { value: 'archived', label: 'Archived' }
+        { value: 'all', label: 'Tất cả' }
+        // { value: 'unread', label: 'Unread' },
+        // { value: 'archived', label: 'Archived' }
     ];
 
     const handleTabsChange = (_event: ChangeEvent<{}>, value: string): void => {
@@ -161,7 +161,7 @@ function SidebarContent() {
                                 color="primary"
                             />
                         }
-                        label="Invisible"
+                        label="Đã đánh dấu"
                     />
                 </Box>
             </Box>
@@ -180,7 +180,7 @@ function SidebarContent() {
                         </InputAdornment>
                     )
                 }}
-                placeholder="Search..."
+                placeholder="Tìm kiếm..."
             />
 
             <Typography
@@ -190,7 +190,7 @@ function SidebarContent() {
                 }}
                 variant="h3"
             >
-                Chats
+                Danh sách bài viết
             </Typography>
 
             <TabsContainerWrapper>
@@ -228,7 +228,7 @@ function SidebarContent() {
                                     color: 'textSecondary',
                                     noWrap: true
                                 }}
-                                primary="Zain Baptista"
+                                primary="Bài viết 1"
                                 secondary="Hey there, how are you today? Is it ok if I call you?"
                             />
                             <Label color="primary">
@@ -237,7 +237,7 @@ function SidebarContent() {
                         </ListItemWrapper>
                         <ListItemWrapper>
                             <ListItemAvatar>
-                                <Avatar src="https://cdn.topfinapi.com/images/avatars/2.jpg" />
+                                <Avatar src="https://cdn.topfinapi.com/images/avatars/1.jpg" />
                             </ListItemAvatar>
                             <ListItemText
                                 sx={{
@@ -252,13 +252,13 @@ function SidebarContent() {
                                     color: 'textSecondary',
                                     noWrap: true
                                 }}
-                                primary="Kierra Herwitz"
+                                primary="Bài viết 2"
                                 secondary="Hi! Did you manage to send me those documents"
                             />
                         </ListItemWrapper>
                         <ListItemWrapper>
                             <ListItemAvatar>
-                                <Avatar src="https://cdn.topfinapi.com/images/avatars/3.jpg" />
+                                <Avatar src="https://cdn.topfinapi.com/images/avatars/1.jpg" />
                             </ListItemAvatar>
                             <ListItemText
                                 sx={{
@@ -273,13 +273,13 @@ function SidebarContent() {
                                     color: 'textSecondary',
                                     noWrap: true
                                 }}
-                                primary="Craig Vaccaro"
+                                primary="Bài viết 3"
                                 secondary="Ola, I still haven't received the program schedule"
                             />
                         </ListItemWrapper>
                         <ListItemWrapper>
                             <ListItemAvatar>
-                                <Avatar src="https://cdn.topfinapi.com/images/avatars/4.jpg" />
+                                <Avatar src="https://cdn.topfinapi.com/images/avatars/1.jpg" />
                             </ListItemAvatar>
                             <ListItemText
                                 sx={{
@@ -294,7 +294,7 @@ function SidebarContent() {
                                     color: 'textSecondary',
                                     noWrap: true
                                 }}
-                                primary="Adison Press"
+                                primary="Bài viết 4"
                                 secondary="I recently did some buying on Amazon and now I'm stuck"
                             />
                             <Label color="primary">
@@ -382,7 +382,7 @@ function SidebarContent() {
                     </Box>
                 )}
             </Box>
-            <Box display="flex" pb={1} mt={4} alignItems="center">
+            {/* <Box display="flex" pb={1} mt={4} alignItems="center">
                 <Typography
                     sx={{
                         mr: 1
@@ -517,7 +517,7 @@ function SidebarContent() {
                         Attend
                     </Button>
                 </Box>
-            </MeetingBox>
+            </MeetingBox> */}
         </RootWrapper>
     );
 }

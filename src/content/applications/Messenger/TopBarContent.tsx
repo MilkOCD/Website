@@ -4,32 +4,14 @@ import {
     IconButton,
     Tooltip,
     Avatar,
-    Accordion,
     AccordionSummary,
-    AccordionDetails,
-    Drawer,
-    Divider,
     Typography,
-    List,
-    ListItem,
-    ListItemText,
     ListItemIcon,
     styled,
     useTheme
 } from '@mui/material';
-import { formatDistance, subMinutes } from 'date-fns';
-import CallTwoToneIcon from '@mui/icons-material/CallTwoTone';
-import VideoCameraFrontTwoToneIcon from '@mui/icons-material/VideoCameraFrontTwoTone';
+import { format, subDays } from 'date-fns';
 import InfoTwoToneIcon from '@mui/icons-material/InfoTwoTone';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
-import ColorLensTwoToneIcon from '@mui/icons-material/ColorLensTwoTone';
-import NotificationsOffTwoToneIcon from '@mui/icons-material/NotificationsOffTwoTone';
-import EmojiEmotionsTwoToneIcon from '@mui/icons-material/EmojiEmotionsTwoTone';
-import CancelTwoToneIcon from '@mui/icons-material/CancelTwoTone';
-import BlockTwoToneIcon from '@mui/icons-material/BlockTwoTone';
-import WarningTwoToneIcon from '@mui/icons-material/WarningTwoTone';
-import DescriptionTwoToneIcon from '@mui/icons-material/DescriptionTwoTone';
 
 const RootWrapper = styled(Box)(
     ({ theme }) => `
@@ -107,15 +89,16 @@ function TopBarContent() {
                             width: 48,
                             height: 48
                         }}
-                        alt="Zain Baptista"
+                        alt="Phí Thanh Thủy"
                         src="https://cdn.topfinapi.com/images/avatars/1.jpg"
                     />
                     <Box ml={1}>
-                        <Typography variant="h4">Zain Baptista</Typography>
+                        <Typography variant="h4">Phí Thanh Thủy</Typography>
                         <Typography variant="subtitle1">
-                            {formatDistance(subMinutes(new Date(), 8), new Date(), {
+                            {/* {formatDistance(subMinutes(new Date(), 8), new Date(), {
                                 addSuffix: true
-                            })}
+                            })} */}
+                            {format(subDays(new Date(), 0), 'MMMM dd yyyy')}
                         </Typography>
                     </Box>
                 </Box>
@@ -124,24 +107,24 @@ function TopBarContent() {
                         display: { xs: 'none', lg: 'flex' }
                     }}
                 >
-                    <Tooltip placement="bottom" title="Start a voice call">
+                    {/* <Tooltip placement="bottom" title="Start a voice call">
                         <IconButton color="primary">
                             <CallTwoToneIcon />
                         </IconButton>
-                    </Tooltip>
-                    <Tooltip placement="bottom" title="Start a video call">
+                    </Tooltip> */}
+                    <Tooltip placement="bottom" title="Thông tin bài viết">
                         <IconButton color="primary">
-                            <VideoCameraFrontTwoToneIcon />
-                        </IconButton>
-                    </Tooltip>
-                    <Tooltip placement="bottom" title="Conversation information">
-                        <IconButton color="primary" onClick={handleDrawerToggle}>
                             <InfoTwoToneIcon />
                         </IconButton>
                     </Tooltip>
+                    {/* <Tooltip placement="bottom" title="Conversation information">
+                        <IconButton color="primary" onClick={handleDrawerToggle}>
+                            <InfoTwoToneIcon />
+                        </IconButton>
+                    </Tooltip> */}
                 </Box>
             </RootWrapper>
-            <Drawer
+            {/* <Drawer
                 sx={{
                     display: { xs: 'none', md: 'flex' }
                 }}
@@ -322,7 +305,7 @@ function TopBarContent() {
                         </AccordionDetails>
                     </Accordion>
                 </Box>
-            </Drawer>
+            </Drawer> */}
         </>
     );
 }

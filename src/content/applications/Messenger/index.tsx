@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet-async';
 import TopBarContent from './TopBarContent';
 import BottomBarContent from './BottomBarContent';
 import SidebarContent from './SidebarContent';
+import CustomEditor from 'src/components/CustomEditor';
 import ChatContent from './ChatContent';
 import MenuTwoToneIcon from '@mui/icons-material/MenuTwoTone';
 
@@ -123,7 +124,8 @@ function ApplicationsMessenger() {
                     </ChatTopBar>
                     <Box flex={1}>
                         <Scrollbar>
-                            <ChatContent />
+                            {/* <ChatContent /> */}
+                            <CustomEditor />
                         </Scrollbar>
                     </Box>
                     <Divider />
