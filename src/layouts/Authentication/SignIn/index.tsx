@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Avatar, TextField, Button, Stack, Badge } from '@mui/material';
+import { Box, Avatar, TextField, Button, Stack, Badge, Alert } from '@mui/material';
 import classNames from 'classnames/bind';
 import styles from './SignIn.module.scss';
 import SendIcon from '@mui/icons-material/Send';
@@ -10,11 +10,16 @@ import { Link as RouterLink } from 'react-router-dom';
 import authentication from 'src/stores/authenticationStore';
 import LoginModel from 'src/models/Login/loginModel';
 import gStore from 'src/stores/GlobalStore';
+import utils from 'src/utils/Base';
 
 const cx = classNames.bind(styles);
 
 function SignInForm() {
     const [loading, setLoading] = React.useState(false);
+    const [showAlert, setShowAlert] = React.useState(false);
+    const [accountName, setAccountName] = React.useState('');
+    const [password, setPassword] = React.useState('');
+    const [alertMessage, setAlertMessage] = React.useState('Alert Message');
 
     const closeModal = () => {
         setLoading(false);
@@ -22,12 +27,30 @@ function SignInForm() {
     };
 
     const onAction = () => {
+        // Loading animation
         setLoading(true);
-        let dataSend = new LoginModel('admin', '123qwe');
-        authentication.login(dataSend);
-        setTimeout(() => {
-            closeModal();
-        }, 2000);
+        let isValid = 0;
+        isValid = utils.checkZeroTextLength(accountName) == true ? 1 : 0;
+        isValid = isValid == 0 ? (utils.checkZeroTextLength(password) == true ? 2 : 0) : 1;
+        if (isValid == 0) {
+            let dataSend = new LoginModel(accountName, password);
+            setTimeout(() => {
+                authentication.login(dataSend).catch((error) => {
+                    showError('Thông tin tài khoản không chính xác!');
+                });
+                setLoading(false);
+                // closeModal();
+            }, 1000);
+        } else {
+            let message = isValid == 1 ? 'Tài khoản không được để trống' : 'Mật khẩu không được để trống';
+            showError(message);
+        }
+    };
+
+    const showError = (message: string) => {
+        setLoading(false);
+        setShowAlert(true);
+        setAlertMessage(message);
     };
 
     return (
@@ -69,6 +92,11 @@ function SignInForm() {
                     id="outlined-basic"
                     label="Tên đăng nhập"
                     variant="standard"
+                    value={accountName}
+                    onChange={(event) => {
+                        setAccountName(event.target.value);
+                        if (showAlert) setShowAlert(false);
+                    }}
                 />
             </div>
             <div className={cx('mt-px')}>
@@ -78,9 +106,21 @@ function SignInForm() {
                     id="outlined-basic"
                     label="Mật khẩu"
                     variant="standard"
+                    value={password}
+                    onChange={(event) => {
+                        setPassword(event.target.value);
+                        if (showAlert) setShowAlert(false);
+                    }}
                 />
             </div>
             <div className={cx('login-loader')}>{loading && <Loader data={{ size: 150 }} />}</div>
+            {showAlert && (
+                <Stack sx={{ width: '100%' }} spacing={2}>
+                    <Alert style={{ padding: 0 }} severity="error">
+                        {alertMessage}
+                    </Alert>
+                </Stack>
+            )}
             <Stack className={'mt-px'} direction="row">
                 <Button className={cx('login-btn')} variant="contained" endIcon={<SendIcon />} onClick={onAction}>
                     Đăng nhập

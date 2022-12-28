@@ -8,6 +8,9 @@ import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutli
 import CallIcon from '@mui/icons-material/Call';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import Draggable from 'react-draggable';
+import gStore from 'src/stores/GlobalStore';
+import { observer } from 'mobx-react';
 
 import classnames from 'classnames/bind';
 import styles from './SpeedDial.module.scss';
@@ -19,7 +22,7 @@ const actions = [
     { icon: <DriveFileRenameOutlineIcon />, name: 'Tạo bài viết mới', key: 1 }
 ];
 
-export default function OpenIconSpeedDial() {
+function OpenIconSpeedDial() {
     const onAction = (key: number) => {
         switch (key) {
             case 1:
@@ -37,31 +40,41 @@ export default function OpenIconSpeedDial() {
     };
 
     return (
-        <Box
-            sx={{
-                height: 320,
-                transform: 'translateZ(0px)',
-                flexGrow: 1,
-                position: 'fixed',
-                zIndex: 999,
-                bottom: 20,
-                right: 20
-            }}
-        >
-            <SpeedDial
-                ariaLabel="SpeedDial openIcon example"
-                sx={{ position: 'absolute', bottom: 16, right: 16 }}
-                icon={<SpeedDialIcon openIcon={<EditIcon />} />}
-            >
-                {actions.map((action) => (
-                    <SpeedDialAction
-                        key={action.name}
-                        icon={action.icon}
-                        tooltipTitle={action.name}
-                        onClick={() => onAction(action.key)}
-                    />
-                ))}
-            </SpeedDial>
-        </Box>
+        <>
+            {gStore.windowDimension
+                ? gStore.windowDimension.width > 750 && (
+                      <Draggable>
+                          <Box
+                              sx={{
+                                  height: 320,
+                                  transform: 'translateZ(0px)',
+                                  flexGrow: 1,
+                                  position: 'fixed',
+                                  zIndex: 999,
+                                  bottom: 20,
+                                  right: 20
+                              }}
+                          >
+                              <SpeedDial
+                                  ariaLabel="SpeedDial openIcon example"
+                                  sx={{ position: 'absolute', bottom: 16, right: 16 }}
+                                  icon={<SpeedDialIcon openIcon={<EditIcon />} />}
+                              >
+                                  {actions.map((action) => (
+                                      <SpeedDialAction
+                                          key={action.name}
+                                          icon={action.icon}
+                                          tooltipTitle={action.name}
+                                          onClick={() => onAction(action.key)}
+                                      />
+                                  ))}
+                              </SpeedDial>
+                          </Box>
+                      </Draggable>
+                  )
+                : null}
+        </>
     );
 }
+
+export default observer(OpenIconSpeedDial);
