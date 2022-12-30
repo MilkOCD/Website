@@ -27,7 +27,6 @@ function SignInForm() {
     };
 
     const onAction = () => {
-        // Loading animation
         setLoading(true);
         let isValid = 0;
         isValid = utils.checkZeroTextLength(accountName) == true ? 1 : 0;
@@ -35,10 +34,13 @@ function SignInForm() {
         if (isValid == 0) {
             let dataSend = new LoginModel(accountName, password);
             setTimeout(() => {
-                authentication.login(dataSend).catch((error) => {
-                    showError('Thông tin tài khoản không chính xác!');
-                });
-                setLoading(false);
+                authentication
+                    .login(dataSend)
+                    .then((response) => setLoading(false))
+                    .catch((error) => {
+                        showError('Thông tin tài khoản không chính xác!');
+                    });
+                // setLoading(false);
                 // closeModal();
             }, 1000);
         } else {
