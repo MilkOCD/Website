@@ -24,6 +24,8 @@ import Label from 'src/components/Label';
 import CheckTwoToneIcon from '@mui/icons-material/CheckTwoTone';
 import { Article } from '../../../services/data/dataService';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { observer } from 'mobx-react';
+import gStore from 'src/stores/GlobalStore';
 
 const AvatarSuccess = styled(Avatar)(
     ({ theme }) => `
@@ -98,7 +100,6 @@ function SidebarContent() {
     const [state, setState] = useState({
         invisible: true
     });
-    const [news, setNews] = useState(null);
 
     const handleChange = (event) => {
         setState({
@@ -108,31 +109,30 @@ function SidebarContent() {
     };
 
     useEffect(() => {
-        let sv = new Article();
-        sv.getAll().then(d => setNews(d));
-    }, [])
+        gStore.loadNews();
+    }, []);
 
     const [currentTab, setCurrentTab] = useState<string>('all');
 
-    const tabs = [
-        { value: 'all', label: 'Tất cả' }
-        // { value: 'unread', label: 'Unread' },
-        // { value: 'archived', label: 'Archived' }
-    ];
+    const tabs = [{ value: 'all', label: 'Tất cả' }];
 
     const handleTabsChange = (_event: ChangeEvent<{}>, value: string): void => {
         setCurrentTab(value);
     };
 
     const deleteNews = (id: number) => {
-        let sv = new Article();
-        sv.delete(id).then(() => sv.getAll().then(() => {resetData()}))
-    }
-
-    const resetData = () => {
-        let sv = new Article();
-        sv.getAll().then(d => setNews(d));
-    }
+        {
+            gStore.openConfirm({
+                title: 'Bạn thực sự muốn xóa bài viết?',
+                message: 'Bài viết khi bị xóa sẽ không thể khôi phục. Tiếp tục?',
+                callback: () => {
+                    let sv = new Article();
+                    sv.delete(id).then(() => gStore.loadNews());
+                },
+                open: true
+            });
+        }
+    };
 
     return (
         <RootWrapper>
@@ -223,34 +223,37 @@ function SidebarContent() {
             <Box mt={2}>
                 {currentTab === 'all' && (
                     <List disablePadding component="div">
-                        {news != null && news.map(dataRes => <div key={dataRes.id}>
-                            <ListItemWrapper selected>
-                            <ListItemAvatar>
-                                <Avatar src="https://cdn.topfinapi.com/images/avatars/1.jpg" />
-                            </ListItemAvatar>
-                            <ListItemText
-                                sx={{
-                                    mr: 1
-                                }}
-                                primaryTypographyProps={{
-                                    color: 'textPrimary',
-                                    variant: 'h5',
-                                    noWrap: true
-                                }}
-                                secondaryTypographyProps={{
-                                    color: 'textSecondary',
-                                    noWrap: true
-                                }}
-                                primary={dataRes.title}
-                                secondary={dataRes.description}
-                            />
-                            <div onClick={() => deleteNews(dataRes.id)}>
-                                <Label color="primary">
-                                    <DeleteOutlineIcon />
-                                </Label>
-                            </div>
-                        </ListItemWrapper>
-                        </div>)}
+                        {gStore.news.data != null &&
+                            gStore.news.data.map((dataRes) => (
+                                <div key={dataRes.id}>
+                                    <ListItemWrapper selected>
+                                        <ListItemAvatar>
+                                            <Avatar src="https://cdn.topfinapi.com/images/avatars/1.jpg" />
+                                        </ListItemAvatar>
+                                        <ListItemText
+                                            sx={{
+                                                mr: 1
+                                            }}
+                                            primaryTypographyProps={{
+                                                color: 'textPrimary',
+                                                variant: 'h5',
+                                                noWrap: true
+                                            }}
+                                            secondaryTypographyProps={{
+                                                color: 'textSecondary',
+                                                noWrap: true
+                                            }}
+                                            primary={dataRes.title}
+                                            secondary={dataRes.description}
+                                        />
+                                        <div onClick={() => deleteNews(dataRes.id)}>
+                                            <Label color="primary">
+                                                <DeleteOutlineIcon />
+                                            </Label>
+                                        </div>
+                                    </ListItemWrapper>
+                                </div>
+                            ))}
                     </List>
                 )}
                 {currentTab === 'unread' && (
@@ -472,4 +475,4 @@ function SidebarContent() {
     );
 }
 
-export default SidebarContent;
+export default observer(SidebarContent);

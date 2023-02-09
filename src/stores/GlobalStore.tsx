@@ -1,16 +1,61 @@
 import { action, makeObservable, observable } from 'mobx';
+import { Article } from '../services/data/dataService';
+
+interface IToast {
+    message: string;
+    type: 'error' | 'warning' | 'info' | 'success';
+    open: boolean;
+}
+
+interface IConfirm {
+    title: string;
+    message: string;
+    callback?: () => void;
+    open: boolean;
+}
+
+interface INews {
+    reload: boolean;
+    data: any;
+}
 
 class GlobalStore {
     windowDimension: any;
 
     isPopupOpen: boolean = false;
 
+    toastInfo: IToast = {
+        message: 'Default',
+        type: 'error',
+        open: false
+    };
+
+    confirmInfo: IConfirm = {
+        title: 'Default title',
+        message: 'Default',
+        open: false
+    };
+
+    news: INews = {
+        reload: false,
+        data: null
+    };
+
     constructor() {
         makeObservable(this, {
             windowDimension: observable,
             isPopupOpen: observable,
+            toastInfo: observable,
+            confirmInfo: observable,
+            news: observable,
+
             setWindowDimensions: action,
-            setOpenPopup: action
+            setOpenPopup: action,
+            openToast: action,
+            closeToast: action,
+            openConfirm: action,
+            closeConfirm: action,
+            loadNews: action
         });
     }
 
@@ -20,6 +65,35 @@ class GlobalStore {
 
     setOpenPopup = (isOpen) => {
         this.isPopupOpen = isOpen;
+    };
+
+    openToast = (toastInfo?: IToast) => {
+        if (toastInfo) this.toastInfo = toastInfo;
+        this.toastInfo.open = true;
+    };
+
+    closeToast = (event: React.SyntheticEvent | React.MouseEvent, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        this.toastInfo.open = false;
+    };
+
+    openConfirm = (confirmInfo?: IConfirm) => {
+        if (confirmInfo) this.confirmInfo = confirmInfo;
+        this.confirmInfo.open = true;
+    };
+
+    closeConfirm = (onlyClose?: boolean) => {
+        if (this.confirmInfo.callback && !onlyClose) this.confirmInfo.callback();
+        this.confirmInfo.open = false;
+    };
+
+    loadNews = () => {
+        let sv = new Article();
+        sv.getAll().then((d) => {
+            this.news = { data: d, reload: !this.news.reload };
+        });
     };
 }
 

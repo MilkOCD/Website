@@ -9,6 +9,8 @@ import ThemeProvider from './theme/ThemeProvider';
 import useWindowDimensions from './components/Tools';
 
 import gStore from './stores/GlobalStore';
+import Toast from './components/GlobalComponent/toast';
+import Confirm from './components/GlobalComponent/confirm';
 
 function App() {
     const content = useRoutes(router);
@@ -20,6 +22,8 @@ function App() {
                     <CssBaseline />
                     {content}
                     {gStore.setWindowDimensions(useWindowDimensions())}
+                    <Toast />
+                    <Confirm />
                 </LocalizationProvider>
             </ThemeProvider>
         </>

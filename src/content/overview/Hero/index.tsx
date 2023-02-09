@@ -180,7 +180,7 @@ function Hero() {
                         </Grid>
                     </Grid>
                     <div className="full-width flex-row j-align-center">
-                        <Button component={RouterLink} to="/general/news" size="large" variant="contained">
+                        <Button component={RouterLink} to="/dashboards/messenger" size="large" variant="contained">
                             Trang chủ
                         </Button>
                         <Button

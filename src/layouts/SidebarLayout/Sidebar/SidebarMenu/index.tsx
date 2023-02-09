@@ -25,6 +25,10 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import classnames from 'classnames/bind';
 import styles from './SidebarMenu.module.scss';
 
+import authentication from 'src/stores/authenticationStore';
+import Lock from 'src/components/Lock';
+import { observer } from 'mobx-react';
+
 const cx = classnames.bind(styles);
 
 const MenuWrapper = styled(Box)(
@@ -197,45 +201,89 @@ function SidebarMenu() {
                     component="div"
                     subheader={
                         <ListSubheader component="div" disableSticky>
+                            Tổng hợp - Tin tức - Sách CK
+                        </ListSubheader>
+                    }
+                >
+                    <SubMenuWrapper>
+                        <List component="div">
+                            <Lock>
+                                <ListItem component="div">
+                                    <Button
+                                        disableRipple
+                                        component={RouterLink}
+                                        onClick={closeSidebar}
+                                        to="/general/news"
+                                        startIcon={<PublicIcon />}
+                                        style={{
+                                            opacity: authentication.localUser == '' ? 0.5 : 1
+                                        }}
+                                    >
+                                        Tin tức
+                                    </Button>
+                                </ListItem>
+                            </Lock>
+                            <Lock>
+                                <ListItem component="div">
+                                    <Button
+                                        disableRipple
+                                        component={RouterLink}
+                                        onClick={closeSidebar}
+                                        to="/general/books"
+                                        startIcon={<LocalLibraryIcon />}
+                                        style={{
+                                            opacity: authentication.localUser == '' ? 0.5 : 1
+                                        }}
+                                    >
+                                        Sách chứng khoán
+                                    </Button>
+                                </ListItem>
+                            </Lock>
+                        </List>
+                    </SubMenuWrapper>
+                </List>
+                <List
+                    component="div"
+                    subheader={
+                        <ListSubheader component="div" disableSticky>
                             Trung tâm nghiên cứu
                         </ListSubheader>
                     }
                 >
                     <SubMenuWrapper>
                         <List component="div">
-                            {/* <ListItem component="div">
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to="/dashboards/crypto"
-                  startIcon={<BarChartIcon />}
-                >
-                  Biểu đồ tổng quan
-                </Button>
-              </ListItem> */}
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/dashboards/messenger"
-                                    startIcon={<InsightsIcon />}
-                                >
-                                    Nhận định thị trường
-                                </Button>
-                            </ListItem>
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/dashboards/report"
-                                    startIcon={<AssessmentIcon />}
-                                >
-                                    Báo cáo công ty
-                                </Button>
-                            </ListItem>
+                            <Lock>
+                                <ListItem component="div">
+                                    <Button
+                                        disableRipple
+                                        component={RouterLink}
+                                        onClick={closeSidebar}
+                                        to="/dashboards/market"
+                                        startIcon={<InsightsIcon />}
+                                        style={{
+                                            opacity: authentication.localUser == '' ? 0.5 : 1
+                                        }}
+                                    >
+                                        Nhận định thị trường
+                                    </Button>
+                                </ListItem>
+                            </Lock>
+                            <Lock>
+                                <ListItem component="div">
+                                    <Button
+                                        disableRipple
+                                        component={RouterLink}
+                                        onClick={closeSidebar}
+                                        to="/dashboards/analysis"
+                                        startIcon={<AssessmentIcon />}
+                                        style={{
+                                            opacity: authentication.localUser == '' ? 0.5 : 1
+                                        }}
+                                    >
+                                        Trung tâm phân tích
+                                    </Button>
+                                </ListItem>
+                            </Lock>
                         </List>
                     </SubMenuWrapper>
                 </List>
@@ -249,28 +297,22 @@ function SidebarMenu() {
                 >
                     <SubMenuWrapper>
                         <List component="div">
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/analysis-software/basic-software"
-                                    startIcon={<DesktopMacIcon />}
-                                >
-                                    Phần mềm cơ bản
-                                </Button>
-                            </ListItem>
-                            {/* <ListItem component="div">
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to="/analysis-software/robo"
-                  startIcon={<AdbIcon />}
-                >
-                  Robot chứng khoán
-                </Button>
-              </ListItem> */}
+                            <Lock>
+                                <ListItem component="div">
+                                    <Button
+                                        disableRipple
+                                        component={RouterLink}
+                                        onClick={closeSidebar}
+                                        to="/analysis-software/basic-software"
+                                        startIcon={<DesktopMacIcon />}
+                                        style={{
+                                            opacity: authentication.localUser == '' ? 0.5 : 1
+                                        }}
+                                    >
+                                        Phần mềm cơ bản
+                                    </Button>
+                                </ListItem>
+                            </Lock>
                         </List>
                     </SubMenuWrapper>
                 </List>
@@ -284,39 +326,54 @@ function SidebarMenu() {
                 >
                     <SubMenuWrapper>
                         <List component="div">
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/knowledge/basic"
-                                    startIcon={<BarChartIcon style={{ fontSize: 24, marginLeft: -2 }} />}
-                                >
-                                    Phân tích cơ bản
-                                </Button>
-                            </ListItem>
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/knowledge/technical"
-                                    startIcon={<StackedBarChartIcon style={{ fontSize: 24, marginLeft: -3 }} />}
-                                >
-                                    Phân tích kỹ thuật
-                                </Button>
-                            </ListItem>
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/knowledge/starter"
-                                    startIcon={<EmojiPeopleIcon style={{ fontSize: 24, marginLeft: -3 }} />}
-                                >
-                                    Cho người mới bắt đầu
-                                </Button>
-                            </ListItem>
+                            <Lock>
+                                <ListItem component="div">
+                                    <Button
+                                        disableRipple
+                                        component={RouterLink}
+                                        onClick={closeSidebar}
+                                        to="/knowledge/basic"
+                                        startIcon={<BarChartIcon style={{ fontSize: 24, marginLeft: -2 }} />}
+                                        style={{
+                                            opacity: authentication.localUser == '' ? 0.5 : 1
+                                        }}
+                                    >
+                                        Phân tích cơ bản
+                                    </Button>
+                                </ListItem>
+                            </Lock>
+                            <Lock>
+                                <ListItem component="div">
+                                    <Button
+                                        disableRipple
+                                        component={RouterLink}
+                                        onClick={closeSidebar}
+                                        to="/knowledge/technical"
+                                        startIcon={<StackedBarChartIcon style={{ fontSize: 24, marginLeft: -3 }} />}
+                                        style={{
+                                            opacity: authentication.localUser == '' ? 0.5 : 1
+                                        }}
+                                    >
+                                        Phân tích kỹ thuật
+                                    </Button>
+                                </ListItem>
+                            </Lock>
+                            <Lock>
+                                <ListItem component="div">
+                                    <Button
+                                        disableRipple
+                                        component={RouterLink}
+                                        onClick={closeSidebar}
+                                        to="/knowledge/starter"
+                                        startIcon={<EmojiPeopleIcon style={{ fontSize: 24, marginLeft: -3 }} />}
+                                        style={{
+                                            opacity: authentication.localUser == '' ? 0.5 : 1
+                                        }}
+                                    >
+                                        Cho người mới bắt đầu
+                                    </Button>
+                                </ListItem>
+                            </Lock>
                         </List>
                     </SubMenuWrapper>
                 </List>
@@ -330,101 +387,57 @@ function SidebarMenu() {
                 >
                     <SubMenuWrapper>
                         <List component="div">
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/open-tcbs"
-                                    startIcon={<LocationCityIcon />}
-                                >
-                                    TCBS
-                                </Button>
-                            </ListItem>
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/open-vps"
-                                    startIcon={
-                                        <BusinessIcon />
-                                        // <ImageIcon src="https://cdn.topfinapi.com/images/logo/vps.png" size={20} width={20} height={20} />
-                                    }
-                                >
-                                    Tại VPS
-                                </Button>
-                            </ListItem>
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/open-vndirect"
-                                    startIcon={<StorageIcon />}
-                                >
-                                    VNDirect
-                                </Button>
-                            </ListItem>
-                        </List>
-                    </SubMenuWrapper>
-                </List>
-                <List
-                    component="div"
-                    subheader={
-                        <ListSubheader component="div" disableSticky>
-                            Tổng hợp - Tin tức - Sách CK
-                        </ListSubheader>
-                    }
-                >
-                    <SubMenuWrapper>
-                        <List component="div">
-                            {/* <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/general/news"
-                                    startIcon={<AnnouncementIcon />}
-                                >
-                                    Bài viết/Tin tức
-                                </Button>
-                            </ListItem> */}
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/general/news"
-                                    startIcon={<PublicIcon />}
-                                >
-                                    Tin tức
-                                </Button>
-                            </ListItem>
-                            <Badge
-                                sx={{
-                                    '.MuiBadge-badge': {
-                                        fontSize: theme.typography.pxToRem(11),
-                                        right: 12,
-                                        top: 12
-                                    }
-                                }}
-                                overlap="circular"
-                                color="error"
-                                badgeContent="Free"
-                            >
+                            <Lock>
                                 <ListItem component="div">
                                     <Button
                                         disableRipple
                                         component={RouterLink}
                                         onClick={closeSidebar}
-                                        to="/status/coursessssssssssssss"
-                                        startIcon={<LocalLibraryIcon />}
+                                        to="/open/tcbs"
+                                        startIcon={<LocationCityIcon />}
+                                        style={{
+                                            opacity: authentication.localUser == '' ? 0.5 : 1
+                                        }}
                                     >
-                                        Sách chứng khoán
+                                        TCBS
                                     </Button>
                                 </ListItem>
-                            </Badge>
+                            </Lock>
+                            <Lock>
+                                <ListItem component="div">
+                                    <Button
+                                        disableRipple
+                                        component={RouterLink}
+                                        onClick={closeSidebar}
+                                        to="/open/vps"
+                                        startIcon={
+                                            <BusinessIcon />
+                                            // <ImageIcon src="https://cdn.topfinapi.com/images/logo/vps.png" size={20} width={20} height={20} />
+                                        }
+                                        style={{
+                                            opacity: authentication.localUser == '' ? 0.5 : 1
+                                        }}
+                                    >
+                                        Tại VPS
+                                    </Button>
+                                </ListItem>
+                            </Lock>
+                            <Lock>
+                                <ListItem component="div">
+                                    <Button
+                                        disableRipple
+                                        component={RouterLink}
+                                        onClick={closeSidebar}
+                                        to="/open/vndirect"
+                                        startIcon={<StorageIcon />}
+                                        style={{
+                                            opacity: authentication.localUser == '' ? 0.5 : 1
+                                        }}
+                                    >
+                                        VNDirect
+                                    </Button>
+                                </ListItem>
+                            </Lock>
                         </List>
                     </SubMenuWrapper>
                 </List>
@@ -452,41 +465,46 @@ function SidebarMenu() {
             </List>
           </SubMenuWrapper>
         </List> */}
-                <List
-                    component="div"
-                    subheader={
-                        <ListSubheader component="div" disableSticky>
-                            Tài khoản
-                        </ListSubheader>
-                    }
-                >
-                    <SubMenuWrapper>
-                        <List component="div">
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/management/profile/details"
-                                    startIcon={<AccountCircleTwoToneIcon />}
-                                >
-                                    Thông tin cá nhân
-                                </Button>
-                            </ListItem>
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/management/profile/settings"
-                                    startIcon={<ManageAccountsIcon />}
-                                >
-                                    Quản lý tài khoản
-                                </Button>
-                            </ListItem>
-                        </List>
-                    </SubMenuWrapper>
-                </List>
+                {authentication.localUser == '' ? (
+                    <></>
+                ) : (
+                    <List
+                        component="div"
+                        subheader={
+                            <ListSubheader component="div" disableSticky>
+                                Tài khoản
+                            </ListSubheader>
+                        }
+                    >
+                        <SubMenuWrapper>
+                            <List component="div">
+                                <ListItem component="div">
+                                    <Button
+                                        disableRipple
+                                        component={RouterLink}
+                                        onClick={closeSidebar}
+                                        to="/management/profile/details"
+                                        startIcon={<AccountCircleTwoToneIcon />}
+                                    >
+                                        Thông tin cá nhân
+                                    </Button>
+                                </ListItem>
+                                <ListItem component="div">
+                                    <Button
+                                        disableRipple
+                                        component={RouterLink}
+                                        onClick={closeSidebar}
+                                        to="/management/profile/settings"
+                                        startIcon={<ManageAccountsIcon />}
+                                    >
+                                        Quản lý tài khoản
+                                    </Button>
+                                </ListItem>
+                            </List>
+                        </SubMenuWrapper>
+                    </List>
+                )}
+
                 {/* <List
           component="div"
           subheader={
@@ -609,34 +627,10 @@ function SidebarMenu() {
                 >
                     <SubMenuWrapper>
                         <List component="div">
-                            {/* <ListItem component="div">
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to="/status/404"
-                  startIcon={<CheckBoxTwoToneIcon />}
-                >
-                  Error 404
-                </Button>
-              </ListItem>
-              <ListItem component="div">
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to="/status/500"
-                  startIcon={<CameraFrontTwoToneIcon />}
-                >
-                  Error 500
-                </Button>
-              </ListItem> */}
                             <ListItem component="div">
                                 <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/status/coming-soon"
+                                    href="https://zalo.me/g/fzldhc322"
+                                    target="_blank"
                                     startIcon={<ContactMailIcon />}
                                 >
                                     Liên hệ
@@ -644,6 +638,13 @@ function SidebarMenu() {
                             </ListItem>
                             <ListItem component="div">
                                 <Button
+                                    href="https://zalo.me/g/fzldhc322"
+                                    target="_blank"
+                                    startIcon={<ContactSupportIcon />}
+                                >
+                                    Hỏi đáp
+                                </Button>
+                                {/* <Button
                                     disableRipple
                                     component={RouterLink}
                                     onClick={closeSidebar}
@@ -651,7 +652,7 @@ function SidebarMenu() {
                                     startIcon={<ContactSupportIcon />}
                                 >
                                     Hỏi đáp
-                                </Button>
+                                </Button> */}
                             </ListItem>
                         </List>
                     </SubMenuWrapper>
@@ -661,4 +662,4 @@ function SidebarMenu() {
     );
 }
 
-export default SidebarMenu;
+export default observer(SidebarMenu);

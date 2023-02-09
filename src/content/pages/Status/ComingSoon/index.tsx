@@ -98,20 +98,20 @@ function StatusComingSoon() {
     });
 
     return (
-        <>
+        <div style={{ top: 50 }}>
             <Helmet>
                 <title>Status - Coming Soon</title>
             </Helmet>
             <MainContent>
                 <Container maxWidth="md">
-                    <Logo />
                     <Box textAlign="center" mb={3}>
                         <Container maxWidth="xs">
                             <Typography variant="h1" sx={{ mt: 4, mb: 2 }}>
-                                Coming Soon
+                                Tính năng đang được phát triển
                             </Typography>
                             <Typography variant="h3" color="text.secondary" fontWeight="normal" sx={{ mb: 4 }}>
-                                We're working on implementing the last features before our launch!
+                                Xin lỗi vì sự bất tiện này. Chúng tôi sẽ có thông báo sớm nhất khi tính năng được hoàn
+                                thiện!
                             </Typography>
                         </Container>
                         <img
@@ -122,7 +122,7 @@ function StatusComingSoon() {
                     </Box>
 
                     <Box display="flex" justifyContent="center">
-                        {timerComponents.length ? timerComponents : <>Time's up!</>}
+                        {timerComponents.length ? timerComponents : <>Chờ đã!</>}
                     </Box>
 
                     <Container maxWidth="sm">
@@ -130,11 +130,11 @@ function StatusComingSoon() {
                             <FormControl variant="outlined" fullWidth>
                                 <OutlinedInputWrapper
                                     type="text"
-                                    placeholder="Enter your email address here..."
+                                    placeholder="Nhập email của bạn tại đây..."
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <ButtonNotify variant="contained" size="small">
-                                                Notify Me
+                                                Gửi cho tôi thông báo
                                             </ButtonNotify>
                                         </InputAdornment>
                                     }
@@ -144,7 +144,7 @@ function StatusComingSoon() {
                                         </InputAdornment>
                                     }
                                 />
-                                <FormHelperText>We'll email you once our website is launched!</FormHelperText>
+                                <FormHelperText>Nhận thông báo tới Email khi tính năng hoàn thành!</FormHelperText>
                             </FormControl>
                             <Divider sx={{ my: 4 }} />
                             <Box sx={{ textAlign: 'center' }}>
@@ -168,7 +168,7 @@ function StatusComingSoon() {
                     </Container>
                 </Container>
             </MainContent>
-        </>
+        </div>
     );
 }
 

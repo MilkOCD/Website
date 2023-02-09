@@ -134,9 +134,9 @@ function HeaderUserbox() {
                         <AccountBoxTwoToneIcon fontSize="small" />
                         <ListItemText primary="My Profile" />
                     </ListItem>
-                    <ListItem button to="/dashboards/messenger" component={NavLink}>
+                    <ListItem button to="/dashboards/article" component={NavLink}>
                         <InboxTwoToneIcon fontSize="small" />
-                        <ListItemText primary="Messenger" />
+                        <ListItemText primary="Article" />
                     </ListItem>
                     <ListItem button to="/management/profile/settings" component={NavLink}>
                         <AccountTreeTwoToneIcon fontSize="small" />

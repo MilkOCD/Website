@@ -21,20 +21,19 @@ const MainContent = styled(Box)(
 
 function StatusMaintenance() {
     return (
-        <>
+        <div style={{ top: 100 }}>
             <Helmet>
-                <title>Status - Maintenance</title>
+                <title>Tạo bài đăng mới</title>
             </Helmet>
             <MainContent>
                 <Container maxWidth="md">
-                    <Logo />
                     <Box textAlign="center">
                         <Container maxWidth="xs">
                             <Typography variant="h2" sx={{ mt: 4, mb: 2 }}>
-                                The site is currently down for maintenance
+                                Có vẻ như bạn chưa đăng nhập
                             </Typography>
                             <Typography variant="h3" color="text.secondary" fontWeight="normal" sx={{ mb: 4 }}>
-                                We apologize for any inconveniences caused
+                                Để sử dụng tính năng, bạn cần là thành viên
                             </Typography>
                         </Container>
                         <img
@@ -73,7 +72,7 @@ function StatusMaintenance() {
                     </Box>
                 </Container>
             </MainContent>
-        </>
+        </div>
     );
 }
 
