@@ -11,7 +11,6 @@ import * as serviceWorker from 'src/serviceWorker';
 
 import GlobalStyles from 'src/components/Global/';
 
-import Bubble from './components/Bubble';
 import OpenIconSpeedDial from './components/SpeedDial';
 
 ReactDOM.render(
