@@ -1,9 +1,10 @@
+import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import PageTitleWrapper from 'src/components/PageTitleWrapper';
 import RecipeReviewCard from 'src/components/Card';
 import PaginationOutlined from 'src/components/Pagination';
 import Text from 'src/components/Text';
-import { newsData } from 'src/services/data';
+// import { newsData } from 'src/services/data';
 
 import { observer } from 'mobx-react';
 import gStore from 'src/stores/GlobalStore';
@@ -30,6 +31,8 @@ import ThumbUpAltTwoToneIcon from '@mui/icons-material/ThumbUpAltTwoTone';
 import CommentTwoToneIcon from '@mui/icons-material/CommentTwoTone';
 import ShareTwoToneIcon from '@mui/icons-material/ShareTwoTone';
 
+import { Article } from '../../../services/data/dataService';
+
 const CardActionsWrapper = styled(CardActions)(
     ({ theme }) => `
        background: ${theme.colors.alpha.black[5]};
@@ -42,7 +45,15 @@ function News() {
         name: 'User Name',
         avatar: 'https://cdn.topfinapi.com/images/avatars/1.jpg'
     };
+
     const theme = useTheme();
+
+    const [news, setNews] = React.useState(null);
+
+    React.useEffect(() => {
+        let sv = new Article();
+        sv.getAll().then(d => setNews(d));
+    }, [])
 
     return (
         <>
@@ -160,7 +171,7 @@ function News() {
             </Container> */}
             <Container maxWidth="lg" style={{ marginTop: 50 }}>
                 <Grid container direction="row" justifyContent="center" alignItems="stretch" spacing={4}>
-                    {newsData.map((data) => (
+                    {news != null && news.map((data) => (
                         <Grid
                             key={data.id}
                             item
@@ -168,23 +179,24 @@ function News() {
                         >
                             <RecipeReviewCard
                                 title={data.title}
-                                subheader={data.subheader}
-                                image={data.image}
+                                subheader={data.title.substring(0, data.title.length / 3) + '... Xem thêm'}
+                                image={'https://i.ytimg.com/vi/jar9ydx_MBw/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCv9EYv2sUW_FPlL_69W0KEnMBhWA'}
                                 description={data.description}
-                                titleContent={data.titleContent}
-                                sortContent={data.sortContent}
+                                titleContent={'Xử lý sau'}
+                                sortContent={'Xử lý sau'}
                             />
                         </Grid>
                     ))}
                 </Grid>
             </Container>
-            <Container maxWidth="lg" style={{ height: 150 }}>
+            <div style={{height: 100}}></div>
+            {/* <Container maxWidth="lg" style={{ height: 150 }}>
                 <Grid container direction="row" justifyContent="center" alignItems="stretch" spacing={4}>
                     <div style={{ marginTop: 70, marginLeft: 30 }}>
                         <PaginationOutlined />
                     </div>
                 </Grid>
-            </Container>
+            </Container> */}
         </>
     );
 }

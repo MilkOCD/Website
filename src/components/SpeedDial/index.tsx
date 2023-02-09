@@ -11,6 +11,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import Draggable from 'react-draggable';
 import gStore from 'src/stores/GlobalStore';
 import { observer } from 'mobx-react';
+import { NavLink as RouterLink } from 'react-router-dom';
 
 import classnames from 'classnames/bind';
 import styles from './SpeedDial.module.scss';
@@ -23,9 +24,12 @@ const actions = [
 ];
 
 function OpenIconSpeedDial() {
+    const linkRef = React.useRef(null);
+
     const onAction = (key: number) => {
         switch (key) {
             case 1:
+                linkRef.current.click();
                 break;
             case 2:
                 break;
@@ -41,6 +45,7 @@ function OpenIconSpeedDial() {
 
     return (
         <>
+            <RouterLink ref={linkRef} to="/general/create" />
             {gStore.windowDimension
                 ? gStore.windowDimension.width > 750 && (
                       <Draggable>

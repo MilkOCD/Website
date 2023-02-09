@@ -129,7 +129,7 @@ function ApplicationsMessenger() {
                         </Scrollbar>
                     </Box>
                     <Divider />
-                    <BottomBarContent />
+                    {/* <BottomBarContent /> */}
                 </ChatWindow>
             </RootWrapper>
         </>

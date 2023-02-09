@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 import {
     Box,
     Typography,
@@ -11,23 +11,19 @@ import {
     InputAdornment,
     Avatar,
     List,
-    Button,
-    Tooltip,
     Divider,
-    AvatarGroup,
     ListItemButton,
     ListItemAvatar,
     ListItemText,
     lighten,
     styled
 } from '@mui/material';
-import { formatDistance, subMinutes, subHours } from 'date-fns';
 import SettingsTwoToneIcon from '@mui/icons-material/SettingsTwoTone';
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import Label from 'src/components/Label';
 import CheckTwoToneIcon from '@mui/icons-material/CheckTwoTone';
-import AlarmTwoToneIcon from '@mui/icons-material/AlarmTwoTone';
-import { Link as RouterLink } from 'react-router-dom';
+import { Article } from '../../../services/data/dataService';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 const AvatarSuccess = styled(Avatar)(
     ({ theme }) => `
@@ -102,6 +98,7 @@ function SidebarContent() {
     const [state, setState] = useState({
         invisible: true
     });
+    const [news, setNews] = useState(null);
 
     const handleChange = (event) => {
         setState({
@@ -109,6 +106,11 @@ function SidebarContent() {
             [event.target.name]: event.target.checked
         });
     };
+
+    useEffect(() => {
+        let sv = new Article();
+        sv.getAll().then(d => setNews(d));
+    }, [])
 
     const [currentTab, setCurrentTab] = useState<string>('all');
 
@@ -121,6 +123,16 @@ function SidebarContent() {
     const handleTabsChange = (_event: ChangeEvent<{}>, value: string): void => {
         setCurrentTab(value);
     };
+
+    const deleteNews = (id: number) => {
+        let sv = new Article();
+        sv.delete(id).then(() => sv.getAll().then(() => {resetData()}))
+    }
+
+    const resetData = () => {
+        let sv = new Article();
+        sv.getAll().then(d => setNews(d));
+    }
 
     return (
         <RootWrapper>
@@ -211,7 +223,8 @@ function SidebarContent() {
             <Box mt={2}>
                 {currentTab === 'all' && (
                     <List disablePadding component="div">
-                        <ListItemWrapper selected>
+                        {news != null && news.map(dataRes => <div key={dataRes.id}>
+                            <ListItemWrapper selected>
                             <ListItemAvatar>
                                 <Avatar src="https://cdn.topfinapi.com/images/avatars/1.jpg" />
                             </ListItemAvatar>
@@ -228,79 +241,16 @@ function SidebarContent() {
                                     color: 'textSecondary',
                                     noWrap: true
                                 }}
-                                primary="Bài viết 1"
-                                secondary="Hey there, how are you today? Is it ok if I call you?"
+                                primary={dataRes.title}
+                                secondary={dataRes.description}
                             />
-                            <Label color="primary">
-                                <b>2</b>
-                            </Label>
+                            <div onClick={() => deleteNews(dataRes.id)}>
+                                <Label color="primary">
+                                    <DeleteOutlineIcon />
+                                </Label>
+                            </div>
                         </ListItemWrapper>
-                        <ListItemWrapper>
-                            <ListItemAvatar>
-                                <Avatar src="https://cdn.topfinapi.com/images/avatars/1.jpg" />
-                            </ListItemAvatar>
-                            <ListItemText
-                                sx={{
-                                    mr: 1
-                                }}
-                                primaryTypographyProps={{
-                                    color: 'textPrimary',
-                                    variant: 'h5',
-                                    noWrap: true
-                                }}
-                                secondaryTypographyProps={{
-                                    color: 'textSecondary',
-                                    noWrap: true
-                                }}
-                                primary="Bài viết 2"
-                                secondary="Hi! Did you manage to send me those documents"
-                            />
-                        </ListItemWrapper>
-                        <ListItemWrapper>
-                            <ListItemAvatar>
-                                <Avatar src="https://cdn.topfinapi.com/images/avatars/1.jpg" />
-                            </ListItemAvatar>
-                            <ListItemText
-                                sx={{
-                                    mr: 1
-                                }}
-                                primaryTypographyProps={{
-                                    color: 'textPrimary',
-                                    variant: 'h5',
-                                    noWrap: true
-                                }}
-                                secondaryTypographyProps={{
-                                    color: 'textSecondary',
-                                    noWrap: true
-                                }}
-                                primary="Bài viết 3"
-                                secondary="Ola, I still haven't received the program schedule"
-                            />
-                        </ListItemWrapper>
-                        <ListItemWrapper>
-                            <ListItemAvatar>
-                                <Avatar src="https://cdn.topfinapi.com/images/avatars/1.jpg" />
-                            </ListItemAvatar>
-                            <ListItemText
-                                sx={{
-                                    mr: 1
-                                }}
-                                primaryTypographyProps={{
-                                    color: 'textPrimary',
-                                    variant: 'h5',
-                                    noWrap: true
-                                }}
-                                secondaryTypographyProps={{
-                                    color: 'textSecondary',
-                                    noWrap: true
-                                }}
-                                primary="Bài viết 4"
-                                secondary="I recently did some buying on Amazon and now I'm stuck"
-                            />
-                            <Label color="primary">
-                                <b>8</b>
-                            </Label>
-                        </ListItemWrapper>
+                        </div>)}
                     </List>
                 )}
                 {currentTab === 'unread' && (

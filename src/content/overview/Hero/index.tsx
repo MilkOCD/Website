@@ -1,9 +1,18 @@
-import { Box, Button, Container, Grid, Typography } from '@mui/material';
+import * as React from 'react';
+import {
+    Box,
+    Button,
+    Container,
+    Grid,
+    Typography,
+    styled,
+    Accordion,
+    AccordionSummary,
+    AccordionDetails
+} from '@mui/material';
+import { Phone, ExpandMore } from '@mui/icons-material/';
 
 import { Link as RouterLink } from 'react-router-dom';
-
-import { styled } from '@mui/material/styles';
-import PhoneIcon from '@mui/icons-material/Phone';
 
 const TypographyH1 = styled(Typography)(
     ({ theme }) => `
@@ -72,6 +81,7 @@ const TsAvatar = styled(Box)(
 );
 
 function Hero() {
+    const [isShowContent, setShowContent] = React.useState(false);
     return (
         <Container maxWidth="lg" sx={{ textAlign: 'center' }}>
             <Grid spacing={{ xs: 6, md: 10 }} justifyContent="center" alignItems="center" container>
@@ -80,16 +90,95 @@ function Hero() {
                         TopFin
                     </LabelWrapper>
                     <TypographyH2 sx={{ mb: 2 }} variant="h1">
-                        Đây là cái tiêu đề, hiện tại chưa có
+                        Hệ thống, công cụ phân tích đầu tư tốt nhất đến từng khách hàng
                     </TypographyH2>
-                    <TypographyH2
-                        sx={{ lineHeight: 1.5, pb: 4 }}
-                        variant="h4"
-                        color="text.secondary"
-                        fontWeight="normal"
-                    >
-                        Đây là một cái mô tả gì đó, cũng chưa có luôn, sửa sau
-                    </TypographyH2>
+                    <Accordion onClick={() => setShowContent(!isShowContent)}>
+                        <AccordionSummary
+                            // expandIcon={<ExpandMore />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                        >
+                            <Button size="small" variant="outlined" sx={{ ml: 'auto', mr: 'auto' }}>
+                                {isShowContent ? 'Ẩn bớt' : 'Xem thêm về chúng tôi'}
+                            </Button>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <TypographyH2
+                                sx={{ lineHeight: 1.5, pb: 0 }}
+                                variant="h4"
+                                color="text.secondary"
+                                fontWeight="normal"
+                            >
+                                Được thành lập từ 2018, TopFin đã chứng minh được hiệu quả trong cung cấp dịch vụ tư vấn
+                                đáng tin cậy cho từng nhà khách hàng. Chúng tôi luôn cập nhật đổi mới các công cụ, dịch
+                                vụ nhằm đem lại giá trị tốt nhất cho cộng đồng nhà đầu tư
+                            </TypographyH2>
+                        </AccordionDetails>
+                    </Accordion>
+                    <Grid container spacing={1} mt={2}>
+                        <Grid item xs={4}>
+                            <Accordion>
+                                <AccordionSummary
+                                    // expandIcon={<ExpandMore />}
+                                    aria-controls="panel1a-content"
+                                    id="panel1a-header"
+                                >
+                                    <MuiAvatar>
+                                        <img
+                                            src="https://cdn.topfinapi.com/images/logo/material-ui.svg"
+                                            alt="Material-UI"
+                                        />
+                                    </MuiAvatar>
+                                    <Typography variant="h4">
+                                        <Box sx={{ pb: 2 }}>
+                                            <b>Mở TKCK VPS</b>
+                                        </Box>
+                                        {/* <Typography component="span" variant="subtitle2">
+                                    Mô tả về bên liên quan
+                                </Typography> */}
+                                    </Typography>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <TypographyH2
+                                        sx={{ lineHeight: 1.5, pb: 0 }}
+                                        variant="h4"
+                                        color="text.secondary"
+                                        fontWeight="normal"
+                                    >
+                                        Được thành lập từ 2018, TopFin đã chứng minh được hiệu quả trong cung cấp dịch
+                                        vụ tư vấn đáng tin cậy cho từng nhà khách hàng. Chúng tôi luôn cập nhật đổi mới
+                                        các công cụ, dịch vụ nhằm đem lại giá trị tốt nhất cho cộng đồng nhà đầu tư
+                                    </TypographyH2>
+                                </AccordionDetails>
+                            </Accordion>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <TsAvatar>
+                                <img src="https://cdn.topfinapi.com/images/logo/typescript.svg" alt="Typescript" />
+                            </TsAvatar>
+                            <Typography variant="h4">
+                                <Box sx={{ pb: 2 }}>
+                                    <b>Mở TKCK TCBS</b>
+                                </Box>
+                                {/* <Typography component="span" variant="subtitle2">
+                                    Mô tả về bên liên quan
+                                </Typography> */}
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <MuiAvatar>
+                                <img src="https://cdn.topfinapi.com/images/logo/topfin.jpg" alt="TopFin" />
+                            </MuiAvatar>
+                            <Typography variant="h4">
+                                <Box sx={{ pb: 2 }}>
+                                    <b>Hệ thống TopFin</b>
+                                </Box>
+                                {/* <Typography component="span" variant="subtitle2">
+                                    Mô tả về bên liên quan
+                                </Typography> */}
+                            </Typography>
+                        </Grid>
+                    </Grid>
                     <div className="full-width flex-row j-align-center">
                         <Button component={RouterLink} to="/general/news" size="large" variant="contained">
                             Trang chủ
@@ -103,50 +192,9 @@ function Hero() {
                             size="large"
                             variant="outlined"
                         >
-                            <PhoneIcon></PhoneIcon>&nbsp;Zalo
+                            <Phone></Phone>&nbsp;Zalo
                         </Button>
                     </div>
-                    <Grid container spacing={1} mt={5}>
-                        <Grid item xs={4}>
-                            <MuiAvatar>
-                                <img src="https://cdn.topfinapi.com/images/logo/material-ui.svg" alt="Material-UI" />
-                            </MuiAvatar>
-                            <Typography variant="h4">
-                                <Box sx={{ pb: 2 }}>
-                                    <b>Bên liên quan (Cụ thể)</b>
-                                </Box>
-                                <Typography component="span" variant="subtitle2">
-                                    Mô tả về bên liên quan
-                                </Typography>
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={4}>
-                            <TsAvatar>
-                                <img src="https://cdn.topfinapi.com/images/logo/typescript.svg" alt="Typescript" />
-                            </TsAvatar>
-                            <Typography variant="h4">
-                                <Box sx={{ pb: 2 }}>
-                                    <b>Bên liên quan (Cụ thể)</b>
-                                </Box>
-                                <Typography component="span" variant="subtitle2">
-                                    Mô tả về bên liên quan
-                                </Typography>
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={4}>
-                            <MuiAvatar>
-                                <img src="https://cdn.topfinapi.com/images/logo/topfin.jpg" alt="TopFin" />
-                            </MuiAvatar>
-                            <Typography variant="h4">
-                                <Box sx={{ pb: 2 }}>
-                                    <b>TopFin (Cụ thể)</b>
-                                </Box>
-                                <Typography component="span" variant="subtitle2">
-                                    Mô tả về bên liên quan
-                                </Typography>
-                            </Typography>
-                        </Grid>
-                    </Grid>
                 </Grid>
             </Grid>
         </Container>
