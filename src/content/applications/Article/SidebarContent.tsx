@@ -127,7 +127,22 @@ function SidebarContent() {
                 message: 'Bài viết khi bị xóa sẽ không thể khôi phục. Tiếp tục?',
                 callback: () => {
                     let sv = new Article();
-                    sv.delete(id).then(() => gStore.loadNews());
+                    sv.delete(id)
+                        .then(() => {
+                            gStore.loadNews();
+                            gStore.openToast({
+                                message: 'Xóa bài viết thành công',
+                                type: 'success',
+                                open: true
+                            });
+                        })
+                        .catch((d) => {
+                            gStore.openToast({
+                                message: 'Có lỗi xảy ra khi xóa bài viết',
+                                type: 'error',
+                                open: true
+                            });
+                        });
                 },
                 open: true
             });

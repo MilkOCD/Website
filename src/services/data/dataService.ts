@@ -1,18 +1,16 @@
 import http from '../httpService';
 
-class DataService {
-
-}
+class DataService {}
 
 export class Article {
     public async get(id: number) {
-        await http.get(`https://localhost:44311/api/services/app/Articles/Get?id=${id}`);
+        await http.get(`api/services/app/Articles/Get?id=${id}`);
     }
 
     public async getAll() {
         let result = await http.get('api/services/app/Articles/GetAll');
         return result.data.result;
-    };
+    }
 
     public async create(data: any) {
         await http.post('api/services/app/Articles/Create', data);
@@ -23,7 +21,7 @@ export class Article {
     }
 
     public async delete(id: number) {
-        await http.delete(`https://localhost:44311/api/services/app/Articles/Delete?id=${id}`);
+        await http.delete(`api/services/app/Articles/Delete?id=${id}`);
     }
 }
 
