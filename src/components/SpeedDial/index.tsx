@@ -45,7 +45,7 @@ function OpenIconSpeedDial() {
 
     return (
         <>
-            <RouterLink ref={linkRef} to="/general/create" />
+            <RouterLink ref={linkRef} to="/create" />
             {gStore.windowDimension
                 ? gStore.windowDimension.width > 750 && (
                       <Draggable>

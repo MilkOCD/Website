@@ -213,7 +213,7 @@ function SidebarMenu() {
                                         disableRipple
                                         component={RouterLink}
                                         onClick={closeSidebar}
-                                        to="/general/news"
+                                        to="/news"
                                         startIcon={<PublicIcon />}
                                         style={{
                                             opacity: authentication.localUser == '' ? 0.5 : 1
@@ -229,7 +229,7 @@ function SidebarMenu() {
                                         disableRipple
                                         component={RouterLink}
                                         onClick={closeSidebar}
-                                        to="/general/books"
+                                        to="/dashboard/books"
                                         startIcon={<LocalLibraryIcon />}
                                         style={{
                                             opacity: authentication.localUser == '' ? 0.5 : 1
@@ -258,7 +258,7 @@ function SidebarMenu() {
                                         disableRipple
                                         component={RouterLink}
                                         onClick={closeSidebar}
-                                        to="/dashboards/market"
+                                        to="/dashboard/market"
                                         startIcon={<InsightsIcon />}
                                         style={{
                                             opacity: authentication.localUser == '' ? 0.5 : 1
@@ -274,7 +274,7 @@ function SidebarMenu() {
                                         disableRipple
                                         component={RouterLink}
                                         onClick={closeSidebar}
-                                        to="/dashboards/analysis"
+                                        to="/dashboard/analysis"
                                         startIcon={<AssessmentIcon />}
                                         style={{
                                             opacity: authentication.localUser == '' ? 0.5 : 1
@@ -303,7 +303,7 @@ function SidebarMenu() {
                                         disableRipple
                                         component={RouterLink}
                                         onClick={closeSidebar}
-                                        to="/analysis-software/basic-software"
+                                        to="/dashboard/basic-software"
                                         startIcon={<DesktopMacIcon />}
                                         style={{
                                             opacity: authentication.localUser == '' ? 0.5 : 1
@@ -332,7 +332,7 @@ function SidebarMenu() {
                                         disableRipple
                                         component={RouterLink}
                                         onClick={closeSidebar}
-                                        to="/knowledge/basic"
+                                        to="/dashboard/basic"
                                         startIcon={<BarChartIcon style={{ fontSize: 24, marginLeft: -2 }} />}
                                         style={{
                                             opacity: authentication.localUser == '' ? 0.5 : 1
@@ -348,7 +348,7 @@ function SidebarMenu() {
                                         disableRipple
                                         component={RouterLink}
                                         onClick={closeSidebar}
-                                        to="/knowledge/technical"
+                                        to="/dashboard/technical"
                                         startIcon={<StackedBarChartIcon style={{ fontSize: 24, marginLeft: -3 }} />}
                                         style={{
                                             opacity: authentication.localUser == '' ? 0.5 : 1
@@ -364,7 +364,7 @@ function SidebarMenu() {
                                         disableRipple
                                         component={RouterLink}
                                         onClick={closeSidebar}
-                                        to="/knowledge/starter"
+                                        to="/dashboard/starter"
                                         startIcon={<EmojiPeopleIcon style={{ fontSize: 24, marginLeft: -3 }} />}
                                         style={{
                                             opacity: authentication.localUser == '' ? 0.5 : 1
@@ -393,7 +393,7 @@ function SidebarMenu() {
                                         disableRipple
                                         component={RouterLink}
                                         onClick={closeSidebar}
-                                        to="/open/tcbs"
+                                        to="/dashboard/tcbs"
                                         startIcon={<LocationCityIcon />}
                                         style={{
                                             opacity: authentication.localUser == '' ? 0.5 : 1
@@ -409,7 +409,7 @@ function SidebarMenu() {
                                         disableRipple
                                         component={RouterLink}
                                         onClick={closeSidebar}
-                                        to="/open/vps"
+                                        to="/dashboard/vps"
                                         startIcon={
                                             <BusinessIcon />
                                             // <ImageIcon src="https://cdn.topfinapi.com/images/logo/vps.png" size={20} width={20} height={20} />
@@ -428,7 +428,7 @@ function SidebarMenu() {
                                         disableRipple
                                         component={RouterLink}
                                         onClick={closeSidebar}
-                                        to="/open/vndirect"
+                                        to="/dashboard/vndirect"
                                         startIcon={<StorageIcon />}
                                         style={{
                                             opacity: authentication.localUser == '' ? 0.5 : 1

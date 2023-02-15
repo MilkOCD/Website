@@ -1,10 +1,7 @@
-import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import PageTitleWrapper from 'src/components/PageTitleWrapper';
 import RecipeReviewCard from 'src/components/Card';
-import PaginationOutlined from 'src/components/Pagination';
 import Text from 'src/components/Text';
-// import { newsData } from 'src/services/data';
 
 import { observer } from 'mobx-react';
 
@@ -23,15 +20,11 @@ import {
     Link,
     CardActions
 } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 import { styled } from '@mui/material/styles';
 import MoreHorizTwoToneIcon from '@mui/icons-material/MoreHorizTwoTone';
 import ThumbUpAltTwoToneIcon from '@mui/icons-material/ThumbUpAltTwoTone';
 import CommentTwoToneIcon from '@mui/icons-material/CommentTwoTone';
 import ShareTwoToneIcon from '@mui/icons-material/ShareTwoTone';
-
-import { Article } from '../../../services/data/dataService';
-
 import authentication from 'src/stores/authenticationStore';
 import Status404 from 'src/content/pages/Status/Status404';
 import gStore from 'src/stores/GlobalStore';
@@ -44,20 +37,6 @@ const CardActionsWrapper = styled(CardActions)(
 );
 
 function News() {
-    const user = {
-        name: 'User Name',
-        avatar: 'https://cdn.topfinapi.com/images/avatars/1.jpg'
-    };
-
-    const theme = useTheme();
-
-    const [news, setNews] = React.useState(null);
-
-    React.useEffect(() => {
-        let sv = new Article();
-        sv.getAll().then((d) => setNews(d));
-    }, []);
-
     return (
         <>
             <Helmet>
@@ -84,9 +63,9 @@ function News() {
                                     <Typography variant="h3" component="h3" gutterBottom>
                                 */}
                                 <Typography variant="h3" component="h3">
-                                    Welcome, {user.name}!
+                                    Welcome!
                                 </Typography>
-                                <Typography variant="subtitle2">Have a good day!</Typography>
+                                <Typography variant="subtitle2">Chúc bạn có một ngày đầu tư thành công!</Typography>
                             </Grid>
                         </Grid>
                     </PageTitleWrapper>
@@ -191,21 +170,24 @@ function News() {
                     </Container> */}
                     <Container maxWidth="lg" style={{ marginTop: 50 }}>
                         <Grid container direction="row" justifyContent="center" alignItems="stretch" spacing={4}>
-                            {news != null &&
-                                news.map((data) => (
+                            {gStore.news.data != null &&
+                                gStore.news.data.map((data) => (
                                     <Grid
                                         key={data.id}
                                         item
                                         xs={gStore.windowDimension ? (gStore.windowDimension.width > 625 ? 6 : 12) : 6}
                                     >
                                         <RecipeReviewCard
+                                            id={data.id}
                                             title={data.title}
-                                            subheader={data.title.substring(0, data.title.length / 3) + '... Xem thêm'}
+                                            subheader={
+                                                data.description.substring(0, data.title.length / 3) + '... Xem thêm'
+                                            }
                                             image={
                                                 'https://i.ytimg.com/vi/jar9ydx_MBw/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCv9EYv2sUW_FPlL_69W0KEnMBhWA'
                                             }
-                                            description={data.description}
-                                            titleContent={'Xử lý sau'}
+                                            description={''}
+                                            titleContent={''}
                                             sortContent={'Xử lý sau'}
                                         />
                                     </Grid>
@@ -213,13 +195,6 @@ function News() {
                         </Grid>
                     </Container>
                     <div style={{ height: 100 }}></div>
-                    {/* <Container maxWidth="lg" style={{ height: 150 }}>
-                        <Grid container direction="row" justifyContent="center" alignItems="stretch" spacing={4}>
-                            <div style={{ marginTop: 70, marginLeft: 30 }}>
-                                <PaginationOutlined />
-                            </div>
-                        </Grid>
-                    </Container> */}
                 </>
             )}
         </>

@@ -103,7 +103,7 @@ function Logo() {
     return (
         // <></>
         <TooltipWrapper title="Website" arrow>
-            <LogoWrapper to="/overview">
+            <LogoWrapper to="/home">
                 <Badge
                     style={{ marginLeft: 13 }}
                     // sx={{

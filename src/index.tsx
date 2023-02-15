@@ -1,27 +1,23 @@
-import ReactDOM from 'react-dom';
-import { HelmetProvider } from 'react-helmet-async';
-
 // Use HashRouter for git single page
 import { BrowserRouter, HashRouter } from 'react-router-dom';
-
-import 'nprogress/nprogress.css';
+import ReactDOM from 'react-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import App from 'src/App';
 import { SidebarProvider } from 'src/contexts/SidebarContext';
 import * as serviceWorker from 'src/serviceWorker';
-
 import GlobalStyles from 'src/components/Global/';
-
+import 'nprogress/nprogress.css';
 import OpenIconSpeedDial from './components/SpeedDial';
 
 ReactDOM.render(
     <HelmetProvider>
         <SidebarProvider>
-            <HashRouter>
+            <BrowserRouter>
                 <OpenIconSpeedDial />
                 <GlobalStyles>
                     <App />
                 </GlobalStyles>
-            </HashRouter>
+            </BrowserRouter>
         </SidebarProvider>
     </HelmetProvider>,
     document.getElementById('root')

@@ -21,6 +21,7 @@ import PopupComponent from '../Popup';
 import Newspaper from '../../content/general/News/components/newspaper';
 
 interface IProps {
+    id: number;
     title: string;
     subheader: string;
     image: string;
@@ -82,7 +83,7 @@ function RecipeReviewCard(props: IProps) {
                         }
                     />
                 }
-                content={<Newspaper />}
+                content={<Newspaper id={props.id} />}
             />
             <CardMedia component="img" height="194" image={props.image} alt="" />
             <CardContent>

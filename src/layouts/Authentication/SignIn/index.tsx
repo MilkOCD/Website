@@ -21,11 +21,6 @@ function SignInForm() {
     const [password, setPassword] = React.useState('');
     const [alertMessage, setAlertMessage] = React.useState('Alert Message');
 
-    const closeModal = () => {
-        setLoading(false);
-        gStore.setOpenPopup(false);
-    };
-
     const onAction = () => {
         setLoading(true);
         let isValid = 0;
@@ -40,8 +35,6 @@ function SignInForm() {
                     .catch((error) => {
                         showError('Thông tin tài khoản không chính xác!');
                     });
-                // setLoading(false);
-                // closeModal();
             }, 1000);
         } else {
             let message = isValid == 1 ? 'Tài khoản không được để trống' : 'Mật khẩu không được để trống';
@@ -77,15 +70,7 @@ function SignInForm() {
                 />
             </Badge>
             <br />
-            <Button
-                // sx={{ ml: 2 }}
-                component="a"
-                target="_blank"
-                rel="noopener"
-                href="#"
-                size="small"
-                variant="text"
-            >
+            <Button component="a" target="_blank" rel="noopener" href="#" size="small" variant="text">
                 Giới thiệu đôi nét về TopFin
             </Button>
             <div className={cx('mt-px')}>
@@ -134,7 +119,6 @@ function SignInForm() {
                     <HelpIcon></HelpIcon>&nbsp;Quên mật khẩu
                 </Button>
                 <Button
-                    // sx={{ ml: 2 }}
                     component="a"
                     target="_blank"
                     rel="noopener"
@@ -145,14 +129,6 @@ function SignInForm() {
                     <AccountCircleIcon></AccountCircleIcon>&nbsp;Tạo tài khoản
                 </Button>
             </div>
-            {/* <div className="flex-row j-align-center">
-                <a href="google.com" className={cx('frg-password atm-right')}>
-                    Quên mật khẩu
-                </a>
-                <a href="google.com" className={cx('crt-account')}>
-                    Tạo tài khoản
-                </a>
-            </div> */}
         </Box>
     );
 }

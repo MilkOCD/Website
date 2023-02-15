@@ -1,40 +1,22 @@
 import { Box, Container, Card } from '@mui/material';
 import { Helmet } from 'react-helmet-async';
 
-import { styled } from '@mui/material/styles';
-import Hero from './Hero';
+import * as React from 'react';
+import styles from './Overview.module.scss';
+import classnames from 'classnames/bind';
 
-const OverviewWrapper = styled(Box)(
-    () => `
-    overflow: auto;
-    flex: 1;
-    overflow-x: hidden;
-    align-items: center;
-`
-);
+const cx = classnames.bind(styles);
+
+import Hero from './Hero';
 
 function Overview() {
     return (
-        <OverviewWrapper>
+        <>
             <Helmet>
-                <title>Website</title>
+                <title>TOPFIN</title>
             </Helmet>
-            <Container maxWidth="lg">
-                <Box display="flex" justifyContent="center" py={5} alignItems="center">
-                    {/* <Logo /> */}
-                </Box>
-                <Card sx={{ p: 0, mb: 5, borderRadius: 5 }}>
-                    <div className="align-center mb-px">
-                        <img
-                            src="https://cdn.topfinapi.com/images/logo/logo-black.png"
-                            style={{ width: '100%', maxWidth: 300 }}
-                            alt=""
-                        />
-                    </div>
-                    <Hero />
-                </Card>
-            </Container>
-        </OverviewWrapper>
+            {/* <Hero /> */}
+        </>
     );
 }
 
