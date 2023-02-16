@@ -16,7 +16,8 @@ const publicRoutes = [
     {
         path: '/create',
         component: <SidebarLayout content={<Article />} />
-    }
+    },
+    { path: '', component: <LandingPage /> }
 ];
 const privateRoutes = [];
 
