@@ -5,6 +5,7 @@ import { Button } from '../../../common/Button';
 import { ContentBlockProps } from '../types';
 import { Fade } from 'react-awesome-reveal';
 import { RightBlockContainer, Content, ContentWrapper, ButtonWrapper } from './styles';
+import { Link } from 'react-router-dom';
 
 const RightBlock = ({ title, content, button, icon, t, id }: ContentBlockProps) => {
     const scrollTo = (id: string) => {
@@ -25,14 +26,23 @@ const RightBlock = ({ title, content, button, icon, t, id }: ContentBlockProps) 
                                 {typeof button === 'object' &&
                                     button.map((item: any, id: number) => {
                                         return (
-                                            <Button
+                                            <Link
                                                 key={id}
-                                                color={item.color}
-                                                fixedWidth={true}
-                                                onClick={() => (window.location.href = 'http://localhost:3000/news')}
+                                                style={{ width: '100%', maxWidth: 180 }}
+                                                to={id == 0 ? '/news' : '/home'}
                                             >
-                                                {t(item.title)}
-                                            </Button>
+                                                <Button
+                                                    color={item.color}
+                                                    fixedWidth={true}
+                                                    onClick={() => {
+                                                        if (id == 1)
+                                                            window.open('https://zalo.me/g/fzldhc322', '_blank');
+                                                    }}
+                                                    style={{ margin: 0 }}
+                                                >
+                                                    {t(item.title)}
+                                                </Button>
+                                            </Link>
                                         );
                                     })}
                             </ButtonWrapper>

@@ -48,6 +48,12 @@ function SignInForm() {
         setAlertMessage(message);
     };
 
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            onAction();
+        }
+    };
+
     return (
         <Box className={cx('login-form')}>
             <Badge
@@ -84,6 +90,7 @@ function SignInForm() {
                         setAccountName(event.target.value);
                         if (showAlert) setShowAlert(false);
                     }}
+                    onKeyDown={handleKeyPress}
                 />
             </div>
             <div className={cx('mt-px')}>
@@ -98,6 +105,7 @@ function SignInForm() {
                         setPassword(event.target.value);
                         if (showAlert) setShowAlert(false);
                     }}
+                    onKeyDown={handleKeyPress}
                 />
             </div>
             <div className={cx('login-loader')}>{loading && <Loader data={{ size: 150 }} />}</div>
