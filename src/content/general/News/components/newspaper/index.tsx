@@ -19,6 +19,10 @@ interface IProps {
     id: number;
 }
 
+const config = {
+    ALLOWED_ATTR: ['href', 'target']
+};
+
 function Newspaper(props: IProps) {
     const [newsInfo, setNewsInfo] = React.useState(null);
     const [tags, setTags] = React.useState([]);
@@ -30,7 +34,9 @@ function Newspaper(props: IProps) {
     }, []);
 
     const stringToHTML = (htmlString) => {
-        const sanitizedHtml = DOMPurify.sanitize(htmlString);
+        htmlString = htmlString.replaceAll('_self', '_blank');
+        console.log(htmlString);
+        const sanitizedHtml = DOMPurify.sanitize(htmlString, config);
         return <div style={{ fontSize: 17 }} dangerouslySetInnerHTML={{ __html: sanitizedHtml }}></div>;
     };
 

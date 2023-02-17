@@ -1,11 +1,12 @@
 import React, { useRef, useState } from 'react';
-import { Editor, EditorState, RichUtils, AtomicBlockUtils, convertToRaw } from 'draft-js';
+import { Editor, EditorState, RichUtils, AtomicBlockUtils, convertToRaw, CompositeDecorator, Modifier } from 'draft-js';
 import './CustomEditor.css';
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
 import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
 import FormatColorTextIcon from '@mui/icons-material/FormatColorText';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
+import InsertLinkIcon from '@mui/icons-material/InsertLink';
 import classnames from 'classnames';
 
 import {
@@ -31,6 +32,50 @@ import draftToHtml from 'draftjs-to-html';
 const Input = styled('input')({
     display: 'none'
 });
+
+const Link = ({ entityKey, contentState, children }) => {
+    let { url } = contentState.getEntity(entityKey).getData();
+    return (
+        <a style={{ color: 'blue', fontStyle: 'italic' }} href={url} target="_blank" rel="noopener noreferrer">
+            {children}
+        </a>
+    );
+};
+
+const findLinkEntities = (contentBlock, callback, contentState) => {
+    contentBlock.findEntityRanges((character) => {
+        const entityKey = character.getEntity();
+        return entityKey !== null && contentState.getEntity(entityKey).getType() === 'LINK';
+    }, callback);
+};
+
+export const createLinkDecorator = () =>
+    new CompositeDecorator([
+        {
+            strategy: findLinkEntities,
+            component: Link
+        }
+    ]);
+
+// call all together
+export const onAddLink = (editorState, setEditorState) => {
+    let linkUrl = window.prompt('Add link http:// ');
+    const decorator = createLinkDecorator();
+    if (linkUrl) {
+        let displayLink = window.prompt('Display Text');
+        if (displayLink) {
+            const currentContent = editorState.getCurrentContent();
+            const createEntity = currentContent.createEntity('LINK', 'MUTABLE', {
+                url: linkUrl
+            });
+            let entityKey = currentContent.getLastCreatedEntityKey();
+            const selection = editorState.getSelection();
+            const textWithEntity = Modifier.insertText(currentContent, selection, displayLink, null, entityKey);
+            let newState = EditorState.createWithContent(textWithEntity, decorator);
+            setEditorState(newState);
+        }
+    }
+};
 
 function CustomEditor() {
     const theme = useTheme();
@@ -191,6 +236,9 @@ function CustomEditor() {
                     </span>
                     <span onMouseDown={onBoldClick}>
                         <FormatColorTextIcon className={classnames('ico-editor')} />
+                    </span>
+                    <span onMouseDown={() => onAddLink(editorState, setEditorState)}>
+                        <InsertLinkIcon className={classnames('ico-editor')} />
                     </span>
                     <span
                         onMouseDown={(e) =>
