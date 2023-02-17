@@ -82,7 +82,7 @@ function SignInForm() {
             <div className={cx('mt-px')}>
                 <TextField
                     className={cx('login-account')}
-                    id="outlined-basic"
+                    // id="outlined-basic"
                     label="Tên đăng nhập"
                     variant="standard"
                     value={accountName}
@@ -97,7 +97,7 @@ function SignInForm() {
                 <TextField
                     type={'password'}
                     className={cx('login-password')}
-                    id="outlined-basic"
+                    // id="outlined-basic"
                     label="Mật khẩu"
                     variant="standard"
                     value={password}

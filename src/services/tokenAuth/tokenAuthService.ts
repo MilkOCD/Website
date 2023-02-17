@@ -5,15 +5,17 @@ import gStore from 'src/stores/GlobalStore';
 
 class TokenAuthService {
     public async authenticate(authenticationInput: AuthenticationModel): Promise<AuthenticationResultModel> {
-        let result = await http.post('api/TokenAuth/Authenticate', authenticationInput);
-        let allowed = result.status == 200;
-        this.init(allowed);
+        let result = null;
+        await http.post('api/TokenAuth/Authenticate', authenticationInput).then((d) => {
+            result = d;
+            this.init(true);
+        });
         return result.data.result;
     }
 
     public async init(allow: boolean = false) {
         if (allow) {
-            gStore.loadNews();
+            await gStore.loadNews();
         }
     }
 }
