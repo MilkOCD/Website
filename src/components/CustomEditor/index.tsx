@@ -77,6 +77,30 @@ export const onAddLink = (editorState, setEditorState) => {
     }
 };
 
+const customStyleMap = {
+    'COLOR-red': {
+        color: 'rgba(255, 0, 0, 1.0)'
+    },
+    'COLOR-orange': {
+        color: 'rgba(255, 127, 0, 1.0)'
+    },
+    'COLOR-yellow': {
+        color: 'rgba(180, 180, 0, 1.0)'
+    },
+    'COLOR-green': {
+        color: 'rgba(0, 180, 0, 1.0)'
+    },
+    'COLOR-blue': {
+        color: 'rgba(0, 0, 255, 1.0)'
+    },
+    'COLOR-indigo': {
+        color: 'rgba(75, 0, 130, 1.0)'
+    },
+    'COLOR-violet': {
+        color: 'rgba(127, 0, 255, 1.0)'
+    }
+};
+
 function CustomEditor() {
     const theme = useTheme();
     const editorRef = useRef(null);
@@ -110,6 +134,11 @@ function CustomEditor() {
     const onUnderlineClick = (e) => {
         e.preventDefault();
         setEditorState(RichUtils.toggleInlineStyle(editorState, 'UNDERLINE'));
+    };
+
+    const toggleColor = (e) => {
+        e.preventDefault();
+        setEditorState(RichUtils.toggleInlineStyle(editorState, 'COLOR-' + 'red')); // color là giá trị màu sắc, ví dụ: 'red'));
     };
 
     function mediaBlockRenderer(block) {
@@ -225,37 +254,50 @@ function CustomEditor() {
             </div>
             <div className="custom-editor" onClick={focus}>
                 <div>
-                    <span onMouseDown={onBoldClick}>
-                        <FormatBoldIcon className={classnames('ico-editor')} />
-                    </span>
-                    <span onMouseDown={onItalicClick}>
-                        <FormatItalicIcon className={classnames('ico-editor')} />
-                    </span>
-                    <span onMouseDown={onUnderlineClick}>
-                        <FormatUnderlinedIcon className={classnames('ico-editor')} />
-                    </span>
-                    <span onMouseDown={onBoldClick}>
-                        <FormatColorTextIcon className={classnames('ico-editor')} />
-                    </span>
-                    <span onMouseDown={() => onAddLink(editorState, setEditorState)}>
-                        <InsertLinkIcon className={classnames('ico-editor')} />
-                    </span>
-                    <span
-                        onMouseDown={(e) =>
-                            addImage(
-                                e,
-                                'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png'
-                            )
-                        }
-                    >
-                        <InsertPhotoIcon className="ico-editor" />
-                    </span>
+                    <Tooltip title="In đậm">
+                        <span onMouseDown={onBoldClick}>
+                            <FormatBoldIcon className={classnames('ico-editor')} />
+                        </span>
+                    </Tooltip>
+                    <Tooltip title="Chữ nghiêng">
+                        <span onMouseDown={onItalicClick}>
+                            <FormatItalicIcon className={classnames('ico-editor')} />
+                        </span>
+                    </Tooltip>
+                    <Tooltip title="Gạch dưới">
+                        <span onMouseDown={onUnderlineClick}>
+                            <FormatUnderlinedIcon className={classnames('ico-editor')} />
+                        </span>
+                    </Tooltip>
+                    <Tooltip title="Màu chữ">
+                        <span onMouseDown={toggleColor}>
+                            <FormatColorTextIcon className={classnames('ico-editor')} />
+                        </span>
+                    </Tooltip>
+                    <Tooltip title="Chèn link">
+                        <span onMouseDown={() => onAddLink(editorState, setEditorState)}>
+                            <InsertLinkIcon className={classnames('ico-editor')} />
+                        </span>
+                    </Tooltip>
+                    <Tooltip title="Thêm ảnh">
+                        <span
+                            onMouseDown={(e) =>
+                                addImage(
+                                    e,
+                                    'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png'
+                                )
+                            }
+                        >
+                            <InsertPhotoIcon className="ico-editor" />
+                        </span>
+                    </Tooltip>
                 </div>
                 <Editor
                     blockRendererFn={mediaBlockRenderer}
                     ref={editorRef}
                     editorState={editorState}
                     onChange={setEditorState}
+                    customStyleMap={customStyleMap}
                 />
             </div>
             <Box
