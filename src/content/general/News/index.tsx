@@ -180,9 +180,7 @@ function News() {
                                         <RecipeReviewCard
                                             id={data.id}
                                             title={data.title}
-                                            subheader={
-                                                data.description.substring(0, data.title.length / 3) + '... Xem thêm'
-                                            }
+                                            subheader={data.title.substring(0, data.title.length / 3) + '... Xem thêm'}
                                             image={
                                                 'https://i.ytimg.com/vi/jar9ydx_MBw/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCv9EYv2sUW_FPlL_69W0KEnMBhWA'
                                             }

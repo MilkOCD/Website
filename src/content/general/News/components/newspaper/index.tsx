@@ -11,6 +11,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import gStore from 'src/stores/GlobalStore';
 import BoxLoader from 'src/components/BoxLoader';
+import DOMPurify from 'dompurify';
 
 const cx = classNames.bind(styles);
 
@@ -27,6 +28,11 @@ function Newspaper(props: IProps) {
         if (newsInfoById.hashTag != '') setTags(newsInfoById.hashTag.split(', '));
         setNewsInfo(newsInfoById);
     }, []);
+
+    const stringToHTML = (htmlString) => {
+        const sanitizedHtml = DOMPurify.sanitize(htmlString);
+        return <div style={{ fontSize: 17 }} dangerouslySetInnerHTML={{ __html: sanitizedHtml }}></div>;
+    };
 
     return (
         <>
@@ -88,18 +94,24 @@ function Newspaper(props: IProps) {
                                 <Typography variant="h3" component="h3" gutterBottom>
                                     {newsInfo.title} &nbsp;
                                 </Typography>
-                                <Typography variant="subtitle2">Đăng bởi: Phí Thanh Thủy</Typography>
+                                <Typography style={{ fontSize: 16 }} variant="subtitle2">
+                                    Đăng bởi: Phí Thanh Thủy
+                                </Typography>
                                 <br />
-                                <Typography variant="body1">{newsInfo.description}</Typography>
+                                <Typography variant="body1">{stringToHTML(newsInfo.description)}</Typography>
                                 <br />
                                 <img
+                                    style={{
+                                        borderRadius: 5,
+                                        width: gStore.windowDimension.width > 750 ? '' : '100%'
+                                    }}
                                     src="https://i.ytimg.com/vi/jar9ydx_MBw/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCv9EYv2sUW_FPlL_69W0KEnMBhWA"
                                     alt=""
                                 />
                                 <br />
-                                <Typography variant="body1">
+                                {/* <Typography variant="body1">
                                     Cựu tổng thống Mỹ Donald Trump tuyên bố tái tranh cử tổng thống năm 2024.
-                                </Typography>
+                                </Typography> */}
                                 {/* <Typography variant="body1">
                                 Cựu tổng thống Mỹ Donald Trump tuyên bố tái tranh cử tổng thống năm 2024.
                             </Typography>

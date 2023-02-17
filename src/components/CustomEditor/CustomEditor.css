@@ -1,0 +1,26 @@
+.custom-editor {
+    padding: 24px 5px;
+}
+
+.DraftEditor-root {
+    min-height: 200px;
+    border: solid 1px #c5c3c3;
+    box-sizing: border-box;
+    border: 1px solid #c5c3c3;
+    cursor: text;
+    padding: 16px;
+    border-radius: 2px;
+    margin-bottom: 2em;
+    box-shadow: inset 0px 1px 8px -3px #ababab;
+    background: #fefefe;
+    font-size: 18px;
+}
+
+.ico-editor {
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 3px;
+    cursor: pointer;
+    /* opacity: 0.5; */
+    margin-right: 5px;
+}

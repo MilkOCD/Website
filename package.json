@@ -2,7 +2,6 @@
     "name": "website",
     "version": "2.0.0",
     "title": "website",
-    "homepage": "https://milkocd.github.io/Website",
     "description": "",
     "author": {
         "name": "milkocd",
@@ -27,7 +26,7 @@
         "classnames": "^2.3.2",
         "clsx": "1.1.1",
         "date-fns": "2.28.0",
-        "dompurify": "^2.4.1",
+        "dompurify": "^2.4.4",
         "draft-convert": "^2.1.13",
         "draft-js": "^0.11.7",
         "draftjs-to-html": "^0.9.1",

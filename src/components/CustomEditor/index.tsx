@@ -1,13 +1,16 @@
-import * as React from 'react';
-
-import classnames from 'classnames/bind';
-import styles from './CustomEditor.module.scss';
+import React, { useRef, useState } from 'react';
+import { Editor, EditorState, RichUtils, AtomicBlockUtils, convertToRaw } from 'draft-js';
+import './CustomEditor.css';
+import FormatBoldIcon from '@mui/icons-material/FormatBold';
+import FormatItalicIcon from '@mui/icons-material/FormatItalic';
+import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
+import FormatColorTextIcon from '@mui/icons-material/FormatColorText';
+import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
+import classnames from 'classnames';
 
 import {
     Box,
     styled,
-    Divider,
-    Typography,
     Stack,
     Chip,
     Tooltip,
@@ -15,30 +18,15 @@ import {
     Button,
     useTheme,
     InputAdornment,
-    TextField,
-    Snackbar,
-    Alert
+    TextField
 } from '@mui/material';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import AttachFileTwoToneIcon from '@mui/icons-material/AttachFileTwoTone';
+import ComputerIcon from '@mui/icons-material/Computer';
 import SendTwoToneIcon from '@mui/icons-material/SendTwoTone';
-
 import { Article } from '../../services/data/dataService';
 import gStore from 'src/stores/GlobalStore';
-
-const cx = classnames.bind(styles);
-
-const DividerWrapper = styled(Divider)(
-    ({ theme }) => `
-      .MuiDivider-wrapper {
-        border-radius: ${theme.general.borderRadiusSm};
-        text-transform: none;
-        background: ${theme.palette.background.default};
-        font-size: ${theme.typography.pxToRem(13)};
-        color: ${theme.colors.alpha.black[50]};
-      }
-`
-);
+import draftToHtml from 'draftjs-to-html';
 
 const Input = styled('input')({
     display: 'none'
@@ -46,9 +34,8 @@ const Input = styled('input')({
 
 function CustomEditor() {
     const theme = useTheme();
-
-    const [res, setRes] = React.useState(0);
-    const [resMessage, setResMessage] = React.useState('');
+    const editorRef = useRef(null);
+    const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
     const [tags, setTags] = React.useState([]);
     const [title, setTitle] = React.useState('Nhập tiêu đề ...');
     const [description, setDescription] = React.useState('');
@@ -61,8 +48,49 @@ function CustomEditor() {
         }
     };
 
-    const handleClose = () => {
-        setResMessage('');
+    const focus = () => {
+        editorRef.current.focus();
+    };
+
+    const onBoldClick = (e) => {
+        e.preventDefault(); // Dùng preventDefault() để giữ con trỏ chuột vẫn còn ở trong editor nhé các bạn
+        setEditorState(RichUtils.toggleInlineStyle(editorState, 'BOLD'));
+    };
+
+    const onItalicClick = (e) => {
+        e.preventDefault();
+        setEditorState(RichUtils.toggleInlineStyle(editorState, 'ITALIC'));
+    };
+
+    const onUnderlineClick = (e) => {
+        e.preventDefault();
+        setEditorState(RichUtils.toggleInlineStyle(editorState, 'UNDERLINE'));
+    };
+
+    function mediaBlockRenderer(block) {
+        if (block.getType() === 'atomic') {
+            return {
+                component: Image,
+                editable: false
+            };
+        }
+
+        return null;
+    }
+
+    const addImage = (e, imgUrl) => {
+        e.preventDefault();
+        const contentState = editorState.getCurrentContent();
+        const contentStateWithEntity = contentState.createEntity('image', 'IMMUTABLE', { src: imgUrl });
+        const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+        const newEditorState = EditorState.set(editorState, { currentContent: contentStateWithEntity });
+        setEditorState(AtomicBlockUtils.insertAtomicBlock(newEditorState, entityKey, ' '));
+    };
+
+    const Image = ({ contentState, block }) => {
+        const entity = contentState.getEntity(block.getEntityAt(0));
+        const { src } = entity.getData();
+        return <img src={src} />;
     };
 
     const resetDataSend = () => {
@@ -71,69 +99,54 @@ function CustomEditor() {
         setDescription('');
     };
 
+    const convertContentToHTML = () => {
+        const rawContentState = convertToRaw(editorState.getCurrentContent());
+        return draftToHtml(rawContentState);
+    };
+
     const onAction = () => {
         if (title != '') {
             let sv = new Article();
             let data = {
                 title: title,
-                description: description,
-                hashTag: tags.join(',')
+                description: convertContentToHTML(),
+                hashTag: tags.join(', ')
             };
             sv.create(data).then((d) => {
                 gStore.loadNews();
                 resetDataSend();
-                setRes(1);
-                setResMessage('Tạo bài viết thành công');
+                gStore.openToast({
+                    message: 'Tạo bài viết thành công',
+                    type: 'success',
+                    open: true
+                });
             });
         } else {
-            setRes(0);
-            setResMessage('Tiêu đề không được để trống');
+            gStore.openToast({
+                message: 'Tiêu đề không được để trống',
+                type: 'error',
+                open: true
+            });
         }
     };
 
     return (
         <>
-            {resMessage != '' && (
-                <Box
-                    sx={{
-                        background: theme.colors.alpha.white[50],
-                        display: 'flex',
-                        alignItems: 'center',
-                        pl: 1,
-                        pr: 1
-                    }}
-                >
-                    <Box flexGrow={1} display="flex" alignItems="center">
-                        {/* <Avatar sx={{ display: { xs: 'none', sm: 'flex' }, mr: 1 }} alt={user.name} src={user.avatar} /> */}
-                        {/* <MessageInputWrapper autoFocus placeholder="Write your message here..." fullWidth /> */}
-                        <Alert
-                            onClose={handleClose}
-                            severity={res == 1 ? 'success' : 'error'}
-                            sx={{ width: '100%', right: 0 }}
-                        >
-                            {resMessage}
-                        </Alert>
+            <div className="tags-container ml-px">
+                <div>
+                    <Box sx={{ m: 0, mb: 1 }}>
+                        <Stack direction="row" spacing={1}>
+                            {tags.length > 0 ? (
+                                tags.map((tag, index) => <Chip key={index} color="primary" label={`#${tag}`} />)
+                            ) : (
+                                <></>
+                            )}
+                        </Stack>
                     </Box>
-                </Box>
-            )}
-            <Box p={3}>
-                <Box sx={{ m: 0 }}>
-                    <Typography gutterBottom variant="body1">
-                        Gắn thẻ bài viết
-                    </Typography>
-                    <Stack direction="row" spacing={1}>
-                        {tags.length > 0 ? (
-                            tags.map((tag, index) => <Chip key={index} color="primary" label={`#${tag}`} />)
-                        ) : (
-                            <></>
-                        )}
-                    </Stack>
-                </Box>
-                <div className={cx('tags-container')}>
                     <TextField
-                        className={cx('editor-tags')}
+                        className="editor-tags"
                         id="input-with-icon-textfield"
-                        label=""
+                        label="Gắn thẻ bài viết"
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
@@ -145,29 +158,58 @@ function CustomEditor() {
                         variant="standard"
                     />
                 </div>
-                {/* <DividerWrapper /> */}
                 <div>
                     <TextField
-                        className={cx('editor-header')}
+                        sx={{ mt: 1 }}
                         required
-                        id="outlined-required"
-                        label="Tiêu đề"
+                        className="editor-header"
+                        id="input-with-icon-textfield"
+                        label="Nhập tiêu đề ..."
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <ComputerIcon fontSize="small" />
+                                </InputAdornment>
+                            )
+                        }}
+                        variant="standard"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </div>
+            </div>
+            <div className="custom-editor" onClick={focus}>
                 <div>
-                    <TextField
-                        className={cx('editor-content')}
-                        id="outlined-multiline-static"
-                        label="Nội dung"
-                        multiline
-                        rows={6}
-                        defaultValue="Nhập nội dung ..."
-                        onChange={(e) => setDescription(e.target.value)}
-                    />
+                    <span onMouseDown={onBoldClick}>
+                        <FormatBoldIcon className={classnames('ico-editor')} />
+                    </span>
+                    <span onMouseDown={onItalicClick}>
+                        <FormatItalicIcon className={classnames('ico-editor')} />
+                    </span>
+                    <span onMouseDown={onUnderlineClick}>
+                        <FormatUnderlinedIcon className={classnames('ico-editor')} />
+                    </span>
+                    <span onMouseDown={onBoldClick}>
+                        <FormatColorTextIcon className={classnames('ico-editor')} />
+                    </span>
+                    <span
+                        onMouseDown={(e) =>
+                            addImage(
+                                e,
+                                'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png'
+                            )
+                        }
+                    >
+                        <InsertPhotoIcon className="ico-editor" />
+                    </span>
                 </div>
-            </Box>
+                <Editor
+                    blockRendererFn={mediaBlockRenderer}
+                    ref={editorRef}
+                    editorState={editorState}
+                    onChange={setEditorState}
+                />
+            </div>
             <Box
                 sx={{
                     background: theme.colors.alpha.white[50],
@@ -176,10 +218,7 @@ function CustomEditor() {
                     p: 3
                 }}
             >
-                <Box flexGrow={1} display="flex" alignItems="center">
-                    {/* <Avatar sx={{ display: { xs: 'none', sm: 'flex' }, mr: 1 }} alt={user.name} src={user.avatar} /> */}
-                    {/* <MessageInputWrapper autoFocus placeholder="Write your message here..." fullWidth /> */}
-                </Box>
+                <Box flexGrow={1} display="flex" alignItems="center"></Box>
                 <Box>
                     <Tooltip arrow placement="top" title="Cái này vô dụng">
                         <IconButton sx={{ fontSize: theme.typography.pxToRem(16) }} color="primary">
