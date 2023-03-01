@@ -7,6 +7,7 @@ import useWindowDimensions from './components/Tools';
 import gStore from './stores/GlobalStore';
 import Toast from './components/GlobalComponent/toast';
 import Confirm from './components/GlobalComponent/confirm';
+import FormDialog from './components/GlobalComponent/form';
 import { publicRoutes } from './routes';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
                     {gStore.setWindowDimensions(useWindowDimensions())}
                     <Toast />
                     <Confirm />
+                    <FormDialog />
                 </LocalizationProvider>
             </ThemeProvider>
         </>

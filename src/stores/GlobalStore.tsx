@@ -14,6 +14,14 @@ interface IConfirm {
     open: boolean;
 }
 
+interface IForm {
+    form: JSX.Element;
+    title?: string;
+    note?: string;
+    callback?: () => void;
+    open: boolean;
+}
+
 interface INews {
     reload: boolean;
     data: any;
@@ -36,6 +44,13 @@ class GlobalStore {
         open: false
     };
 
+    formInfo: IForm = {
+        form: <></>,
+        title: 'Mặc định',
+        note: 'Không có lưu ý',
+        open: false
+    };
+
     news: INews = {
         reload: false,
         data: null
@@ -47,6 +62,7 @@ class GlobalStore {
             isPopupOpen: observable,
             toastInfo: observable,
             confirmInfo: observable,
+            formInfo: observable,
             news: observable,
 
             setWindowDimensions: action,
@@ -55,6 +71,8 @@ class GlobalStore {
             closeToast: action,
             openConfirm: action,
             closeConfirm: action,
+            openForm: action,
+            closeForm: action,
             loadNews: action
         });
     }
@@ -87,6 +105,20 @@ class GlobalStore {
     closeConfirm = (onlyClose?: boolean) => {
         if (this.confirmInfo.callback && !onlyClose) this.confirmInfo.callback();
         this.confirmInfo.open = false;
+    };
+
+    openForm = (formInfo?: IForm) => {
+        if (formInfo) {
+            this.formInfo = formInfo;
+            if (!this.formInfo.title) this.formInfo.title = 'Mặc định';
+            if (!this.formInfo.note) this.formInfo.note = 'Không có lưu ý';
+        }
+        this.formInfo.open = true;
+    };
+
+    closeForm = (onlyClose?: boolean) => {
+        if (this.formInfo.callback && !onlyClose) this.formInfo.callback();
+        this.formInfo.open = false;
     };
 
     loadNews = () => {

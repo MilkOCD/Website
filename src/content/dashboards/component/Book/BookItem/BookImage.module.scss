@@ -1,0 +1,29 @@
+.book-img {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: 300px;
+    border-radius: 5px;
+    margin: 5px 15px 10px 0px;
+    .book-img-child {
+        position: absolute;
+        width: 90%;
+        height: 90%;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 5px;
+    }
+    .book-img-child-bg {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        // left: 0;
+        width: 92%;
+        height: 92%;
+        background-image: inherit;
+        background-size: cover;
+        filter: blur(10px);
+        z-index: 0;
+    }
+}

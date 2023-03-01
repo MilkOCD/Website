@@ -12,12 +12,12 @@ import OpenIconSpeedDial from './components/SpeedDial';
 ReactDOM.render(
     <HelmetProvider>
         <SidebarProvider>
-            <BrowserRouter>
+            <HashRouter>
                 <OpenIconSpeedDial />
                 <GlobalStyles>
                     <App />
                 </GlobalStyles>
-            </BrowserRouter>
+            </HashRouter>
         </SidebarProvider>
     </HelmetProvider>,
     document.getElementById('root')

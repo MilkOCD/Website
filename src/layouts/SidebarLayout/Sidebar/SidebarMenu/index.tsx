@@ -21,6 +21,7 @@ import InsightsIcon from '@mui/icons-material/Insights';
 import BusinessIcon from '@mui/icons-material/Business';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 
 import classnames from 'classnames/bind';
 import styles from './SidebarMenu.module.scss';
@@ -223,7 +224,20 @@ function SidebarMenu() {
                                     </Button>
                                 </ListItem>
                             </Lock>
-                            <Lock>
+                            {/* <Lock> */}
+                            <Badge
+                                sx={{
+                                    '.MuiBadge-badge': {
+                                        top: 23,
+                                        width: 40
+                                    }
+                                }}
+                                style={{ width: '100%' }}
+                                overlap="circular"
+                                // color={authentication.localUser == '' ? 'info' : 'error'}
+                                color={'error'}
+                                badgeContent={'free'}
+                            >
                                 <ListItem component="div">
                                     <Button
                                         disableRipple
@@ -231,14 +245,15 @@ function SidebarMenu() {
                                         onClick={closeSidebar}
                                         to="/dashboard/books"
                                         startIcon={<LocalLibraryIcon />}
-                                        style={{
-                                            opacity: authentication.localUser == '' ? 0.5 : 1
-                                        }}
+                                        // style={{
+                                        //     opacity: authentication.localUser == '' ? 0.5 : 1
+                                        // }}
                                     >
                                         Sách chứng khoán
                                     </Button>
                                 </ListItem>
-                            </Lock>
+                            </Badge>
+                            {/* </Lock> */}
                         </List>
                     </SubMenuWrapper>
                 </List>
@@ -310,6 +325,35 @@ function SidebarMenu() {
                                         }}
                                     >
                                         Phần mềm cơ bản
+                                    </Button>
+                                </ListItem>
+                            </Lock>
+                        </List>
+                    </SubMenuWrapper>
+                </List>
+                <List
+                    component="div"
+                    subheader={
+                        <ListSubheader component="div" disableSticky>
+                            Khóa học đầu tư
+                        </ListSubheader>
+                    }
+                >
+                    <SubMenuWrapper>
+                        <List component="div">
+                            <Lock>
+                                <ListItem component="div">
+                                    <Button
+                                        disableRipple
+                                        component={RouterLink}
+                                        onClick={closeSidebar}
+                                        to="/dashboard/course"
+                                        startIcon={<LibraryBooksIcon />}
+                                        style={{
+                                            opacity: authentication.localUser == '' ? 0.5 : 1
+                                        }}
+                                    >
+                                        Khóa Học K3 TopFIN - 7 Ngày Học Đầu Tư Chứng Khoán
                                     </Button>
                                 </ListItem>
                             </Lock>
