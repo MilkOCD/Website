@@ -79,12 +79,10 @@ function Status500() {
                             <Container maxWidth="sm">
                                 <Box textAlign="center">
                                     <TypographyPrimary variant="h1" sx={{ my: 2 }}>
-                                        Website
+                                        TopFIN
                                     </TypographyPrimary>
                                     <TypographySecondary variant="h4" fontWeight="normal" sx={{ mb: 4 }}>
-                                        High performance React template built with lots of powerful Material-UI
-                                        components across multiple product niches for fast &amp; perfect apps
-                                        development processes.
+                                        TopFIN - Cộng Đồng Hỗ Trợ Nhà Đầu Tư.
                                     </TypographySecondary>
                                     <Button href="/home" size="large" variant="contained">
                                         Overview
