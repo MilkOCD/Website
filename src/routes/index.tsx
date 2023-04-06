@@ -18,6 +18,20 @@ const publicRoutes = [
         path: '/dashboard/books',
         component: <SidebarLayout content={<ListBook />} />
     },
+    // Kiến thức đầu tư (Close)
+    {
+        path: '/dashboard/basic',
+        component: <SidebarLayout content={<ListBook />} />
+    },
+    {
+        path: '/dashboard/technical',
+        component: <SidebarLayout content={<ListBook />} />
+    },
+    {
+        path: '/dashboard/starter',
+        component: <SidebarLayout content={<ListBook />} />
+    },
+    // Kiến thức đầu tư (Close)
     {
         path: '/dashboard',
         component: <SidebarLayout content={<News />} />

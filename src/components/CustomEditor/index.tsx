@@ -19,8 +19,10 @@ import {
     Button,
     useTheme,
     InputAdornment,
-    TextField
+    TextField,
+    Backdrop
 } from '@mui/material';
+import BoxLoader from '../BoxLoader';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import AttachFileTwoToneIcon from '@mui/icons-material/AttachFileTwoTone';
 import ComputerIcon from '@mui/icons-material/Computer';
@@ -104,10 +106,71 @@ const customStyleMap = {
 function CustomEditor() {
     const theme = useTheme();
     const editorRef = useRef(null);
+    const [loading, setLoading] = React.useState(false);
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
     const [tags, setTags] = React.useState([]);
     const [title, setTitle] = React.useState('Nhập tiêu đề ...');
     const [description, setDescription] = React.useState('');
+    const [image, setImage] = React.useState<string | null>(null); // base64 string
+    const [iFormImage, setIFormImage] = React.useState(null);
+    const [imageToCopy, setImageToCopy] = React.useState<string | null>(null); // base64 string
+    const [iFormImageToCopy, setIFormImageToCopy] = React.useState(null);
+    const [imgUrl, setImgUrl] = React.useState('Đường dẫn ảnh');
+
+    const copyToClipboard = () => {
+        navigator.clipboard.writeText(imgUrl);
+        gStore.openToast({
+            message: 'Copy đường dẫn thành công. Vui lòng paste vào khu vực bạn muốn hiển thị ảnh',
+            type: 'success',
+            open: true
+        });
+    };
+
+    const getImgUrl = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setLoading(true);
+        const file = event.target.files && event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setTimeout(() => {
+                    const formData = new FormData();
+                    formData.append('file', event.target.files[0]);
+                    setIFormImageToCopy(formData);
+                    setImageToCopy(reader.result as string);
+                    setLoading(false);
+                });
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const getImgUrlAction = () => {
+        let sv = new Article();
+        setLoading(true);
+        sv.uploadImage(iFormImageToCopy).then((d) => {
+            let htmlImage = `<img style="width: 50%" src={${d}} />`;
+            setImgUrl(htmlImage);
+            setLoading(false);
+        });
+    };
+
+    const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setLoading(true);
+        const file = event.target.files && event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setTimeout(() => {
+                    const formData = new FormData();
+                    formData.append('file', event.target.files[0]);
+                    setIFormImage(formData);
+                    setImage(reader.result as string);
+                    setLoading(false);
+                });
+            };
+            reader.readAsDataURL(file);
+        }
+    };
 
     const tagsHandler = (value) => {
         let newTag = value.target.value;
@@ -152,14 +215,14 @@ function CustomEditor() {
         return null;
     }
 
-    const addImage = (e, imgUrl) => {
-        e.preventDefault();
-        const contentState = editorState.getCurrentContent();
-        const contentStateWithEntity = contentState.createEntity('image', 'IMMUTABLE', { src: imgUrl });
-        const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
-        const newEditorState = EditorState.set(editorState, { currentContent: contentStateWithEntity });
-        setEditorState(AtomicBlockUtils.insertAtomicBlock(newEditorState, entityKey, ' '));
-    };
+    // const addImage = (e, imgUrl) => {
+    //     e.preventDefault();
+    //     const contentState = editorState.getCurrentContent();
+    //     const contentStateWithEntity = contentState.createEntity('image', 'IMMUTABLE', { src: imgUrl });
+    //     const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+    //     const newEditorState = EditorState.set(editorState, { currentContent: contentStateWithEntity });
+    //     setEditorState(AtomicBlockUtils.insertAtomicBlock(newEditorState, entityKey, ' '));
+    // };
 
     const Image = ({ contentState, block }) => {
         const entity = contentState.getEntity(block.getEntityAt(0));
@@ -179,23 +242,29 @@ function CustomEditor() {
     };
 
     const onAction = () => {
+        setLoading(true);
         if (title != '') {
             let sv = new Article();
-            let data = {
-                title: title,
-                description: convertContentToHTML(),
-                hashTag: tags.join(', ')
-            };
-            sv.create(data).then((d) => {
-                gStore.loadNews();
-                resetDataSend();
-                gStore.openToast({
-                    message: 'Tạo bài viết thành công',
-                    type: 'success',
-                    open: true
+            sv.uploadImage(iFormImage).then((d) => {
+                let data = {
+                    title: title,
+                    description: convertContentToHTML(),
+                    hashTag: tags.join(', '),
+                    imageUrl: d
+                };
+                sv.create(data).then((d) => {
+                    setLoading(false);
+                    gStore.loadNews();
+                    resetDataSend();
+                    gStore.openToast({
+                        message: 'Tạo bài viết thành công',
+                        type: 'success',
+                        open: true
+                    });
                 });
             });
         } else {
+            setLoading(false);
             gStore.openToast({
                 message: 'Tiêu đề không được để trống',
                 type: 'error',
@@ -206,6 +275,9 @@ function CustomEditor() {
 
     return (
         <>
+            <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={loading}>
+                <BoxLoader />
+            </Backdrop>
             <div className="tags-container ml-px">
                 <div>
                     <Box sx={{ m: 0, mb: 1 }}>
@@ -251,6 +323,25 @@ function CustomEditor() {
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </div>
+                <div className="mt-px">Ảnh bài viết</div>
+                <div>
+                    {image && <img className="mt-px mr-px" src={image} alt="Preview" width="200" />}
+                    <input style={{ borderRadius: 5 }} type="file" onChange={handleFileSelect} />
+                </div>
+                <div className="mt-px">Lấy đường dẫn ảnh (Copy và Paste đường dẫn ảnh vào nơi bạn muốn hiển thị)</div>
+                <div>
+                    {imageToCopy && <img className="mt-px mr-px" src={imageToCopy} alt="Preview" width="200" />}
+                    <input style={{ borderRadius: 5 }} type="file" onChange={getImgUrl} />
+                </div>
+                <Button style={{ padding: 0, marginTop: 20, marginLeft: -5 }} onClick={getImgUrlAction}>
+                    Get Link
+                </Button>
+                <div>
+                    <TextField disabled label="Đường dẫn ảnh" variant="standard" value={imgUrl} />
+                    <Button style={{ padding: 0, marginTop: 20 }} onClick={copyToClipboard}>
+                        Copy
+                    </Button>
+                </div>
             </div>
             <div className="custom-editor" onClick={focus}>
                 <div>
@@ -279,7 +370,7 @@ function CustomEditor() {
                             <InsertLinkIcon className={classnames('ico-editor')} />
                         </span>
                     </Tooltip>
-                    <Tooltip title="Thêm ảnh">
+                    {/* <Tooltip title="Thêm ảnh">
                         <span
                             onMouseDown={(e) =>
                                 addImage(
@@ -290,7 +381,7 @@ function CustomEditor() {
                         >
                             <InsertPhotoIcon className="ico-editor" />
                         </span>
-                    </Tooltip>
+                    </Tooltip> */}
                 </div>
                 <Editor
                     blockRendererFn={mediaBlockRenderer}

@@ -15,7 +15,7 @@ class TokenAuthService {
 
     public async init(allow: boolean = false) {
         if (allow) {
-            await gStore.loadNews();
+            // await gStore.loadNews();
         }
     }
 }

@@ -208,22 +208,24 @@ function SidebarMenu() {
                 >
                     <SubMenuWrapper>
                         <List component="div">
-                            <Lock>
-                                <ListItem component="div">
-                                    <Button
-                                        disableRipple
-                                        component={RouterLink}
-                                        onClick={closeSidebar}
-                                        to="/news"
-                                        startIcon={<PublicIcon />}
-                                        style={{
-                                            opacity: authentication.localUser == '' ? 0.5 : 1
-                                        }}
-                                    >
-                                        Tin tức
-                                    </Button>
-                                </ListItem>
-                            </Lock>
+                            {/* <Lock> */}
+                            <ListItem component="div">
+                                <Button
+                                    disableRipple
+                                    component={RouterLink}
+                                    onClick={closeSidebar}
+                                    to="/news"
+                                    startIcon={<PublicIcon />}
+                                    style={
+                                        {
+                                            // opacity: authentication.localUser == '' ? 0.5 : 1
+                                        }
+                                    }
+                                >
+                                    Tin tức
+                                </Button>
+                            </ListItem>
+                            {/* </Lock> */}
                             {/* <Lock> */}
                             <Badge
                                 sx={{

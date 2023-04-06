@@ -23,6 +23,11 @@ export class Article {
     public async delete(id: number) {
         await http.delete(`api/services/app/Articles/Delete?id=${id}`);
     }
+
+    public async uploadImage(data: any) {
+        let result = await http.post(`api/services/app/Articles/UploadImage`, data);
+        return result.data.result;
+    }
 }
 
 export class Book {

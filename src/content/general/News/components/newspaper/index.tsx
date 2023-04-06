@@ -12,6 +12,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import gStore from 'src/stores/GlobalStore';
 import BoxLoader from 'src/components/BoxLoader';
 import DOMPurify from 'dompurify';
+import moment from 'moment';
 
 const cx = classNames.bind(styles);
 
@@ -20,7 +21,7 @@ interface IProps {
 }
 
 const config = {
-    ALLOWED_ATTR: ['href', 'target']
+    ALLOWED_ATTR: ['href', 'target', 'src', 'style']
 };
 
 function Newspaper(props: IProps) {
@@ -34,7 +35,11 @@ function Newspaper(props: IProps) {
     }, []);
 
     const stringToHTML = (htmlString) => {
-        htmlString = htmlString.replaceAll('_self', '_blank');
+        htmlString = htmlString
+            .replaceAll('_self', '_blank')
+            .replaceAll('<p>&lt;img style="width: 50%" src={https://', '<img style="width: 50%" src=https://')
+            .replaceAll('.png} /&gt;</p>', '.png />')
+            .replaceAll('.jpg} /&gt;</p>', '.jpg />');
         console.log(htmlString);
         const sanitizedHtml = DOMPurify.sanitize(htmlString, config);
         return <div style={{ fontSize: 17 }} dangerouslySetInnerHTML={{ __html: sanitizedHtml }}></div>;
@@ -60,7 +65,7 @@ function Newspaper(props: IProps) {
                                 }}
                             >
                                 <Button startIcon={<EventIcon />} variant="text">
-                                    Thứ tư, 16/11/2022, 09:00 (GMT+7)
+                                    NGÀY TẠO: {moment(newsInfo.creationTime).format('DD/MM/YYYY')}
                                 </Button>
                                 {tags.map((tag, index) => (
                                     <Button
@@ -106,14 +111,14 @@ function Newspaper(props: IProps) {
                                 <br />
                                 <Typography variant="body1">{stringToHTML(newsInfo.description)}</Typography>
                                 <br />
-                                <img
+                                {/* <img
                                     style={{
                                         borderRadius: 5,
                                         width: gStore.windowDimension.width > 750 ? '' : '100%'
                                     }}
                                     src="https://i.ytimg.com/vi/jar9ydx_MBw/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCv9EYv2sUW_FPlL_69W0KEnMBhWA"
                                     alt=""
-                                />
+                                /> */}
                                 <br />
                                 {/* <Typography variant="body1">
                                     Cựu tổng thống Mỹ Donald Trump tuyên bố tái tranh cử tổng thống năm 2024.

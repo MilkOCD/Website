@@ -179,7 +179,7 @@ function SidebarContent() {
                         </IconButton>
                     </Box>
 
-                    <FormControlLabel
+                    {/* <FormControlLabel
                         control={
                             <Switch
                                 checked={state.invisible}
@@ -189,11 +189,11 @@ function SidebarContent() {
                             />
                         }
                         label="Đã đánh dấu"
-                    />
+                    /> */}
                 </Box>
             </Box>
 
-            <TextField
+            {/* <TextField
                 sx={{
                     mt: 2,
                     mb: 1
@@ -208,7 +208,7 @@ function SidebarContent() {
                     )
                 }}
                 placeholder="Tìm kiếm..."
-            />
+            /> */}
 
             <Typography
                 sx={{
