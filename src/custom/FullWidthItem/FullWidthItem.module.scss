@@ -1,0 +1,45 @@
+.full-width-item-container {
+    border: 2px solid #e8e8e8;
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    margin-top: 16px;
+
+    .full-width-item-info {
+        flex: 1 1;
+        padding-right: 32px;
+
+        .full-width-item-title {
+            cursor: pointer;
+        }
+
+        .full-width-item-description {
+            color: #505050;
+            font-size: 16px;
+            margin-top: 4px;
+            line-height: 1.6;
+        }
+
+        .full-width-item-published-time {
+            font-size: 16px;
+            font-weight: bolder;
+        }
+    }
+
+    .full-width-item-image {
+        width: 200px;
+        height: 120px;
+        border-radius: 5px;
+        // cursor: pointer;
+
+        .image-1 {
+            width: 100%;
+            height: 100%;
+        }
+
+        .image-2 {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}

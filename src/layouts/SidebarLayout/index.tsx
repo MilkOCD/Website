@@ -1,8 +1,7 @@
-import { FC, ReactNode } from 'react';
 import { Box, alpha, lighten, useTheme } from '@mui/material';
-
 import Sidebar from './Sidebar';
 import Header from './Header';
+import Scrollbars from 'react-custom-scrollbars-2';
 
 interface IProps {
     content: any;
@@ -39,20 +38,22 @@ function SidebarLayout(props: IProps) {
             >
                 <Header />
                 <Sidebar />
-                <Box
-                    sx={{
-                        position: 'relative',
-                        zIndex: 5,
-                        display: 'block',
-                        flex: 1,
-                        pt: `${theme.header.height}`,
-                        [theme.breakpoints.up('lg')]: {
-                            ml: `${theme.sidebar.width}`
-                        }
-                    }}
-                >
-                    <Box display="block">{props.content}</Box>
-                </Box>
+                <Scrollbars>
+                    <Box
+                        sx={{
+                            position: 'relative',
+                            zIndex: 5,
+                            display: 'block',
+                            flex: 1,
+                            pt: `${theme.header.height}`,
+                            [theme.breakpoints.up('lg')]: {
+                                ml: `${theme.sidebar.width}`
+                            }
+                        }}
+                    >
+                        <Box display="block">{props.content}</Box>
+                    </Box>
+                </Scrollbars>
             </Box>
         </>
     );

@@ -3,6 +3,7 @@ import LandingPage from 'src/Home/LandingPage/LandingPage';
 import News from 'src/content/general/News';
 import Article from 'src/content/applications/Article';
 import ListBook from 'src/content/dashboards/component/Book';
+import KnowledgeComponent from 'src/content/dashboards/component/Knowledge';
 
 const publicRoutes = [
     { path: '/home', component: <LandingPage /> },
@@ -21,15 +22,15 @@ const publicRoutes = [
     // Kiến thức đầu tư (Close)
     {
         path: '/dashboard/basic',
-        component: <SidebarLayout content={<ListBook />} />
+        component: <SidebarLayout content={<KnowledgeComponent />} />
     },
     {
         path: '/dashboard/technical',
-        component: <SidebarLayout content={<ListBook />} />
+        component: <SidebarLayout content={<KnowledgeComponent />} />
     },
     {
         path: '/dashboard/starter',
-        component: <SidebarLayout content={<ListBook />} />
+        component: <SidebarLayout content={<KnowledgeComponent />} />
     },
     // Kiến thức đầu tư (Close)
     {

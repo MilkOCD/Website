@@ -1,0 +1,60 @@
+.knowledge-body-container {
+    display: flex;
+
+    .knowledge-body-left-container {
+        width: 70%;
+    }
+
+    .knowledge-body-right-container {
+        flex: 1 1;
+        margin-top: -12px;
+        padding: 0px 40px;
+        text-align: center;
+
+        .knowledge-body-right-youtube {
+            width: 100%;
+            top: 10px;
+            margin-bottom: 30px;
+
+            iframe {
+                width: 100%;
+                border-radius: 5px;
+            }
+        }
+
+        hr {
+            border: 1px solid #00000073;
+            opacity: 0.1;
+            margin-bottom: 10px;
+        }
+
+        .knowledge-body-right-recommendation {
+            width: 100%;
+
+            .recommendation-list {
+                margin-top: 10px;
+                display: flex;
+                flex-wrap: wrap;
+                font-size: 16px;
+                padding-left: 0;
+                list-style-type: none;
+
+                .recommendation-item {
+                    display: list-item;
+
+                    a {
+                        background-color: rgb(242, 242, 242);
+                        border-radius: 30px;
+                        color: rgb(51, 51, 51);
+                        display: block;
+                        font-weight: 500;
+                        line-height: 1.8;
+                        margin: 0px 8px 8px 0px;
+                        padding: 6px 16px;
+                        user-select: none;
+                    }
+                }
+            }
+        }
+    }
+}
