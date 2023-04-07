@@ -110,25 +110,6 @@ function Newspaper(props: IProps) {
                                 </Typography>
                                 <br />
                                 <Typography variant="body1">{stringToHTML(newsInfo.description)}</Typography>
-                                <br />
-                                {/* <img
-                                    style={{
-                                        borderRadius: 5,
-                                        width: gStore.windowDimension.width > 750 ? '' : '100%'
-                                    }}
-                                    src="https://i.ytimg.com/vi/jar9ydx_MBw/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCv9EYv2sUW_FPlL_69W0KEnMBhWA"
-                                    alt=""
-                                /> */}
-                                <br />
-                                {/* <Typography variant="body1">
-                                    Cựu tổng thống Mỹ Donald Trump tuyên bố tái tranh cử tổng thống năm 2024.
-                                </Typography> */}
-                                {/* <Typography variant="body1">
-                                Cựu tổng thống Mỹ Donald Trump tuyên bố tái tranh cử tổng thống năm 2024.
-                            </Typography>
-                            <Typography variant="body1">
-                                Cựu tổng thống Mỹ Donald Trump tuyên bố tái tranh cử tổng thống năm 2024.
-                            </Typography> */}
                             </Grid>
                         </Grid>
                     </Scrollbar>

@@ -14,7 +14,12 @@ const KnowledgeHeader = () => {
         <div>
             <Title level={2}>Bài viết nổi bật</Title>
             {authentication.localUser != '' && (
-                <ButtonModalComponent type="button" displayText="Tạo bài đăng mới" content={<QuillEditorComponent />} />
+                <ButtonModalComponent
+                    popupTitle="Tạo bài viết"
+                    type="button"
+                    displayText="Tạo bài đăng mới"
+                    content={<QuillEditorComponent />}
+                />
             )}
             {/* <Text className={cx('knowledge-header-description')}>
                 Tổng hợp các bài viết chia sẻ về kinh nghiệm tự học lập trình online và các kỹ thuật lập trình web.

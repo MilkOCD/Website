@@ -217,3 +217,27 @@ input:after {
     top: calc(50% - 60px);
     left: calc(50% - 30px);
 }
+
+// antd
+.ant-modal-content {
+    margin: 10px;
+
+    .ant-modal-header {
+        padding: 10px 24px 0px 24px;
+
+        .btn-share {
+            font-size: 15px;
+            color: white;
+            border-radius: 5px;
+            padding: 3px 10px 3px 10px;
+            background-color: #33c2ff;
+            cursor: pointer;
+            margin-left: 15px;
+            top: -1px;
+
+            .anticon {
+                margin-right: 5px;
+            }
+        }
+    }
+}

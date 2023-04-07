@@ -3,6 +3,7 @@ import classnames from 'classnames/bind';
 import FullWidthItem from 'src/custom/FullWidthItem';
 import { Typography } from 'antd';
 import YouTube from 'react-youtube';
+import Scrollbars from 'react-custom-scrollbars-2';
 
 const { Text } = Typography;
 
@@ -25,36 +26,42 @@ const KnowledgeBodyLeft = () => {
                 description="Trong bài viết này, tôi muốn giới thiệu các trang web khác nhau mà bạn có thể sử dụng để học JavaScript khi chơi trò chơi. Phương..."
                 publishedTime={'20/03/2000'}
                 imageUrl="https://www.searchenginejournal.com/wp-content/uploads/2022/06/image-search-1600-x-840-px-62c6dc4ff1eee-sej-1280x720.png"
+                content={<BodyPopupContent />}
             />
             <FullWidthItem
                 title="Learn JavaScript while Playing Games - Gamify Your Learning"
                 description="Trong bài viết này, tôi muốn giới thiệu các trang web khác nhau mà bạn có thể sử dụng để học JavaScript khi chơi trò chơi. Phương..."
                 publishedTime={'20/03/2000'}
                 imageUrl="https://www.searchenginejournal.com/wp-content/uploads/2022/06/image-search-1600-x-840-px-62c6dc4ff1eee-sej-1280x720.png"
+                content={<BodyPopupContent />}
             />
             <FullWidthItem
                 title="Learn JavaScript while Playing Games - Gamify Your Learning"
                 description="Trong bài viết này, tôi muốn giới thiệu các trang web khác nhau mà bạn có thể sử dụng để học JavaScript khi chơi trò chơi. Phương..."
                 publishedTime={'20/03/2000'}
                 imageUrl="https://www.searchenginejournal.com/wp-content/uploads/2022/06/image-search-1600-x-840-px-62c6dc4ff1eee-sej-1280x720.png"
+                content={<BodyPopupContent />}
             />
             <FullWidthItem
                 title="Learn JavaScript while Playing Games - Gamify Your Learning"
                 description="Trong bài viết này, tôi muốn giới thiệu các trang web khác nhau mà bạn có thể sử dụng để học JavaScript khi chơi trò chơi. Phương..."
                 publishedTime={'20/03/2000'}
                 imageUrl="https://www.searchenginejournal.com/wp-content/uploads/2022/06/image-search-1600-x-840-px-62c6dc4ff1eee-sej-1280x720.png"
+                content={<BodyPopupContent />}
             />
             <FullWidthItem
                 title="Learn JavaScript while Playing Games - Gamify Your Learning"
                 description="Trong bài viết này, tôi muốn giới thiệu các trang web khác nhau mà bạn có thể sử dụng để học JavaScript khi chơi trò chơi. Phương..."
                 publishedTime={'20/03/2000'}
                 imageUrl="https://www.searchenginejournal.com/wp-content/uploads/2022/06/image-search-1600-x-840-px-62c6dc4ff1eee-sej-1280x720.png"
+                content={<BodyPopupContent />}
             />
             <FullWidthItem
                 title="Learn JavaScript while Playing Games - Gamify Your Learning"
                 description="Trong bài viết này, tôi muốn giới thiệu các trang web khác nhau mà bạn có thể sử dụng để học JavaScript khi chơi trò chơi. Phương..."
                 publishedTime={'20/03/2000'}
                 imageUrl="https://www.searchenginejournal.com/wp-content/uploads/2022/06/image-search-1600-x-840-px-62c6dc4ff1eee-sej-1280x720.png"
+                content={<BodyPopupContent />}
             />
         </div>
     );
@@ -88,6 +95,73 @@ const KnowledgeBodyRight = () => {
                     </ul>
                 </div>
             </div>
+        </>
+    );
+};
+
+const BodyPopupContent = () => {
+    return (
+        <>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
+            <div>abc</div>
         </>
     );
 };

@@ -2,6 +2,7 @@ import styles from './FullWidthItem.module.scss';
 import classnames from 'classnames/bind';
 import { Typography } from 'antd';
 import ButtonModalComponent from '../ButtonModal';
+import { ShareAltOutlined } from '@ant-design/icons';
 
 const { Title, Text } = Typography;
 const cx = classnames.bind(styles);
@@ -11,6 +12,7 @@ interface IProps {
     description: string;
     publishedTime: string;
     imageUrl: string;
+    content: any;
 }
 
 const FullWidthItem = (props: IProps) => {
@@ -21,7 +23,16 @@ const FullWidthItem = (props: IProps) => {
                     type="text"
                     displayText={props.title}
                     className={cx('full-width-item-title')}
-                    content={<></>}
+                    content={props.content}
+                    popupTitle={
+                        <>
+                            {props.title}
+                            <span className="btn-share">
+                                <ShareAltOutlined />
+                                Chia sẻ
+                            </span>
+                        </>
+                    }
                 />
                 <Text className={cx('full-width-item-description')}>{props.description}</Text>
                 <br />

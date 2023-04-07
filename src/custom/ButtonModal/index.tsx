@@ -9,6 +9,7 @@ const { Title } = Typography;
 const cx = classnames.bind(styles);
 
 interface IProps {
+    popupTitle: any;
     content: any;
     type: 'button' | 'text';
     displayText: string;
@@ -43,11 +44,12 @@ const ButtonModalComponent = (props: IProps) => {
             )}
             <Modal
                 className={cx('modal-component')}
-                title="TopFIN"
+                centered
+                title={<Title level={2}>{props.popupTitle}</Title>}
                 open={isModalOpen}
                 onOk={handleOk}
                 onCancel={handleCancel}
-                width=""
+                width="100%"
             >
                 {props.content}
             </Modal>
