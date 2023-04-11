@@ -1,5 +1,5 @@
 import { action, makeObservable, observable } from 'mobx';
-import { Article } from '../services/data/dataService';
+import { Article, Knowledge, KnowledgeYoutubeUrl } from '../services/data/dataService';
 
 // interface
 interface IToast {
@@ -28,6 +28,11 @@ interface INews {
     data: any;
 }
 
+interface IKnowledge {
+    reload: boolean;
+    data: any;
+}
+
 // class, where stores all global states
 class GlobalStore {
     // global state
@@ -36,6 +41,8 @@ class GlobalStore {
     isPopupOpen: boolean = false;
 
     isLoading: boolean = false;
+
+    linkYoutube: string = '';
 
     toastInfo: IToast = {
         message: 'Default',
@@ -61,6 +68,11 @@ class GlobalStore {
         data: null
     };
 
+    knowledge: IKnowledge = {
+        reload: false,
+        data: null
+    };
+
     constructor() {
         makeObservable(this, {
             windowDimension: observable,
@@ -70,6 +82,8 @@ class GlobalStore {
             confirmInfo: observable,
             formInfo: observable,
             news: observable,
+            knowledge: observable,
+            linkYoutube: observable,
 
             setWindowDimensions: action,
             setOpenPopup: action,
@@ -79,7 +93,10 @@ class GlobalStore {
             closeConfirm: action,
             openForm: action,
             closeForm: action,
-            loadNews: action
+            loadNews: action,
+            loadKnowledge: action,
+            changeYoutubeLink: action,
+            getYoutubeLink: action
         });
     }
 
@@ -138,6 +155,33 @@ class GlobalStore {
         sv.getAll().then((d) => {
             this.setLoading(false);
             this.news = { data: d, reload: !this.news.reload };
+        });
+    };
+
+    loadKnowledge = () => {
+        this.setLoading(true);
+        let kl = new Knowledge();
+        kl.getAll().then((d) => {
+            this.setLoading(false);
+            this.knowledge = { data: d, reload: !this.knowledge.reload };
+        });
+    };
+
+    getYoutubeLink = () => {
+        this.setLoading(true);
+        let klyu = new KnowledgeYoutubeUrl();
+        klyu.getAll().then((d) => {
+            this.setLoading(false);
+            this.linkYoutube = d[d.length - 1].youtubeUrl;
+        });
+    };
+
+    changeYoutubeLink = (link: string) => {
+        this.setLoading(true);
+        let klyu = new KnowledgeYoutubeUrl();
+        klyu.create({ youtubeUrl: link }).then((d) => {
+            this.setLoading(false);
+            this.getYoutubeLink();
         });
     };
 }

@@ -233,12 +233,22 @@ input:after {
             background-color: #33c2ff;
             cursor: pointer;
             margin-left: 15px;
-            top: -1px;
+            top: -4px;
 
             .anticon {
                 margin-right: 5px;
             }
         }
+    }
+}
+
+.ant-popover-inner {
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.8;
+        color: #33c2ff;
     }
 }
 

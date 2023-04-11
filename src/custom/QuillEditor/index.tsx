@@ -32,7 +32,8 @@ interface IProps {
 }
 
 const QuillEditorComponent = (props: IProps) => {
-    const modules = {
+    // unuse
+    const moduless = {
         toolbar: [
             [{ header: '1' }, { header: '2' }, { font: [] }],
             [{ size: [] }],
@@ -47,22 +48,40 @@ const QuillEditorComponent = (props: IProps) => {
         }
     };
 
-    const formats = [
+    const modules = {
+        toolbar: [
+            [{ header: '1' }, { header: '2' }, { font: [] }],
+            [{ size: [] }],
+            ['bold', 'italic', 'underline', 'blockquote'],
+            [{ list: 'bullet' }],
+            ['link', 'image'],
+            [{ color: ['#FF0000', '#0000FF', '#000000', '#008000'] }]
+        ],
+        clipboard: {
+            // toggle to add extra line breaks when pasting HTML:
+            matchVisual: false
+        }
+    };
+
+    // unuse
+    const formatss = [
         'header',
         'font',
         'size',
         'bold',
         'italic',
         'underline',
-        'strike',
-        'blockquote',
-        'list',
-        'bullet',
-        'indent',
+        // 'strike',
+        // 'blockquote',
+        // 'list',
+        // 'bullet',
+        // 'indent',
         'link',
-        'image',
-        'video'
+        'image'
+        // 'video'
     ];
+
+    const formats = ['header', 'font', 'size', 'bold', 'italic', 'underline', 'blockquote', 'link', 'image', 'color'];
 
     const [itemSelected, selectItem] = useState('Phân tích cơ bản');
 

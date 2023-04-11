@@ -78,6 +78,7 @@ const KnowledgeHeader = () => {
                 setDataSend({ ...dataSend, type: e.key });
                 break;
             case 5:
+                console.log(e);
                 setDataSend({ ...dataSend, content: e });
                 break;
             case 6:
@@ -99,15 +100,16 @@ const KnowledgeHeader = () => {
                     kl.create(dataToCreate)
                         .then(() => {
                             gStore.setLoading(false);
+                            gStore.loadKnowledge();
                             gStore.openToast({
-                                message: 'Xóa bài viết thành công',
+                                message: 'Tạo bài viết thành công',
                                 type: 'success',
                                 open: true
                             });
                         })
                         .catch((d) => {
                             gStore.openToast({
-                                message: 'Có lỗi xảy ra khi xóa bài viết',
+                                message: 'Có lỗi xảy ra khi tạo bài viết',
                                 type: 'error',
                                 open: true
                             });

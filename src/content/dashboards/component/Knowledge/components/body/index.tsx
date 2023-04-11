@@ -1,13 +1,15 @@
 import styles from './KnowledgeBody.module.scss';
 import classnames from 'classnames/bind';
 import FullWidthItem from 'src/custom/FullWidthItem';
-import { Typography } from 'antd';
+import { Typography, Popover, Input, Button } from 'antd';
 import YouTube from 'react-youtube';
 import Scrollbars from 'react-custom-scrollbars-2';
 import { useState, useEffect } from 'react';
-import { Knowledge } from 'src/services/data/dataService';
 import moment from 'moment';
 import gStore from 'src/stores/GlobalStore';
+import { observer } from 'mobx-react';
+import { EditOutlined } from '@ant-design/icons';
+import authentication from 'src/stores/authenticationStore';
 
 const { Text } = Typography;
 
@@ -22,25 +24,20 @@ const KnowledgeBody = () => {
     );
 };
 
-const KnowledgeBodyLeft = () => {
+const KnowledgeBodyLeft = observer(() => {
     const regex = /<p><img src="(.*?)"><\/p>/;
-    const [data, setData] = useState([]);
 
     useEffect(() => {
-        gStore.setLoading(true);
-        let kl = new Knowledge();
-        kl.getAll().then((d) => {
-            gStore.setLoading(false);
-            setData(d);
-        });
+        gStore.loadKnowledge();
     }, []);
 
     return (
         <div className={cx('knowledge-body-left-container')}>
-            {data.length > 0 &&
-                data.map((item) => (
+            {gStore.knowledge.data &&
+                gStore.knowledge.data.map((item) => (
                     <FullWidthItem
                         key={item.id}
+                        id={item.id}
                         title={item.title}
                         description={item.shortContent}
                         publishedTime={moment(item.creationTime).format('DD/MM/YYYY')}
@@ -50,14 +47,56 @@ const KnowledgeBodyLeft = () => {
                 ))}
         </div>
     );
-};
+});
 
-const KnowledgeBodyRight = () => {
+const KnowledgeBodyRight = observer(() => {
+    const [open, setOpen] = useState(false);
+    const [linkYoutube, setLinkYoutube] = useState('');
+
+    const handleOpenChange = (newOpen: boolean) => {
+        setOpen(newOpen);
+    };
+
+    useEffect(() => {
+        console.log(gStore.linkYoutube);
+        if (!gStore.linkYoutube) {
+            gStore.getYoutubeLink();
+        }
+    });
+
     return (
         <>
             <div className={cx('knowledge-body-right-container')}>
-                <Text type="secondary">VIDEO ĐƯỢC ĐỀ XUẤT</Text>
-                <YouTube className={cx('knowledge-body-right-youtube')} videoId="wQGg1xPMcpE" />
+                <Text type="secondary">VIDEO ĐƯỢC ĐỀ XUẤT</Text>&nbsp;
+                {authentication.localUser != '' && (
+                    <Popover
+                        content={
+                            <>
+                                <Input
+                                    placeholder="Nhập Url"
+                                    onChange={(e) => setLinkYoutube(e.target.value)}
+                                    style={{ width: 100 }}
+                                />
+                                <Button
+                                    type="primary"
+                                    style={{ width: 100 }}
+                                    onClick={() => {
+                                        let linkChange = linkYoutube.split('?v=')[1];
+                                        if (linkChange) gStore.changeYoutubeLink(linkChange);
+                                    }}
+                                >
+                                    Thay đổi
+                                </Button>
+                            </>
+                        }
+                        trigger="click"
+                        open={open}
+                        onOpenChange={handleOpenChange}
+                    >
+                        <EditOutlined style={{ cursor: 'pointer', fontSize: 16, color: '#33C2FF' }} />
+                    </Popover>
+                )}
+                <YouTube className={cx('knowledge-body-right-youtube')} videoId={gStore.linkYoutube} />
                 <hr />
                 <div className={cx('knowledge-body-right-recommendation')}>
                     <Text type="secondary">CÁC CHỦ ĐỀ ĐƯỢC ĐỀ XUẤT</Text>
@@ -82,14 +121,16 @@ const KnowledgeBodyRight = () => {
             </div>
         </>
     );
-};
+});
 
 interface IProps {
     content: string;
 }
 
 const BodyPopupContent = (props: IProps) => {
-    return <div style={{ fontSize: 17 }} dangerouslySetInnerHTML={{ __html: props.content }}></div>;
+    return (
+        <div style={{ fontSize: 17, whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={{ __html: props.content }}></div>
+    );
 };
 
 export default KnowledgeBody;

@@ -78,4 +78,23 @@ export class Knowledge {
     }
 }
 
+export class KnowledgeYoutubeUrl {
+    public async get(id: number) {
+        await http.get(`api/services/app/KnowledgeYoutubeUrls/Get?id=${id}`);
+    }
+
+    public async getAll() {
+        let result = await http.get('api/services/app/KnowledgeYoutubeUrls/GetAll');
+        return result.data.result;
+    }
+
+    public async create(data: any) {
+        await http.post('api/services/app/KnowledgeYoutubeUrls/Create', data);
+    }
+
+    public async delete(id: number) {
+        await http.delete(`api/services/app/KnowledgeYoutubeUrls/Delete?id=${id}`);
+    }
+}
+
 export default new DataService();

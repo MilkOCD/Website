@@ -35,7 +35,7 @@ const ButtonModalComponent = (props: IProps) => {
     return (
         <>
             {props.type == 'button' ? (
-                <Button type="primary" onClick={showModal}>
+                <Button style={{ borderRadius: 5 }} type="primary" onClick={showModal}>
                     {props.displayText}
                 </Button>
             ) : (
