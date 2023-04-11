@@ -1,6 +1,6 @@
 import * as React from 'react';
 import gStore from 'src/stores/GlobalStore';
-import { Grid, Container, Button, Backdrop } from '@mui/material';
+import { Grid, Container, Button } from '@mui/material';
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { Book } from 'src/services/data/dataService';
@@ -8,14 +8,11 @@ import BookItem from './BookItem';
 import { observer } from 'mobx-react';
 import authentication from 'src/stores/authenticationStore';
 import AddBook from './BookItem/addBook';
-import BoxLoader from 'src/components/BoxLoader';
 
 const ListBook = () => {
     let sv = new Book();
     const [listBook, setListBook] = React.useState([]);
     const [mode, changeMode] = React.useState(false);
-    const [dataSend, setDataSend] = React.useState(null);
-    const [loading, setLoading] = React.useState(false);
 
     const toggleMode = (status: boolean) => {
         changeMode(status);
@@ -60,9 +57,9 @@ const ListBook = () => {
     };
 
     const loadListBook = () => {
-        setLoading(true);
+        gStore.setLoading(true);
         sv.getAll().then((d) => {
-            setLoading(false);
+            gStore.setLoading(false);
             setListBook(d);
         });
     };
@@ -73,9 +70,6 @@ const ListBook = () => {
 
     return (
         <>
-            <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={loading}>
-                <BoxLoader />
-            </Backdrop>
             {authentication.localUser != '' && (
                 <div className="align-center mt-px">
                     <FormControlLabel

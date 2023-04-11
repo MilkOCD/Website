@@ -6,6 +6,8 @@ import YouTube from 'react-youtube';
 import Scrollbars from 'react-custom-scrollbars-2';
 import { useState, useEffect } from 'react';
 import { Knowledge } from 'src/services/data/dataService';
+import moment from 'moment';
+import gStore from 'src/stores/GlobalStore';
 
 const { Text } = Typography;
 
@@ -21,11 +23,14 @@ const KnowledgeBody = () => {
 };
 
 const KnowledgeBodyLeft = () => {
+    const regex = /<p><img src="(.*?)"><\/p>/;
     const [data, setData] = useState([]);
 
     useEffect(() => {
+        gStore.setLoading(true);
         let kl = new Knowledge();
         kl.getAll().then((d) => {
+            gStore.setLoading(false);
             setData(d);
         });
     }, []);
@@ -38,9 +43,9 @@ const KnowledgeBodyLeft = () => {
                         key={item.id}
                         title={item.title}
                         description={item.shortContent}
-                        publishedTime={'20/03/2000'}
-                        imageUrl="https://www.searchenginejournal.com/wp-content/uploads/2022/06/image-search-1600-x-840-px-62c6dc4ff1eee-sej-1280x720.png"
-                        content={<BodyPopupContent content={item.content} />}
+                        publishedTime={moment(item.creationTime).format('DD/MM/YYYY')}
+                        imageUrl={item.imageUrl}
+                        content={<BodyPopupContent content={item.content.replace(regex, '$1')} />}
                     />
                 ))}
         </div>

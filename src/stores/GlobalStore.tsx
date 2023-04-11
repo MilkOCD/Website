@@ -1,6 +1,7 @@
 import { action, makeObservable, observable } from 'mobx';
 import { Article } from '../services/data/dataService';
 
+// interface
 interface IToast {
     message: string;
     type: 'error' | 'warning' | 'info' | 'success';
@@ -27,10 +28,14 @@ interface INews {
     data: any;
 }
 
+// class, where stores all global states
 class GlobalStore {
+    // global state
     windowDimension: any;
 
     isPopupOpen: boolean = false;
+
+    isLoading: boolean = false;
 
     toastInfo: IToast = {
         message: 'Default',
@@ -60,6 +65,7 @@ class GlobalStore {
         makeObservable(this, {
             windowDimension: observable,
             isPopupOpen: observable,
+            isLoading: observable,
             toastInfo: observable,
             confirmInfo: observable,
             formInfo: observable,
@@ -77,12 +83,17 @@ class GlobalStore {
         });
     }
 
+    // action
     setWindowDimensions = (windowDimension) => {
         this.windowDimension = windowDimension;
     };
 
     setOpenPopup = (isOpen) => {
         this.isPopupOpen = isOpen;
+    };
+
+    setLoading = (isLoading) => {
+        this.isLoading = isLoading;
     };
 
     openToast = (toastInfo?: IToast) => {
@@ -122,8 +133,10 @@ class GlobalStore {
     };
 
     loadNews = () => {
+        this.setLoading(true);
         let sv = new Article();
         sv.getAll().then((d) => {
+            this.setLoading(false);
             this.news = { data: d, reload: !this.news.reload };
         });
     };

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Book } from 'src/services/data/dataService';
-import { TextField, Backdrop, Button } from '@mui/material';
-import BoxLoader from 'src/components/BoxLoader';
+import { TextField, Button } from '@mui/material';
 import gStore from 'src/stores/GlobalStore';
 import SendTwoToneIcon from '@mui/icons-material/SendTwoTone';
 
@@ -11,7 +10,6 @@ interface IProps {
 
 const AddBook = (props: IProps) => {
     let sv = new Book();
-    const [loading, setLoading] = React.useState(false);
     const [title, setTitle] = React.useState('Mặc định');
     const [author, setAuthor] = React.useState('Mặc định');
     const [description, setDescription] = React.useState('Mặc định');
@@ -20,7 +18,7 @@ const AddBook = (props: IProps) => {
     const [iFormImage, setIFormImage] = React.useState(null);
 
     const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setLoading(true);
+        gStore.setLoading(true);
         const file = event.target.files && event.target.files[0];
         if (file) {
             const reader = new FileReader();
@@ -30,7 +28,7 @@ const AddBook = (props: IProps) => {
                     formData.append('file', event.target.files[0]);
                     setIFormImage(formData);
                     setImage(reader.result as string);
-                    setLoading(false);
+                    gStore.setLoading(false);
                 }, 1000);
             };
             reader.readAsDataURL(file);
@@ -38,7 +36,7 @@ const AddBook = (props: IProps) => {
     };
 
     const addBook = () => {
-        setLoading(true);
+        gStore.setLoading(true);
         sv.uploadImage(iFormImage).then((d) => {
             let data = {
                 title: title,
@@ -64,7 +62,7 @@ const AddBook = (props: IProps) => {
                     });
                 })
                 .finally(() => {
-                    setLoading(false);
+                    gStore.setLoading(false);
                     gStore.closeForm();
                 });
         });
@@ -76,9 +74,6 @@ const AddBook = (props: IProps) => {
 
     return (
         <>
-            <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={loading}>
-                <BoxLoader />
-            </Backdrop>
             <TextField
                 autoFocus
                 margin="dense"

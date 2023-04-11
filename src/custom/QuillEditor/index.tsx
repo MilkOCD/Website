@@ -7,6 +7,7 @@ import { Dropdown, Space, Typography, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import styles from './QuillEditor.module.scss';
 import classnames from 'classnames/bind';
+import ImageUploadComponent from '../ImageUpload';
 
 const cx = classnames.bind(styles);
 
@@ -98,6 +99,7 @@ const QuillEditorComponent = (props: IProps) => {
                 onChange={(e) => props.onEdit(e, 1)}
                 placeholder="Nhập tiêu đề"
             />
+            <ImageUploadComponent onEdit={props.onEdit} />
             <CustomInputComponent
                 type="text"
                 name="Hashtag"

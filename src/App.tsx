@@ -9,10 +9,16 @@ import Toast from './components/GlobalComponent/toast';
 import Confirm from './components/GlobalComponent/confirm';
 import FormDialog from './components/GlobalComponent/form';
 import { publicRoutes } from './routes';
+import Backdrop from '@mui/material/Backdrop';
+import BoxLoader from './components/BoxLoader';
+import { observer } from 'mobx-react';
 
 function App() {
     return (
         <>
+            <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={gStore.isLoading}>
+                <BoxLoader />
+            </Backdrop>
             <ThemeProvider>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <CssBaseline />
@@ -34,4 +40,4 @@ function App() {
         </>
     );
 }
-export default App;
+export default observer(App);

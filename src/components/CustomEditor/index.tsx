@@ -5,7 +5,6 @@ import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
 import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
 import FormatColorTextIcon from '@mui/icons-material/FormatColorText';
-import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import InsertLinkIcon from '@mui/icons-material/InsertLink';
 import classnames from 'classnames';
 
@@ -19,10 +18,8 @@ import {
     Button,
     useTheme,
     InputAdornment,
-    TextField,
-    Backdrop
+    TextField
 } from '@mui/material';
-import BoxLoader from '../BoxLoader';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import AttachFileTwoToneIcon from '@mui/icons-material/AttachFileTwoTone';
 import ComputerIcon from '@mui/icons-material/Computer';
@@ -106,7 +103,6 @@ const customStyleMap = {
 function CustomEditor() {
     const theme = useTheme();
     const editorRef = useRef(null);
-    const [loading, setLoading] = React.useState(false);
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
     const [tags, setTags] = React.useState([]);
     const [title, setTitle] = React.useState('Nhập tiêu đề ...');
@@ -127,7 +123,7 @@ function CustomEditor() {
     };
 
     const getImgUrl = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setLoading(true);
+        gStore.setLoading(true);
         const file = event.target.files && event.target.files[0];
         if (file) {
             const reader = new FileReader();
@@ -137,7 +133,7 @@ function CustomEditor() {
                     formData.append('file', event.target.files[0]);
                     setIFormImageToCopy(formData);
                     setImageToCopy(reader.result as string);
-                    setLoading(false);
+                    gStore.setLoading(false);
                 });
             };
             reader.readAsDataURL(file);
@@ -146,16 +142,16 @@ function CustomEditor() {
 
     const getImgUrlAction = () => {
         let sv = new Article();
-        setLoading(true);
+        gStore.setLoading(true);
         sv.uploadImage(iFormImageToCopy).then((d) => {
             let htmlImage = `<img style="width: 50%" src={${d}} />`;
             setImgUrl(htmlImage);
-            setLoading(false);
+            gStore.setLoading(false);
         });
     };
 
     const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setLoading(true);
+        gStore.setLoading(true);
         const file = event.target.files && event.target.files[0];
         if (file) {
             const reader = new FileReader();
@@ -165,7 +161,7 @@ function CustomEditor() {
                     formData.append('file', event.target.files[0]);
                     setIFormImage(formData);
                     setImage(reader.result as string);
-                    setLoading(false);
+                    gStore.setLoading(false);
                 });
             };
             reader.readAsDataURL(file);
@@ -242,7 +238,7 @@ function CustomEditor() {
     };
 
     const onAction = () => {
-        setLoading(true);
+        gStore.setLoading(true);
         if (title != '') {
             let sv = new Article();
             sv.uploadImage(iFormImage).then((d) => {
@@ -253,7 +249,7 @@ function CustomEditor() {
                     imageUrl: d
                 };
                 sv.create(data).then((d) => {
-                    setLoading(false);
+                    gStore.setLoading(false);
                     gStore.loadNews();
                     resetDataSend();
                     gStore.openToast({
@@ -264,7 +260,7 @@ function CustomEditor() {
                 });
             });
         } else {
-            setLoading(false);
+            gStore.setLoading(false);
             gStore.openToast({
                 message: 'Tiêu đề không được để trống',
                 type: 'error',
@@ -275,9 +271,6 @@ function CustomEditor() {
 
     return (
         <>
-            <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={loading}>
-                <BoxLoader />
-            </Backdrop>
             <div className="tags-container ml-px">
                 <div>
                     <Box sx={{ m: 0, mb: 1 }}>
