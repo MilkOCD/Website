@@ -16,7 +16,7 @@ const CustomInputComponent = (props: IProps) => {
     return (
         <div className={cx('custom-input-component')}>
             {props.name && props.name}
-            {props.require ? <span> *Trường này là bắt buộc</span> : ''}
+            {props.require ? <span> *</span> : ''}
             {props.type == 'number' ? (
                 <InputNumber className={cx('custom-input')} defaultValue={3} onChange={props.onChange} />
             ) : (

@@ -14,6 +14,7 @@ interface IProps {
     type: 'button' | 'text';
     displayText: string;
     className?: string;
+    eventHandle?: () => void;
 }
 
 const ButtonModalComponent = (props: IProps) => {
@@ -50,6 +51,18 @@ const ButtonModalComponent = (props: IProps) => {
                 onOk={handleOk}
                 onCancel={handleCancel}
                 width="100%"
+                footer={[
+                    <>
+                        <Button key="close" onClick={handleCancel}>
+                            Hủy
+                        </Button>
+                        {props.eventHandle && (
+                            <Button key="send" type="primary" onClick={props.eventHandle}>
+                                Tạo bài viết
+                            </Button>
+                        )}
+                    </>
+                ]}
             >
                 {props.content}
             </Modal>

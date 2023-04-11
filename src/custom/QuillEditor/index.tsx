@@ -2,46 +2,35 @@ import { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import CustomInputComponent from '../CustomInput';
-import { Article } from 'src/services/data/dataService';
+import type { MenuProps } from 'antd';
+import { Dropdown, Space, Typography, Button } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
+import styles from './QuillEditor.module.scss';
+import classnames from 'classnames/bind';
 
-const replaceImageUrls = async (html) => {
-    let sv = new Article();
+const cx = classnames.bind(styles);
 
-    const regex = /"data:image\/([a-zA-Z]*);base64,([^"]*)"/g;
-    const matches = html.match(regex);
-    const promises = [];
-    let replacedHtml = html;
-    for (const match of matches) {
-        let base64String = match.substring(1, match.length - 1);
-
-        const byteCharacters = atob(base64String.split(',')[1]);
-
-        const byteNumbers = new Array(byteCharacters.length);
-        for (let i = 0; i < byteCharacters.length; i++) {
-            byteNumbers[i] = byteCharacters.charCodeAt(i);
-        }
-
-        const byteArray = new Uint8Array(byteNumbers);
-        const file = new File([byteArray], 'image.jpg', { type: 'image/jpeg' });
-
-        const formData = new FormData();
-        formData.append('file', file);
-        const promise = sv.uploadImage(formData).then((d) => {
-            return { base64String, url: d };
-        });
-        promises.push(promise);
+const items: MenuProps['items'] = [
+    {
+        key: '1',
+        label: 'Phân tích cơ bản'
+    },
+    {
+        key: '2',
+        label: 'Phân tích kỹ thuật'
+    },
+    {
+        key: '3',
+        label: 'Cho người mới bắt đầu'
     }
+];
 
-    const uploadedFiles = await Promise.all(promises);
-    let newHtml = replacedHtml;
-    for (const uploadedFile of uploadedFiles) {
-        const { base64String, url } = uploadedFile;
-        newHtml = newHtml.replace(base64String, url);
-    }
-    return newHtml;
-};
+interface IProps {
+    onEdit: (e, type) => void;
+    dataSend: any;
+}
 
-const QuillEditorComponent = () => {
+const QuillEditorComponent = (props: IProps) => {
     const modules = {
         toolbar: [
             [{ header: '1' }, { header: '2' }, { font: [] }],
@@ -74,27 +63,67 @@ const QuillEditorComponent = () => {
         'video'
     ];
 
-    const [editorHtml, setEditorHtml] = useState('');
-
-    const handleChange = (html) => {
-        setEditorHtml(html);
-    };
-
-    const onChange = (e) => {};
+    const [itemSelected, selectItem] = useState('Phân tích cơ bản');
 
     return (
         <div>
-            <CustomInputComponent type="text" name="Lêm" require={true} onChange={onChange} />
+            <Dropdown
+                menu={{
+                    items,
+                    selectable: true,
+                    defaultSelectedKeys: ['1'],
+                    onSelect: (e) => {
+                        selectItem(
+                            e.key == '1'
+                                ? 'Phân tích cơ bản'
+                                : e.key == '2'
+                                ? 'Phân tích kỹ thuật'
+                                : 'Cho người mới bắt đầu'
+                        );
+                        props.onEdit(e, 4);
+                    }
+                }}
+            >
+                <Typography.Link>
+                    <Space>
+                        {itemSelected}
+                        <DownOutlined />
+                    </Space>
+                </Typography.Link>
+            </Dropdown>
+            <CustomInputComponent
+                type="text"
+                name="Tiêu đề"
+                require={true}
+                onChange={(e) => props.onEdit(e, 1)}
+                placeholder="Nhập tiêu đề"
+            />
+            <CustomInputComponent
+                type="text"
+                name="Hashtag"
+                require={true}
+                onChange={(e) => props.onEdit(e, 2)}
+                placeholder="Chỉ nhận 1 hashtag"
+            />
+            <CustomInputComponent
+                type="text"
+                name="Mô tả bài viết"
+                require={true}
+                onChange={(e) => props.onEdit(e, 3)}
+                placeholder="Mô tả bài viết"
+            />
             <ReactQuill
                 theme={'snow'}
-                onChange={handleChange}
-                value={editorHtml}
+                onChange={(e) => props.onEdit(e, 5)}
+                value={props.dataSend.content}
                 modules={modules}
                 formats={formats}
                 bounds={'.app'}
                 placeholder={'Nhập nội dung'}
             />
-            <button onClick={() => replaceImageUrls(editorHtml)}>Thử nghiệm</button>
+            <div>
+                <span className={cx('note')}> * Các trường bắt buộc</span>
+            </div>
         </div>
     );
 };

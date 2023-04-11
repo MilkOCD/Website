@@ -4,6 +4,8 @@ import FullWidthItem from 'src/custom/FullWidthItem';
 import { Typography } from 'antd';
 import YouTube from 'react-youtube';
 import Scrollbars from 'react-custom-scrollbars-2';
+import { useState, useEffect } from 'react';
+import { Knowledge } from 'src/services/data/dataService';
 
 const { Text } = Typography;
 
@@ -19,50 +21,28 @@ const KnowledgeBody = () => {
 };
 
 const KnowledgeBodyLeft = () => {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        let kl = new Knowledge();
+        kl.getAll().then((d) => {
+            setData(d);
+        });
+    }, []);
+
     return (
         <div className={cx('knowledge-body-left-container')}>
-            <FullWidthItem
-                title="Learn JavaScript while Playing Games - Gamify Your Learning"
-                description="Trong bài viết này, tôi muốn giới thiệu các trang web khác nhau mà bạn có thể sử dụng để học JavaScript khi chơi trò chơi. Phương..."
-                publishedTime={'20/03/2000'}
-                imageUrl="https://www.searchenginejournal.com/wp-content/uploads/2022/06/image-search-1600-x-840-px-62c6dc4ff1eee-sej-1280x720.png"
-                content={<BodyPopupContent />}
-            />
-            <FullWidthItem
-                title="Learn JavaScript while Playing Games - Gamify Your Learning"
-                description="Trong bài viết này, tôi muốn giới thiệu các trang web khác nhau mà bạn có thể sử dụng để học JavaScript khi chơi trò chơi. Phương..."
-                publishedTime={'20/03/2000'}
-                imageUrl="https://www.searchenginejournal.com/wp-content/uploads/2022/06/image-search-1600-x-840-px-62c6dc4ff1eee-sej-1280x720.png"
-                content={<BodyPopupContent />}
-            />
-            <FullWidthItem
-                title="Learn JavaScript while Playing Games - Gamify Your Learning"
-                description="Trong bài viết này, tôi muốn giới thiệu các trang web khác nhau mà bạn có thể sử dụng để học JavaScript khi chơi trò chơi. Phương..."
-                publishedTime={'20/03/2000'}
-                imageUrl="https://www.searchenginejournal.com/wp-content/uploads/2022/06/image-search-1600-x-840-px-62c6dc4ff1eee-sej-1280x720.png"
-                content={<BodyPopupContent />}
-            />
-            <FullWidthItem
-                title="Learn JavaScript while Playing Games - Gamify Your Learning"
-                description="Trong bài viết này, tôi muốn giới thiệu các trang web khác nhau mà bạn có thể sử dụng để học JavaScript khi chơi trò chơi. Phương..."
-                publishedTime={'20/03/2000'}
-                imageUrl="https://www.searchenginejournal.com/wp-content/uploads/2022/06/image-search-1600-x-840-px-62c6dc4ff1eee-sej-1280x720.png"
-                content={<BodyPopupContent />}
-            />
-            <FullWidthItem
-                title="Learn JavaScript while Playing Games - Gamify Your Learning"
-                description="Trong bài viết này, tôi muốn giới thiệu các trang web khác nhau mà bạn có thể sử dụng để học JavaScript khi chơi trò chơi. Phương..."
-                publishedTime={'20/03/2000'}
-                imageUrl="https://www.searchenginejournal.com/wp-content/uploads/2022/06/image-search-1600-x-840-px-62c6dc4ff1eee-sej-1280x720.png"
-                content={<BodyPopupContent />}
-            />
-            <FullWidthItem
-                title="Learn JavaScript while Playing Games - Gamify Your Learning"
-                description="Trong bài viết này, tôi muốn giới thiệu các trang web khác nhau mà bạn có thể sử dụng để học JavaScript khi chơi trò chơi. Phương..."
-                publishedTime={'20/03/2000'}
-                imageUrl="https://www.searchenginejournal.com/wp-content/uploads/2022/06/image-search-1600-x-840-px-62c6dc4ff1eee-sej-1280x720.png"
-                content={<BodyPopupContent />}
-            />
+            {data.length > 0 &&
+                data.map((item) => (
+                    <FullWidthItem
+                        key={item.id}
+                        title={item.title}
+                        description={item.shortContent}
+                        publishedTime={'20/03/2000'}
+                        imageUrl="https://www.searchenginejournal.com/wp-content/uploads/2022/06/image-search-1600-x-840-px-62c6dc4ff1eee-sej-1280x720.png"
+                        content={<BodyPopupContent content={item.content} />}
+                    />
+                ))}
         </div>
     );
 };
@@ -99,71 +79,12 @@ const KnowledgeBodyRight = () => {
     );
 };
 
-const BodyPopupContent = () => {
-    return (
-        <>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-            <div>abc</div>
-        </>
-    );
+interface IProps {
+    content: string;
+}
+
+const BodyPopupContent = (props: IProps) => {
+    return <div style={{ fontSize: 17 }} dangerouslySetInnerHTML={{ __html: props.content }}></div>;
 };
 
 export default KnowledgeBody;
