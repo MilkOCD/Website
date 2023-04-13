@@ -72,14 +72,7 @@ interface IProps {
 
 const FullWidthItem = (props: IProps) => {
     const [open, setOpen] = useState(false);
-    const [dataSend, setDataSend] = useState({
-        title: '',
-        type: '1',
-        content: '',
-        shortContent: '',
-        hashTag: '',
-        imageUrl: ''
-    });
+    const [dataSend, setDataSend] = useState(null);
 
     const hide = () => {
         setOpen(false);
@@ -91,15 +84,19 @@ const FullWidthItem = (props: IProps) => {
         {
             kl.get(id).then((res: any) => {
                 setDataSend({
-                    title: '',
-                    type: '1',
+                    title: res.title,
+                    type: res.type,
                     content: res.content,
-                    shortContent: '',
-                    hashTag: '',
+                    shortContent: res.shortContent,
+                    hashTag: res.hashTag,
                     imageUrl: ''
                 });
             });
         }
+    };
+
+    const resetDataSend = () => {
+        setDataSend(null);
     };
 
     const actionUpdate = (id) => {
@@ -119,6 +116,7 @@ const FullWidthItem = (props: IProps) => {
                                 type: 'success',
                                 open: true
                             });
+                            resetDataSend();
                         })
                         .catch(() => {
                             gStore.openToast({
@@ -126,6 +124,7 @@ const FullWidthItem = (props: IProps) => {
                                 type: 'error',
                                 open: true
                             });
+                            resetDataSend();
                         });
                 });
             });
@@ -221,7 +220,13 @@ const FullWidthItem = (props: IProps) => {
                                     <ButtonModalComponent
                                         popupTitle="Chỉnh sửa bài viết"
                                         type="custom"
-                                        content={<QuillEditorComponent onEdit={onChangeDataSend} dataSend={dataSend} />}
+                                        content={
+                                            dataSend != null ? (
+                                                <QuillEditorComponent onEdit={onChangeDataSend} dataSend={dataSend} />
+                                            ) : (
+                                                <></>
+                                            )
+                                        }
                                         eventHandle={() => actionUpdate(props.id)}
                                         customComponent={
                                             <div

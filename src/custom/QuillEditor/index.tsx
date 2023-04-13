@@ -83,7 +83,13 @@ const QuillEditorComponent = (props: IProps) => {
 
     const formats = ['header', 'font', 'size', 'bold', 'italic', 'underline', 'blockquote', 'link', 'image', 'color'];
 
-    const [itemSelected, selectItem] = useState('Phân tích cơ bản');
+    const [itemSelected, selectItem] = useState(
+        props.dataSend.type == '3'
+            ? 'Cho người mới bắt đầu'
+            : props.dataSend.type == '2'
+            ? 'Phân tích kỹ thuật'
+            : 'Phân tích cơ bản'
+    );
 
     return (
         <div>
@@ -91,7 +97,7 @@ const QuillEditorComponent = (props: IProps) => {
                 menu={{
                     items,
                     selectable: true,
-                    defaultSelectedKeys: ['1'],
+                    defaultSelectedKeys: [props.dataSend.type ? props.dataSend.type : '1'],
                     onSelect: (e) => {
                         selectItem(
                             e.key == '1'
