@@ -74,7 +74,7 @@ const KnowledgeBodyRight = observer(() => {
     };
 
     useEffect(() => {
-        console.log(gStore.linkYoutube);
+        // console.log(gStore.linkYoutube);
         if (!gStore.linkYoutube) {
             gStore.getYoutubeLink();
         }

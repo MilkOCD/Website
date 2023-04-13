@@ -278,7 +278,7 @@ const FullWidthItem = (props: IProps) => {
                                     <div style={{ fontSize: 14, display: 'flex', alignItems: 'flex-end' }}>
                                         <span>
                                             <CalendarOutlined />
-                                            &nbsp;Ngày cập nhật: {moment(props.publishedTime).format('DD/MM/YYYY')}
+                                            &nbsp;Ngày cập nhật: {props.publishedTime}
                                         </span>
                                         <span className="btn-share">
                                             <ShareAltOutlined />

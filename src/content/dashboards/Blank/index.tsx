@@ -9,7 +9,7 @@ import { observer } from 'mobx-react';
 function Blank() {
     return (
         <>
-            {console.log(authentication.localUser)}
+            {/* {console.log(authentication.localUser)} */}
             <Helmet>
                 <title>TopFin - Tin tức</title>
             </Helmet>
