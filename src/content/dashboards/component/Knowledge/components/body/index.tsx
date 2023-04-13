@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
 import moment from 'moment';
 import gStore from 'src/stores/GlobalStore';
 import { observer } from 'mobx-react';
-import { EditOutlined } from '@ant-design/icons';
+import { EditOutlined, SearchOutlined } from '@ant-design/icons';
 import authentication from 'src/stores/authenticationStore';
 import EmptyComponent from 'src/custom/Empty';
 
@@ -27,6 +27,7 @@ const KnowledgeBody = () => {
 
 const KnowledgeBodyLeft = observer(() => {
     // const regex = /<p><img src="(.*?)"><\/p>/;
+    const [search, setSearch] = useState('');
 
     useEffect(() => {
         gStore.loadKnowledge();
@@ -38,7 +39,14 @@ const KnowledgeBodyLeft = observer(() => {
             : location.hash.includes('technical')
             ? '2'
             : '1';
-        let filterData = data.filter((filter) => filter.type == currentPathNameId);
+        let filterData = data.filter(
+            (filter) =>
+                filter.type == currentPathNameId &&
+                (filter.title.toLowerCase().includes(search.toLowerCase()) ||
+                    filter.shortContent.toLowerCase().includes(search.toLowerCase()) ||
+                    filter.hashTag.toLowerCase().includes(search.toLowerCase()) ||
+                    moment(filter.creationTime).format('DD/MM/YYYY').toLowerCase().includes(search.toLowerCase()))
+        );
         return filterData.length > 0 ? (
             filterData.map((item) => (
                 <FullWidthItem
@@ -60,6 +68,12 @@ const KnowledgeBodyLeft = observer(() => {
 
     return (
         <div className={cx('knowledge-body-left-container')}>
+            <Input
+                className={cx('knowledge-body-left-search')}
+                prefix={<SearchOutlined />}
+                placeholder="13/04/2023 - Tìm kiếm"
+                onChange={(e) => setSearch(e.target.value)}
+            />
             {gStore.knowledge.data && renderList(gStore.knowledge.data)}
         </div>
     );

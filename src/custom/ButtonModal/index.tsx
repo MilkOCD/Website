@@ -60,7 +60,14 @@ const ButtonModalComponent = (props: IProps) => {
                             Hủy
                         </Button>
                         {props.eventHandle && (
-                            <Button key="send" type="primary" onClick={props.eventHandle}>
+                            <Button
+                                key="send"
+                                type="primary"
+                                onClick={() => {
+                                    props.eventHandle();
+                                    handleCancel();
+                                }}
+                            >
                                 Tạo bài viết
                             </Button>
                         )}
