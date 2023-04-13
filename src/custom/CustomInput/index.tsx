@@ -6,6 +6,7 @@ const cx = classnames.bind(styles);
 
 interface IProps {
     type: 'number' | 'text';
+    value: any;
     name?: string;
     require?: boolean;
     placeholder?: string;
@@ -22,6 +23,7 @@ const CustomInputComponent = (props: IProps) => {
             ) : (
                 <Input
                     className={cx('custom-input')}
+                    value={props.value}
                     placeholder={props.placeholder ? props.placeholder : 'Nhập dữ liệu...'}
                     onChange={props.onChange}
                 />

@@ -226,17 +226,15 @@ input:after {
         padding: 10px 24px 0px 24px;
 
         .btn-share {
-            font-size: 15px;
             color: white;
             border-radius: 5px;
-            padding: 3px 10px 3px 10px;
+            padding: 1px 10px 0px 5px;
             background-color: #33c2ff;
             cursor: pointer;
             margin-left: 15px;
-            top: -4px;
 
             .anticon {
-                margin-right: 5px;
+                margin-right: 3px;
             }
         }
     }
@@ -246,9 +244,17 @@ input:after {
     border-radius: 5px;
     cursor: pointer;
 
-    &:hover {
-        opacity: 0.8;
-        color: #33c2ff;
+    .ant-popover-inner-content {
+        padding: 10px;
+
+        div {
+            // margin: 5px;
+
+            &:hover {
+                opacity: 0.8;
+                color: #33c2ff;
+            }
+        }
     }
 }
 

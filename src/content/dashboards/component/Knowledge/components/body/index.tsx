@@ -10,6 +10,7 @@ import gStore from 'src/stores/GlobalStore';
 import { observer } from 'mobx-react';
 import { EditOutlined } from '@ant-design/icons';
 import authentication from 'src/stores/authenticationStore';
+import EmptyComponent from 'src/custom/Empty';
 
 const { Text } = Typography;
 
@@ -25,26 +26,41 @@ const KnowledgeBody = () => {
 };
 
 const KnowledgeBodyLeft = observer(() => {
-    const regex = /<p><img src="(.*?)"><\/p>/;
+    // const regex = /<p><img src="(.*?)"><\/p>/;
 
     useEffect(() => {
         gStore.loadKnowledge();
     }, []);
 
+    const renderList = (data) => {
+        let currentPathNameId = location.hash.includes('starter')
+            ? '3'
+            : location.hash.includes('technical')
+            ? '2'
+            : '1';
+        let filterData = data.filter((filter) => filter.type == currentPathNameId);
+        return filterData.length > 0 ? (
+            filterData.map((item) => (
+                <FullWidthItem
+                    key={item.id}
+                    id={item.id}
+                    title={item.title}
+                    description={item.shortContent}
+                    publishedTime={moment(item.creationTime).format('DD/MM/YYYY')}
+                    imageUrl={item.imageUrl}
+                    hashTag={item.hashTag}
+                    // content={<BodyPopupContent content={item.content.replace(regex, '$1')} />}
+                    content={<BodyPopupContent content={item.content} />}
+                />
+            ))
+        ) : (
+            <EmptyComponent />
+        );
+    };
+
     return (
         <div className={cx('knowledge-body-left-container')}>
-            {gStore.knowledge.data &&
-                gStore.knowledge.data.map((item) => (
-                    <FullWidthItem
-                        key={item.id}
-                        id={item.id}
-                        title={item.title}
-                        description={item.shortContent}
-                        publishedTime={moment(item.creationTime).format('DD/MM/YYYY')}
-                        imageUrl={item.imageUrl}
-                        content={<BodyPopupContent content={item.content.replace(regex, '$1')} />}
-                    />
-                ))}
+            {gStore.knowledge.data && renderList(gStore.knowledge.data)}
         </div>
     );
 });
@@ -102,9 +118,9 @@ const KnowledgeBodyRight = observer(() => {
                     <Text type="secondary">CÁC CHỦ ĐỀ ĐƯỢC ĐỀ XUẤT</Text>
                     <ul className={cx('recommendation-list')}>
                         <li className={cx('recommendation-item')}>
-                            <a>Mới</a>
+                            <a>Tính năng đang được phát triển</a>
                         </li>
-                        <li className={cx('recommendation-item')}>
+                        {/* <li className={cx('recommendation-item')}>
                             <a>Kiến thức gì đó</a>
                         </li>
                         <li className={cx('recommendation-item')}>
@@ -115,7 +131,7 @@ const KnowledgeBodyRight = observer(() => {
                         </li>
                         <li className={cx('recommendation-item')}>
                             <a>Kiến thức gì đó</a>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </div>
@@ -129,7 +145,13 @@ interface IProps {
 
 const BodyPopupContent = (props: IProps) => {
     return (
-        <div style={{ fontSize: 17, whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={{ __html: props.content }}></div>
+        <>
+            {/* {console.log(props.content)} */}
+            <div
+                style={{ fontSize: 17, whiteSpace: 'pre-wrap' }}
+                dangerouslySetInnerHTML={{ __html: props.content }}
+            ></div>
+        </>
     );
 };
 

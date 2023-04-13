@@ -372,58 +372,58 @@ function SidebarMenu() {
                 >
                     <SubMenuWrapper>
                         <List component="div">
-                            <Lock>
-                                <ListItem component="div">
-                                    <Button
-                                        disableRipple
-                                        component={RouterLink}
-                                        onClick={closeSidebar}
-                                        to="/dashboard/basic"
-                                        startIcon={<BarChartIcon style={{ fontSize: 24, marginLeft: -2 }} />}
-                                        style={{
-                                            opacity: authentication.localUser == '' ? 0.5 : 1
-                                        }}
-                                    >
-                                        Phân tích cơ bản
-                                    </Button>
-                                </ListItem>
-                            </Lock>
-                            <Lock>
-                                <ListItem component="div">
-                                    <Button
-                                        disableRipple
-                                        component={RouterLink}
-                                        onClick={closeSidebar}
-                                        to="/dashboard/technical"
-                                        startIcon={<StackedBarChartIcon style={{ fontSize: 24, marginLeft: -3 }} />}
-                                        style={{
-                                            opacity: authentication.localUser == '' ? 0.5 : 1
-                                        }}
-                                    >
-                                        Phân tích kỹ thuật
-                                    </Button>
-                                </ListItem>
-                            </Lock>
-                            <Lock>
-                                <ListItem component="div">
-                                    <Button
-                                        disableRipple
-                                        component={RouterLink}
-                                        onClick={closeSidebar}
-                                        to="/dashboard/starter"
-                                        startIcon={<EmojiPeopleIcon style={{ fontSize: 24, marginLeft: -3 }} />}
-                                        style={{
-                                            opacity: authentication.localUser == '' ? 0.5 : 1
-                                        }}
-                                    >
-                                        Cho người mới bắt đầu
-                                    </Button>
-                                </ListItem>
-                            </Lock>
+                            {/* <Lock> */}
+                            <ListItem component="div">
+                                <Button
+                                    disableRipple
+                                    component={RouterLink}
+                                    onClick={closeSidebar}
+                                    to="/dashboard/basic"
+                                    startIcon={<BarChartIcon style={{ fontSize: 24, marginLeft: -2 }} />}
+                                    style={{
+                                        opacity: authentication.localUser == '' ? 0.5 : 1
+                                    }}
+                                >
+                                    Phân tích cơ bản
+                                </Button>
+                            </ListItem>
+                            {/* </Lock> */}
+                            {/* <Lock> */}
+                            <ListItem component="div">
+                                <Button
+                                    disableRipple
+                                    component={RouterLink}
+                                    onClick={closeSidebar}
+                                    to="/dashboard/technical"
+                                    startIcon={<StackedBarChartIcon style={{ fontSize: 24, marginLeft: -3 }} />}
+                                    style={{
+                                        opacity: authentication.localUser == '' ? 0.5 : 1
+                                    }}
+                                >
+                                    Phân tích kỹ thuật
+                                </Button>
+                            </ListItem>
+                            {/* </Lock> */}
+                            {/* <Lock> */}
+                            <ListItem component="div">
+                                <Button
+                                    disableRipple
+                                    component={RouterLink}
+                                    onClick={closeSidebar}
+                                    to="/dashboard/starter"
+                                    startIcon={<EmojiPeopleIcon style={{ fontSize: 24, marginLeft: -3 }} />}
+                                    style={{
+                                        opacity: authentication.localUser == '' ? 0.5 : 1
+                                    }}
+                                >
+                                    Cho người mới bắt đầu
+                                </Button>
+                            </ListItem>
+                            {/* </Lock> */}
                         </List>
                     </SubMenuWrapper>
                 </List>
-                <List
+                {/* <List
                     component="div"
                     subheader={
                         <ListSubheader component="div" disableSticky>
@@ -486,7 +486,7 @@ function SidebarMenu() {
                             </Lock>
                         </List>
                     </SubMenuWrapper>
-                </List>
+                </List> */}
                 {/* <List
           component="div"
           subheader={

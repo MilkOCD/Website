@@ -163,7 +163,7 @@ class GlobalStore {
         let kl = new Knowledge();
         kl.getAll().then((d) => {
             this.setLoading(false);
-            this.knowledge = { data: d, reload: !this.knowledge.reload };
+            this.knowledge = { data: d.reverse(), reload: !this.knowledge.reload };
         });
     };
 

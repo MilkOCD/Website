@@ -40,7 +40,7 @@ function Newspaper(props: IProps) {
             .replaceAll('<p>&lt;img style="width: 50%" src={https://', '<img style="width: 50%" src=https://')
             .replaceAll('.png} /&gt;</p>', '.png />')
             .replaceAll('.jpg} /&gt;</p>', '.jpg />');
-        console.log(htmlString);
+        // console.log(htmlString);
         const sanitizedHtml = DOMPurify.sanitize(htmlString, config);
         return <div style={{ fontSize: 17 }} dangerouslySetInnerHTML={{ __html: sanitizedHtml }}></div>;
     };

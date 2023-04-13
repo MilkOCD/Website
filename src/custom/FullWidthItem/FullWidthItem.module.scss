@@ -10,7 +10,7 @@
 
         .full-width-item-header-author {
             display: flex;
-            align-items: center;
+            align-items: flex-end;
 
             .full-width-item-header-avatar {
                 width: 25px;
@@ -26,6 +26,15 @@
                 font-size: 12px;
                 font-weight: 600;
                 margin-left: 6px;
+            }
+
+            .full-width-item-header-tag {
+                color: white;
+                // border: 1px solid #33c2ff;
+                background-color: #33c2ff;
+                border-radius: 10px;
+                padding: 0px 10px;
+                margin-left: 10px;
             }
         }
     }

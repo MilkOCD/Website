@@ -11,10 +11,11 @@ const cx = classnames.bind(styles);
 interface IProps {
     popupTitle: any;
     content: any;
-    type: 'button' | 'text';
-    displayText: string;
+    type: 'button' | 'text' | 'custom';
+    displayText?: string;
     className?: string;
     eventHandle?: () => void;
+    customComponent?: any;
 }
 
 const ButtonModalComponent = (props: IProps) => {
@@ -38,10 +39,12 @@ const ButtonModalComponent = (props: IProps) => {
                 <Button style={{ borderRadius: 5 }} type="primary" onClick={showModal}>
                     {props.displayText}
                 </Button>
-            ) : (
+            ) : props.type == 'text' ? (
                 <Title className={props.className} level={3} onClick={showModal}>
                     {props.displayText}
                 </Title>
+            ) : (
+                <div onClick={showModal}>{props.customComponent}</div>
             )}
             <Modal
                 className={cx('modal-component')}

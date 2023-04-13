@@ -112,6 +112,7 @@ const QuillEditorComponent = (props: IProps) => {
                 </Typography.Link>
             </Dropdown>
             <CustomInputComponent
+                value={props.dataSend.title}
                 type="text"
                 name="Tiêu đề"
                 require={true}
@@ -120,6 +121,7 @@ const QuillEditorComponent = (props: IProps) => {
             />
             <ImageUploadComponent onEdit={props.onEdit} />
             <CustomInputComponent
+                value={props.dataSend.hashTag}
                 type="text"
                 name="Hashtag"
                 require={true}
@@ -127,6 +129,7 @@ const QuillEditorComponent = (props: IProps) => {
                 placeholder="Chỉ nhận 1 hashtag"
             />
             <CustomInputComponent
+                value={props.dataSend.shortContent}
                 type="text"
                 name="Mô tả bài viết"
                 require={true}

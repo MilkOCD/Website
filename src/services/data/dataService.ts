@@ -56,7 +56,8 @@ export class Book {
 
 export class Knowledge {
     public async get(id: number) {
-        await http.get(`api/services/app/Knowledges/Get?id=${id}`);
+        let result = await http.get(`api/services/app/Knowledges/Get?id=${id}`);
+        return result.data.result;
     }
 
     public async getAll() {
@@ -70,6 +71,10 @@ export class Knowledge {
 
     public async delete(id: number) {
         await http.delete(`api/services/app/Knowledges/Delete?id=${id}`);
+    }
+
+    public async update(id: number, data: any) {
+        await http.put(`api/services/app/Knowledges/Update?id=${id}`, data);
     }
 
     public async uploadImage(data: any) {

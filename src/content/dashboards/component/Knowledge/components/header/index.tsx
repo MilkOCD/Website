@@ -7,8 +7,6 @@ import authentication from 'src/stores/authenticationStore';
 import { observer } from 'mobx-react';
 import { useState } from 'react';
 import { Article, Knowledge } from 'src/services/data/dataService';
-import BoxLoader from 'src/components/BoxLoader';
-import { Backdrop } from '@mui/material';
 import gStore from 'src/stores/GlobalStore';
 
 const { Title, Text } = Typography;
@@ -78,7 +76,6 @@ const KnowledgeHeader = () => {
                 setDataSend({ ...dataSend, type: e.key });
                 break;
             case 5:
-                console.log(e);
                 setDataSend({ ...dataSend, content: e });
                 break;
             case 6:
@@ -133,9 +130,18 @@ const KnowledgeHeader = () => {
         }
     };
 
+    const getTitle = () => {
+        let title = location.hash.includes('starter')
+            ? 'Cho người mới bắt đầu'
+            : location.hash.includes('technical')
+            ? 'Phân tích kỹ thuật'
+            : 'Phân tích cơ bản';
+        return title;
+    };
+
     return (
         <div>
-            <Title level={2}>Bài viết nổi bật</Title>
+            <Title level={2}>{getTitle()}</Title>
             {authentication.localUser != '' && (
                 <ButtonModalComponent
                     popupTitle="Tạo bài viết"
@@ -145,9 +151,6 @@ const KnowledgeHeader = () => {
                     eventHandle={actionCreate}
                 />
             )}
-            {/* <Text className={cx('knowledge-header-description')}>
-                Tổng hợp các bài viết chia sẻ về kinh nghiệm tự học lập trình online và các kỹ thuật lập trình web.
-            </Text> */}
         </div>
     );
 };
