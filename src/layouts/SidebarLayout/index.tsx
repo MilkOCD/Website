@@ -38,22 +38,23 @@ function SidebarLayout(props: IProps) {
             >
                 <Header />
                 <Sidebar />
-                <Scrollbars>
-                    <Box
-                        sx={{
-                            position: 'relative',
-                            zIndex: 5,
-                            display: 'block',
-                            flex: 1,
-                            pt: `${theme.header.height}`,
-                            [theme.breakpoints.up('lg')]: {
-                                ml: `${theme.sidebar.width}`
-                            }
-                        }}
-                    >
+                <Box
+                    sx={{
+                        position: 'relative',
+                        zIndex: 5,
+                        height: '100%',
+                        display: 'block',
+                        flex: 1,
+                        pt: `${theme.header.height}`,
+                        [theme.breakpoints.up('lg')]: {
+                            ml: `${theme.sidebar.width}`
+                        }
+                    }}
+                >
+                    <Scrollbars>
                         <Box display="block">{props.content}</Box>
-                    </Box>
-                </Scrollbars>
+                    </Scrollbars>
+                </Box>
             </Box>
         </>
     );

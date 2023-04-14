@@ -1,12 +1,13 @@
 import SidebarLayout from 'src/layouts/SidebarLayout';
-import LandingPage from 'src/Home/LandingPage/LandingPage';
+// import LandingPage from 'src/Home/LandingPage/LandingPage';
+import SliderLayout from 'src/layouts/SliderLayout';
 import News from 'src/content/general/News';
 import Article from 'src/content/applications/Article';
 import ListBook from 'src/content/dashboards/component/Book';
 import KnowledgeComponent from 'src/content/dashboards/component/Knowledge';
 
 const publicRoutes = [
-    { path: '/home', component: <LandingPage /> },
+    { path: '/home', component: <SliderLayout /> },
     {
         path: '/news',
         component: <SidebarLayout content={<News />} />
@@ -37,7 +38,7 @@ const publicRoutes = [
         path: '/dashboard',
         component: <SidebarLayout content={<News />} />
     },
-    { path: '', component: <LandingPage /> }
+    { path: '', component: <SliderLayout /> }
 ];
 const privateRoutes = [];
 
