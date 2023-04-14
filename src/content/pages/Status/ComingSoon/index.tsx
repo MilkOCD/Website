@@ -122,13 +122,13 @@ function StatusComingSoon() {
                     </Box>
 
                     <Box display="flex" justifyContent="center">
-                        {timerComponents.length ? timerComponents : <>Chờ đã!</>}
+                        {/* {timerComponents.length ? timerComponents : <>Chờ đã!</>} */}
                     </Box>
 
                     <Container maxWidth="sm">
                         <Box sx={{ textAlign: 'center', p: 4 }}>
                             <FormControl variant="outlined" fullWidth>
-                                <OutlinedInputWrapper
+                                {/* <OutlinedInputWrapper
                                     type="text"
                                     placeholder="Nhập email của bạn tại đây..."
                                     endAdornment={
@@ -144,7 +144,7 @@ function StatusComingSoon() {
                                         </InputAdornment>
                                     }
                                 />
-                                <FormHelperText>Nhận thông báo tới Email khi tính năng hoàn thành!</FormHelperText>
+                                <FormHelperText>Nhận thông báo tới Email khi tính năng hoàn thành!</FormHelperText> */}
                             </FormControl>
                             <Divider sx={{ my: 4 }} />
                             <Box sx={{ textAlign: 'center' }}>

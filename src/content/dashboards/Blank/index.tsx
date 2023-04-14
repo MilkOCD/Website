@@ -11,7 +11,7 @@ function Blank() {
         <>
             {/* {console.log(authentication.localUser)} */}
             <Helmet>
-                <title>TopFin - Tin tức</title>
+                <title>TopFin - Lock</title>
             </Helmet>
             {authentication.localUser == '' ? (
                 <>

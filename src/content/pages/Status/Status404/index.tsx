@@ -55,7 +55,7 @@ function Status404() {
                             Thử các tính năng khác của chúng tôi ở thanh công cụ bên trái!
                         </Typography>
                     </Box>
-                    <Container maxWidth="sm">
+                    {/* <Container maxWidth="sm">
                         <Card sx={{ textAlign: 'center', mt: 3, p: 4 }}>
                             <FormControl variant="outlined" fullWidth>
                                 <OutlinedInputWrapper
@@ -80,7 +80,7 @@ function Status404() {
                                 Go to homepage
                             </Button>
                         </Card>
-                    </Container>
+                    </Container> */}
                 </Container>
             </MainContent>
         </>

@@ -8,11 +8,27 @@ import BookItem from './BookItem';
 import { observer } from 'mobx-react';
 import authentication from 'src/stores/authenticationStore';
 import AddBook from './BookItem/addBook';
+import { Input } from 'antd';
+import { FileSearchOutlined } from '@ant-design/icons';
 
 const ListBook = () => {
     let sv = new Book();
     const [listBook, setListBook] = React.useState([]);
+    const [searchingListBook, setSearchingListBook] = React.useState([]);
     const [mode, changeMode] = React.useState(false);
+
+    const handleSearch = (e) => {
+        let searchingText = e.target.value.toLowerCase();
+        let newSearchingList = listBook.filter(
+            (book) =>
+                book.title.toLowerCase().includes(searchingText) ||
+                book.author.toLowerCase().includes(searchingText) ||
+                book.description.toLowerCase().includes(searchingText)
+        );
+        console.log(listBook);
+        console.log(newSearchingList);
+        setSearchingListBook(newSearchingList);
+    };
 
     const toggleMode = (status: boolean) => {
         changeMode(status);
@@ -61,6 +77,7 @@ const ListBook = () => {
         sv.getAll().then((d) => {
             gStore.setLoading(false);
             setListBook(d);
+            setSearchingListBook(d);
         });
     };
 
@@ -70,6 +87,14 @@ const ListBook = () => {
 
     return (
         <>
+            <div className="align-center mt-px">
+                <Input
+                    style={{ maxWidth: 350, borderRadius: 10, zIndex: 1 }}
+                    prefix={<FileSearchOutlined />}
+                    placeholder="Tìm kiếm sách ..."
+                    onChange={handleSearch}
+                />
+            </div>
             {authentication.localUser != '' && (
                 <div className="align-center mt-px">
                     <FormControlLabel
@@ -83,10 +108,10 @@ const ListBook = () => {
                     )}
                 </div>
             )}
-            <Container maxWidth="lg" style={{ marginTop: 30 }}>
+            <Container maxWidth="lg" style={{ marginTop: 15 }}>
                 <Grid container direction="row" justifyContent="center" alignItems="stretch" spacing={4}>
-                    {listBook.length > 0 &&
-                        listBook.map((data) => (
+                    {searchingListBook.length > 0 &&
+                        searchingListBook.map((data) => (
                             <Grid
                                 key={data.id}
                                 item

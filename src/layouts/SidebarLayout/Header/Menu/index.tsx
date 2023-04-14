@@ -78,15 +78,13 @@ function HeaderMenu() {
                 }}
             >
                 <List disablePadding component={Box} display="flex">
-                    <ListItem
-                        classes={{ root: 'MuiListItem-indicators' }}
-                        button
-                        component={NavLink}
-                        to="/components/buttons"
-                    >
-                        <ListItemText primaryTypographyProps={{ noWrap: true }} primary="Buttons" />
+                    <ListItem classes={{ root: 'MuiListItem-indicators' }} button component={NavLink} to="/home">
+                        <ListItemText
+                            primaryTypographyProps={{ noWrap: true }}
+                            primary="Xem lại thông tin về chúng tôi"
+                        />
                     </ListItem>
-                    <ListItem
+                    {/* <ListItem
                         classes={{ root: 'MuiListItem-indicators' }}
                         button
                         component={NavLink}
@@ -106,7 +104,7 @@ function HeaderMenu() {
                                 </Box>
                             }
                         />
-                    </ListItem>
+                    </ListItem> */}
                 </List>
             </ListWrapper>
             <Menu anchorEl={ref.current} onClose={handleClose} open={isOpen}>

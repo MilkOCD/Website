@@ -1,5 +1,6 @@
 import SidebarLayout from 'src/layouts/SidebarLayout';
 // import LandingPage from 'src/Home/LandingPage/LandingPage';
+import Blank from 'src/content/dashboards/Blank';
 import SliderLayout from 'src/layouts/SliderLayout';
 import News from 'src/content/general/News';
 import Article from 'src/content/applications/Article';
@@ -36,7 +37,7 @@ const publicRoutes = [
     // Kiến thức đầu tư (Close)
     {
         path: '/dashboard',
-        component: <SidebarLayout content={<News />} />
+        component: <SidebarLayout content={<Blank />} />
     },
     { path: '', component: <SliderLayout /> }
 ];
