@@ -96,7 +96,7 @@ const ListBook = () => {
                 />
             </div>
             {authentication.localUser != '' && (
-                <div className="align-center mt-px">
+                <div className="align-center mt-px" style={{ zIndex: 1 }}>
                     <FormControlLabel
                         control={<Switch value={mode} onChange={(e) => toggleMode(e.target.checked)} />}
                         label="Chế độ chỉnh sửa"

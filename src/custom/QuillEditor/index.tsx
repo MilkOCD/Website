@@ -54,6 +54,7 @@ const QuillEditorComponent = (props: IProps) => {
             [{ size: [] }],
             ['bold', 'italic', 'underline', 'blockquote'],
             [{ list: 'bullet' }],
+            [{ align: [] }],
             ['link', 'image'],
             [{ color: ['#FF0000', '#0000FF', '#000000', '#008000'] }]
         ],
@@ -81,7 +82,19 @@ const QuillEditorComponent = (props: IProps) => {
         // 'video'
     ];
 
-    const formats = ['header', 'font', 'size', 'bold', 'italic', 'underline', 'blockquote', 'link', 'image', 'color'];
+    const formats = [
+        'header',
+        'font',
+        'size',
+        'bold',
+        'italic',
+        'underline',
+        'blockquote',
+        'link',
+        'image',
+        'color',
+        'align'
+    ];
 
     const [itemSelected, selectItem] = useState(
         props.dataSend.type == '3'
